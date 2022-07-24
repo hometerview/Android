@@ -37,10 +37,10 @@ class SplashActivity : AppCompatActivity() {
     private lateinit var token: TextView
 
 
-    private val dataStoreProvider: DataStoreProvider = DataStoreProvider(dataStore)
-    private val dataSource: TokenDataSource = TokenLocalDataSource(dataStoreProvider)
-    private val tokenRepository: TokenRepository = TokenRepositoryImpl(dataSource)
-    private val getStoredTokenUseCase: GetStoredTokenUseCase = GetStoredTokenUseCaseImpl(tokenRepository)
+//    private val dataStoreProvider: DataStoreProvider = DataStoreProvider(dataStore)
+//    private val dataSource: TokenDataSource = TokenLocalDataSource(dataStoreProvider)
+//    private val tokenRepository: TokenRepository = TokenRepositoryImpl(dataSource)
+//    private val getStoredTokenUseCase: GetStoredTokenUseCase = GetStoredTokenUseCaseImpl(tokenRepository)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,14 +71,14 @@ class SplashActivity : AppCompatActivity() {
 
     private fun getUserToken() {
         CoroutineScope(Dispatchers.IO).launch {
-            getStoredTokenUseCase.invoke()
-                .collectLatest {
-                    if(!it.isNullOrEmpty()) {
-                        _userToken.postValue(it)
-                    }else{
-                        _userToken.postValue("Constants.DEFAULT_NAME")
-                    }
-                }
+//            getStoredTokenUseCase.invoke()
+//                .collectLatest {
+//                    if(!it.isNullOrEmpty()) {
+//                        _userToken.postValue(it)
+//                    }else{
+//                        _userToken.postValue("Constants.DEFAULT_NAME")
+//                    }
+//                }
         }
     }
 
