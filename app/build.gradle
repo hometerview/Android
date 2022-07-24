@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -46,6 +48,10 @@ dependencies {
 
     // Preferences DataStore (안드로이드 종속성 하위에서 사용할 때)
     implementation "androidx.datastore:datastore-preferences:$datastore_preferences_version"
+
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
 
     implementation "com.kakao.sdk:v2-user:$kakao_version"
 
