@@ -1,11 +1,11 @@
-package com.ftw.domain.usecase
+package com.ftw.domain.repository.login
 
 import kotlinx.coroutines.flow.Flow
 
-interface LoginUseCase {
-    operator fun invoke(): String
+interface LoginDataStoreRepository {
 
     suspend fun setUserToken(name: String)
 
     suspend fun getUserToken(): Flow<String?>
+
 }

@@ -14,8 +14,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val useCase: LoginUseCase = LoginUseCaseImpl()
-        Log.d("MainActivity123123", "keyHash: ${Utility.getKeyHash(this)}")
+//        val useCase: LoginUseCase = LoginUseCaseImpl()
+//        Log.d("MainActivity123123", "keyHash: ${Utility.getKeyHash(this)}")
 
     }
 }
