@@ -40,16 +40,17 @@ dependencies {
     implementation "com.google.android.material:material:$material_version"
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
 
+    // coroutine
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines_android_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines_core_version"
+
+    // Preferences DataStore (안드로이드 종속성 하위에서 사용할 때)
+    implementation "androidx.datastore:datastore-preferences:$datastore_preferences_version"
+
     implementation "com.kakao.sdk:v2-user:$kakao_version"
 
     testImplementation "junit:junit:$junit_version"
-    androidTestImplementation "androidx.test.ext:junit:$android_junit"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$android_espresso_core"
+    androidTestImplementation "androidx.test.ext:junit:$android_junit_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$android_espresso_core_version"
 
-    // coroutine
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9"
-
-    // Preferences DataStore (안드로이드 종속성 하위에서 사용할 때)
-    implementation "androidx.datastore:datastore-preferences:$datastore_preferences"
 }
