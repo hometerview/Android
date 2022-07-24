@@ -1,12 +1,8 @@
 package com.ftw.hometerview.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.ftw.domain.usecase.LoginUseCase
-import com.ftw.domain.usecase.LoginUseCaseImpl
 import com.ftw.hometerview.R
-import com.kakao.sdk.common.util.Utility
 
 
 class MainActivity : AppCompatActivity() {

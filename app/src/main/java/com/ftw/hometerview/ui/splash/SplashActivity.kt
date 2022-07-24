@@ -4,13 +4,23 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.datastore.core.DataStore
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.ftw.data.local.repository.login.ILoginDataStoreRepository
-import com.ftw.domain.repository.login.LoginDataStoreRepository
-import com.ftw.domain.usecase.LoginUseCase
-import com.ftw.domain.usecase.LoginUseCaseImpl
+import com.ftw.data.datasource.TokenDataSource
+import com.ftw.data.local.datasource.TokenLocalDataSource
+import com.ftw.data.local.datastore.DataStoreProvider
+import com.ftw.data.repository.login.LoginRepositoryImpl
+import com.ftw.data.repository.token.TokenRepositoryImpl
+import com.ftw.domain.repository.login.LoginRepository
+import com.ftw.domain.repository.token.TokenRepository
+import com.ftw.domain.usecase.login.LoginUseCase
+import com.ftw.domain.usecase.login.LoginUseCaseImpl
+import com.ftw.domain.usecase.token.GetStoredTokenUseCase
+import com.ftw.domain.usecase.token.GetStoredTokenUseCaseImpl
 import com.ftw.hometerview.R
+import com.ftw.hometerview.config.HometerviewApplication
+import com.ftw.hometerview.config.dataStore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
@@ -26,8 +36,11 @@ class SplashActivity : AppCompatActivity() {
     private lateinit var button2: Button
     private lateinit var token: TextView
 
-    private val loginDataStoreRepository: LoginDataStoreRepository = ILoginDataStoreRepository()
-    private val loginUseCase: LoginUseCase = LoginUseCaseImpl(loginDataStoreRepository)
+
+    private val dataStoreProvider: DataStoreProvider = DataStoreProvider(dataStore)
+    private val dataSource: TokenDataSource = TokenLocalDataSource(dataStoreProvider)
+    private val tokenRepository: TokenRepository = TokenRepositoryImpl(dataSource)
+    private val getStoredTokenUseCase: GetStoredTokenUseCase = GetStoredTokenUseCaseImpl(tokenRepository)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,9 +52,9 @@ class SplashActivity : AppCompatActivity() {
 
         observeToken()
 
-        button1.setOnClickListener {
-            setUserToken("123")
-        }
+//        button1.setOnClickListener {
+//            setUserToken("123")
+//        }
 
         button2.setOnClickListener {
             getUserToken()
@@ -58,7 +71,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun getUserToken() {
         CoroutineScope(Dispatchers.IO).launch {
-            loginUseCase.getUserToken()
+            getStoredTokenUseCase.invoke()
                 .collectLatest {
                     if(!it.isNullOrEmpty()) {
                         _userToken.postValue(it)
@@ -69,11 +82,11 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
-    private fun setUserToken(usertoken: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            loginUseCase.setUserToken(usertoken)
-        }
-    }
+//    private fun setUserToken(usertoken: String) {
+//        CoroutineScope(Dispatchers.IO).launch {
+//            getStoredTokenUseCase.setUserToken(usertoken)
+//        }
+//    }
 
     private fun observeToken() {
         userToken.observe(this) {
