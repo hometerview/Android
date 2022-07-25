@@ -1,6 +1,10 @@
 buildscript {
     apply from:file('versions.gradle')
 
+    repositories {
+        mavenCentral()
+    }
+
     dependencies {
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
     }

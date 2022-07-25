@@ -13,7 +13,7 @@ ext {
     kotlinx_coroutines_core_version = '1.5.0'
     datastore_preferences_version = '1.0.0'
 
-    hilt_version = '2.41'
+    hilt_version = '2.43'
 
     kakao_version = '2.11.0'
 
