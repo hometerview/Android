@@ -3,6 +3,7 @@ package com.ftw.hometerview.ui.login
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ftw.hometerview.databinding.ActivityLoginBinding
 import com.ftw.hometerview.ui.main.MainActivity
@@ -36,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun kakaoLogin() {
+    private fun kakaoLogin() {
         // 카카오톡이 설치되어 있으면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
         if (UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
             UserApiClient.instance.loginWithKakaoTalk(this) { token, error ->
@@ -46,6 +47,7 @@ class LoginActivity : AppCompatActivity() {
                     // 사용자가 카카오톡 설치 후 디바이스 권한 요청 화면에서 로그인을 취소한 경우,
                     // 의도적인 로그인 취소로 보고 카카오계정으로 로그인 시도 없이 로그인 취소로 처리 (예: 뒤로 가기)
                     if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
+                        Toast.makeText(this, "권한이 필요하므로, 다시 한번 시도해주세요!", Toast.LENGTH_SHORT).show()
                         return@loginWithKakaoTalk
                     }
 
