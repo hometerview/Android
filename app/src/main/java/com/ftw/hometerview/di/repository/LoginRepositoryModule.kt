@@ -1,5 +1,6 @@
 package com.ftw.hometerview.di.repository
 
+import com.ftw.data.datasource.LoginDataSource
 import com.ftw.data.repository.login.LoginRepositoryImpl
 import com.ftw.domain.repository.login.LoginRepository
 import dagger.Module
@@ -14,7 +15,7 @@ class LoginRepositoryModule {
 
     @Provides
     @Singleton
-    fun provideLoginRepository(): LoginRepository {
-        return LoginRepositoryImpl()
+    fun provideLoginRepository(dataSource: LoginDataSource): LoginRepository {
+        return LoginRepositoryImpl(dataSource)
     }
 }
