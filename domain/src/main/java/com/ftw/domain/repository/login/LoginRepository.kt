@@ -1,9 +1,5 @@
 package com.ftw.domain.repository.login
 
-import kotlinx.coroutines.flow.Flow
-
 interface LoginRepository {
-
-
-
+    fun login(token: String): Result<String>
 }
