@@ -59,6 +59,8 @@ dependencies {
     // Preferences DataStore (안드로이드 종속성 하위에서 사용할 때)
     implementation "androidx.datastore:datastore-preferences:$datastore_preferences_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.google.code.gson:gson:$gson_version"
+    implementation "com.squareup.retrofit2:converter-gson:$gson_version"
 
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
