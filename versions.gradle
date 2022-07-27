@@ -15,6 +15,7 @@ ext {
 
     hilt_version = '2.43'
 
+    retrofit_version = '2.9.0'
     kakao_version = '2.11.0'
 
     junit_version = '4.13.2'

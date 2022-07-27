@@ -21,7 +21,11 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFile getDefaultProguardFile('proguard-android-optimize.txt')
+            def proguardDirPath = "./proguard/"
+            proguardFile "${proguardDirPath}proguard-rules.pro"
+            proguardFile "${proguardDirPath}proguard-kakao.pro"
+            proguardFile "${proguardDirPath}proguard-retrofit2.pro"
         }
     }
 
@@ -54,6 +58,7 @@ dependencies {
 
     // Preferences DataStore (안드로이드 종속성 하위에서 사용할 때)
     implementation "androidx.datastore:datastore-preferences:$datastore_preferences_version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
 
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
