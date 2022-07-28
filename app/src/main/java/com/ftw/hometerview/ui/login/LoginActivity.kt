@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager2.widget.ViewPager2
+import com.ftw.hometerview.R
+import com.ftw.hometerview.adapter.AnimationAdapter
 import com.ftw.hometerview.databinding.ActivityLoginBinding
 import com.ftw.hometerview.ui.main.MainActivity
 import com.kakao.sdk.auth.model.OAuthToken
@@ -29,12 +32,36 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        guideSetting()
+
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.kakaoLoginButton.setOnClickListener {
             kakaoLogin()
         }
+
+    }
+
+    private fun guideSetting() {
+
+        // 가이드에 사용 될 이미지, 문구 
+        val guideImgaeList = listOf(R.drawable.icon1, R.drawable.icon2, R.drawable.icon3)
+        val guideTextList = listOf(getString(R.string.guide_text1), getString(R.string.guide_text2), getString(R.string.guide_text3))
+
+        binding.viewpager.setPageTransformer { page, position ->
+            page.translationX = position
+        }
+
+        // 몇 개의 페이지를 미리 로드 해둘것인지
+        binding.viewpager.offscreenPageLimit = 1
+        // 어댑터 생성 (Animation꺼 재활용 했습니다)
+        binding.viewpager.adapter = AnimationAdapter(guideImgaeList, guideTextList)
+        // 방향을 가로로
+        binding.viewpager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
+        // indicator 설정
+        binding.dotsIndicator.setViewPager2(binding.viewpager)
     }
 
     private fun kakaoLogin() {

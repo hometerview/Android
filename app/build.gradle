@@ -68,7 +68,7 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
-
+    implementation "com.tbuonomo:dotsindicator:$dotsindicator_version"
     implementation "com.kakao.sdk:v2-user:$kakao_version"
 
     testImplementation "junit:junit:$junit_version"
