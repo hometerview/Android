@@ -1,96 +1,36 @@
 package com.ftw.hometerview.ui.splash
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.datastore.core.DataStore
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.ftw.data.datasource.TokenDataSource
-import com.ftw.data.local.datasource.TokenLocalDataSource
-import com.ftw.data.local.datastore.DataStoreProvider
-import com.ftw.data.repository.login.LoginRepositoryImpl
-import com.ftw.data.repository.token.TokenRepositoryImpl
-import com.ftw.domain.repository.login.LoginRepository
-import com.ftw.domain.repository.token.TokenRepository
-import com.ftw.domain.usecase.login.LoginUseCase
-import com.ftw.domain.usecase.login.LoginUseCaseImpl
-import com.ftw.domain.usecase.token.GetStoredTokenUseCase
-import com.ftw.domain.usecase.token.GetStoredTokenUseCaseImpl
+import androidx.lifecycle.lifecycleScope
 import com.ftw.hometerview.R
-import com.ftw.hometerview.config.HometerviewApplication
-import com.ftw.hometerview.config.dataStore
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collectLatest
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
 
-    private val _userToken = MutableLiveData<String>()
-    private val userToken: LiveData<String>
-        get() = _userToken
-
-    private lateinit var button1: Button
-    private lateinit var button2: Button
-    private lateinit var token: TextView
-
-
-//    private val dataStoreProvider: DataStoreProvider = DataStoreProvider(dataStore)
-//    private val dataSource: TokenDataSource = TokenLocalDataSource(dataStoreProvider)
-//    private val tokenRepository: TokenRepository = TokenRepositoryImpl(dataSource)
-//    private val getStoredTokenUseCase: GetStoredTokenUseCase = GetStoredTokenUseCaseImpl(tokenRepository)
+    @Inject
+    lateinit var viewModel: SplashViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-
-        button1 = findViewById(R.id.button)
-        button2 = findViewById(R.id.button2)
-        token = findViewById(R.id.textView)
-
-        observeToken()
-
-//        button1.setOnClickListener {
-//            setUserToken("123")
-//        }
-
-        button2.setOnClickListener {
-            getUserToken()
-        }
-
-
-        /**
-         * 1. 토큰 저장 여부 확인
-         * 2. 토큰이 존재할 경우 로그인, 없다면 로그인 화면으로 이동
-         *
-         */
-
+        observe()
     }
 
-    private fun getUserToken() {
-        CoroutineScope(Dispatchers.IO).launch {
-//            getStoredTokenUseCase.invoke()
-//                .collectLatest {
-//                    if(!it.isNullOrEmpty()) {
-//                        _userToken.postValue(it)
-//                    }else{
-//                        _userToken.postValue("Constants.DEFAULT_NAME")
-//                    }
-//                }
-        }
-    }
-
-//    private fun setUserToken(usertoken: String) {
-//        CoroutineScope(Dispatchers.IO).launch {
-//            getStoredTokenUseCase.setUserToken(usertoken)
-//        }
-//    }
-
-    private fun observeToken() {
-        userToken.observe(this) {
-            token.text = it
+    private fun observe() {
+        lifecycleScope.launch {
+            viewModel.state.collect { state ->
+                when (state) {
+                    SplashViewModel.State.Failure -> Toast.makeText(this@SplashActivity, getString(R.string.get_token_error), Toast.LENGTH_SHORT).show()    // TODO: 로그인 화면으로 이동
+                    SplashViewModel.State.Success -> Toast.makeText(this@SplashActivity, "Get token is succeeded", Toast.LENGTH_SHORT).show()    // TODO: MainActivity 로 이동
+                    SplashViewModel.State.Loading -> Toast.makeText(this@SplashActivity, "Loading", Toast.LENGTH_SHORT).show()
+                    else -> {}
+                }
+            }
         }
     }
 }

@@ -15,8 +15,10 @@ class TokenLocalDataSource(private val provider: DataStoreProvider) : TokenDataS
         provider.setValue(key, name)
     }
 
-    override suspend fun get(): Flow<String> {
-        return provider.getValue<String>(key).map { it ?: "" }
+    override suspend fun get(): Flow<Result<String>> {
+        return provider.getValue(key).map { token ->
+            token?.let { Result.success(it) }
+                ?: Result.failure(NoSuchFieldError("Getting token is failed"))
+        }
     }
-
 }
