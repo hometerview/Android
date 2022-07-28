@@ -11,13 +11,16 @@ android {
         targetSdk rootProject.ext.target_sdk_version
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
+        consumerProguardFiles "/proguard/consumer-rules.pro"
     }
 
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFile getDefaultProguardFile('proguard-android-optimize.txt')
+            def proguardDirPath = "./proguard/"
+            proguardFile "${proguardDirPath}proguard-rules.pro"
+            proguardFile "${proguardDirPath}proguard-retrofit2.pro"
         }
     }
     compileOptions {
@@ -36,6 +39,7 @@ dependencies {
     implementation "com.google.android.material:material:$material_version"
 
     implementation "androidx.datastore:datastore-preferences:$datastore_preferences_version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
 
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "androidx.test.ext:junit:$android_junit_version"
