@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val useCase: LoginUseCase = LoginUseCaseImpl()
-        Log.d("MainActivity123123", "useCase: ${useCase()}")성
+        Log.d("MainActivity123123", "useCase: ${useCase()}")
 
     }
 }
