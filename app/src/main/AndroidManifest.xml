@@ -17,7 +17,9 @@
         android:theme="@style/Theme.Hometerview"
         tools:targetApi="31">
 
-
+        <activity
+            android:name=".ui.onboardingnonresult.OnboardingNonResultActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.onboardingresult.OnboardingResultActivity"
             android:exported="false" />
