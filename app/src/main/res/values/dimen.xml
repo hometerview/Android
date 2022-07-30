@@ -4,6 +4,12 @@
     <!-- Text size -->
     <dimen name="guide_text_size">20sp</dimen>
 
+
+    <dimen name="sp_size_11">11sp</dimen>
+    <dimen name="sp_size_13">13sp</dimen>
+    <dimen name="sp_size_16">16sp</dimen>
+    <dimen name="sp_size_20">20sp</dimen>
+
     <dimen name="title_text_size">36sp</dimen>
     <dimen name="default_text_size">18sp</dimen>
     <dimen name="button_text_size">24sp</dimen>
@@ -25,13 +31,8 @@
     <dimen name="dp_size_20">20dp</dimen>
     <dimen name="dp_size_24">24dp</dimen>
     <dimen name="dp_size_32">32dp</dimen>
+    <dimen name="dp_size_48">48dp</dimen>
+    <dimen name="dp_size_60">60dp</dimen>
     <dimen name="dp_size_400">400dp</dimen>
-
-    <!-- margin size -->
-    <dimen name="margin_size_2">2dp</dimen>
-
-
-    <!-- loginActivity dp size -->
-    <dimen name="kakao_login_button_box_bottom_margin">14dp</dimen>
 
 </resources>

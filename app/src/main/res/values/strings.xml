@@ -5,5 +5,11 @@
     <string name="guide_text1">나랑 같은 지역으로 출근하는 사람들은 어디에 살고있을까?</string>
     <string name="guide_text2">집터뷰는 같은 지하철역으로 출근하는 사람들이 많이 사는 지역을 추천해줘요!</string>
     <string name="guide_text3">다음 집은 어디로 이사가야 스트레스 안 받고 출퇴근 할 수 있을까?</string>
-
+    <string name="onboarding_text">우리는 직장 정보 기반으로 많은 추천을 해드려요!</string>
+    <string name="search_text">검색</string>
+    <string name="search_result_guide_text">검색한 주소의 근처 역을 기준으로 주거정보를 제공해줘요!</string>
+    <string name="non_result_text">내가 찾는 회사가 없어요!</string>
+    <string name="to_detail_text"><![CDATA[으로 검색 >]]></string>
+    <string name="direct_text">직접입력</string>
+    <string name="skip_text">건너뛰기</string>
 </resources>
