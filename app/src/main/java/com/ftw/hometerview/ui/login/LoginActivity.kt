@@ -10,6 +10,7 @@ import com.ftw.hometerview.R
 import com.ftw.hometerview.adapter.AnimationAdapter
 import com.ftw.hometerview.databinding.ActivityLoginBinding
 import com.ftw.hometerview.ui.main.MainActivity
+import com.ftw.hometerview.ui.onboarding.OnboardingActivity
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
@@ -31,11 +32,11 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        guideSetting()
-
+        
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        guideSetting()
 
         binding.kakaoLoginButton.setOnClickListener {
             kakaoLogin()
@@ -82,7 +83,7 @@ class LoginActivity : AppCompatActivity() {
                     UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
                 } else if (token != null) {
                     Log.i(TAG, "카카오톡으로 로그인 성공 token = ${token.accessToken}")
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, OnboardingActivity::class.java))
                 }
             }
         } else {
