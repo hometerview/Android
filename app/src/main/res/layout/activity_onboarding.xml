@@ -15,7 +15,7 @@
             android:layout_marginTop="@dimen/dp_size_32"
             android:layout_marginEnd="@dimen/dp_size_16"
             android:text="@string/skip_text"
-            android:textStyle="bold"
+            android:fontFamily="@font/pretendard_regular"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,8 +30,8 @@
             android:text="@string/onboarding_text"
             android:textAlignment="center"
             android:textColor="@color/black"
+            android:fontFamily="@font/pretendard_medium"
             android:textSize="@dimen/guide_text_size"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/go_to_next" />
@@ -48,7 +48,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/guide_text"
             app:startIconDrawable="@drawable/ic_baseline_search_24"
-            app:startIconTint="@color/blue01">
+            app:startIconTint="@color/blue_300">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/search_button"

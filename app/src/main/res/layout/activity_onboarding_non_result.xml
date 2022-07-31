@@ -16,7 +16,7 @@
             android:layout_marginTop="@dimen/dp_size_16"
             android:src="@drawable/ic_baseline_navigate_before_24"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/textView2"
@@ -24,13 +24,13 @@
             android:layout_height="wrap_content"
             android:text="@string/direct_text"
             android:textColor="@color/black"
-            android:textStyle="bold"
+            android:fontFamily="@font/pretendard_medium"
             android:textSize="@dimen/sp_size_20"
             app:layout_constraintBottom_toBottomOf="@+id/back_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/back_button" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

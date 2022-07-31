@@ -14,8 +14,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_size_32"
             android:layout_marginEnd="@dimen/dp_size_16"
-            android:text="건너뛰기"
-            android:textStyle="bold"
+            android:text="@string/skip_text"
+            android:fontFamily="@font/pretendard_regular"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -37,8 +37,8 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/dp_size_24"
             app:dampingRatio="0.5"
-            app:dotsColor="@color/blue01"
-            app:dotsStrokeColor="@color/blue01"
+            app:dotsColor="@color/blue_300"
+            app:dotsStrokeColor="@color/blue_300"
             app:dotsCornerRadius="@dimen/dp_size_20"
             app:dotsSize="@dimen/dp_size_10"
             app:dotsSpacing="@dimen/dp_size_6"
@@ -68,4 +68,3 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
-
