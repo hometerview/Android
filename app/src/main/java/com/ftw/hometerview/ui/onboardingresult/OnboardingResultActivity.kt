@@ -1,19 +1,28 @@
 package com.ftw.hometerview.ui.onboardingresult
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.os.Parcelable
 import androidx.lifecycle.lifecycleScope
 import com.ftw.hometerview.databinding.ActivityOnboardingResultBinding
-import com.ftw.hometerview.ui.login.TAG
 import com.ftw.hometerview.ui.onboardingnonresult.OnboardingNonResultActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import kotlinx.parcelize.Parcelize
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class OnboardingResultActivity : AppCompatActivity() {
+
+    companion object {
+        val ARGUMENT_KEY = "ARGUMENT_KEY"
+        fun newIntent(context: Context, result: String): Intent {
+            return Intent(context, OnboardingResultActivity::class.java)
+                .putExtra(ARGUMENT_KEY, Argument(result))
+        }
+    }
 
     @Inject
     lateinit var viewModel: OnboardingResultViewModel
@@ -25,7 +34,7 @@ class OnboardingResultActivity : AppCompatActivity() {
         binding = ActivityOnboardingResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.searchButton.setText(intent.getStringExtra("search_word"))
+        binding.searchButton.setText(intent.getParcelableExtra<Argument>(ARGUMENT_KEY)?.result)
 
         binding.let {
             it.lifecycleOwner = this
@@ -46,9 +55,13 @@ class OnboardingResultActivity : AppCompatActivity() {
     }
 
     private fun noResult() {
-        Log.d(TAG, "카카오계정공")
         viewModel.noResultClicked()
-        val intent = Intent(this, OnboardingNonResultActivity::class.java)
-        startActivity(intent)    // TODO:  HometerviewActivity로 이동
+        startActivity(OnboardingNonResultActivity.newIntent(this))
     }
+
+    @Parcelize
+    private data class Argument(
+        val result: String
+    ) : Parcelable
+
 }

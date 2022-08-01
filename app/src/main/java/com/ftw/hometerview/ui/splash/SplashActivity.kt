@@ -1,16 +1,29 @@
 package com.ftw.hometerview.ui.splash
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.ftw.hometerview.R
+import com.ftw.hometerview.ui.onboardingresult.OnboardingResultActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import kotlinx.coroutines.launch
+import kotlinx.parcelize.Parcelize
 
 @AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
+
+    companion object {
+        val ARGUMENT_KEY = "ARGUMENT_KEY"
+        fun newIntent(context: Context, a: String, b: Int): Intent {
+            return Intent(context, SplashActivity::class.java)
+                .putExtra(ARGUMENT_KEY, Argument(a, b))
+        }
+    }
 
     @Inject
     lateinit var viewModel: SplashViewModel
@@ -33,4 +46,11 @@ class SplashActivity : AppCompatActivity() {
             }
         }
     }
+
+    @Parcelize
+    private data class Argument(
+        val a: String,
+        val b: Int
+    ) : Parcelable
+
 }

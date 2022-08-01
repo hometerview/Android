@@ -12,4 +12,13 @@
     <string name="to_detail_text"><![CDATA[으로 검색 >]]></string>
     <string name="direct_text">직접입력</string>
     <string name="skip_text">건너뛰기</string>
+    <string name="no_address_text">검색에서 정보가 뜨지 않는다면 주소를 입력해주세요.</string>
+    <string name="company_address_text">회사 주소</string>
+    <string name="company_name_text">회사명</string>
+    <string name="ex_address_text">서울시 석규구 긍정로 32 항정빌딩</string>
+    <string name="write_company_name_text">회사명을 입력해주세요!</string>
+    <string name="enroll_company_text">회사 등록하기</string>
+    <string name="worker_is_text">직장인들이</string>
+    <string name="many_live_room_text">많이 사는 동네의 리뷰를 보여줄게요!</string>
+    <string name="ex_station_text">동탄역</string>
 </resources>

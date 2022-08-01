@@ -5,9 +5,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
-import android.util.Log
-import com.ftw.domain.usecase.login.LoginUseCase
-import com.ftw.domain.usecase.login.LoginUseCaseImpl
 import com.ftw.hometerview.R
 import kotlinx.parcelize.Parcelize
 
@@ -21,11 +18,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         intent.getParcelableExtra<Argument>(ARGUMENT_KEY)?.let {
 
         } ?: finish()

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.onboardingnonresult.enrolladdress.EnrollAddressFragment">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_size_16"
+            android:layout_marginTop="@dimen/dp_size_48"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="@string/company_address_text"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/company_address_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_size_8"
+            android:layout_marginEnd="@dimen/dp_size_16"
+            android:fontFamily="@font/pretendard_semibold"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dp_size_14"
+            android:text="@string/ex_address_text"
+            android:textColor="@color/gray_900"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_size_16"
+            android:layout_marginTop="@dimen/dp_size_32"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="@string/company_name_text"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/company_address_textview" />
+
+        <EditText
+            android:id="@+id/company_name_edittext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_size_8"
+            android:background="@drawable/button_non_company"
+            android:elevation="@dimen/dp_size_10"
+            android:fontFamily="@font/pretendard_regular"
+            android:gravity="center_vertical"
+            android:hint="@string/write_company_name_text"
+            android:padding="@dimen/dp_size_14"
+            app:layout_constraintEnd_toEndOf="@+id/company_address_textview"
+            app:layout_constraintStart_toStartOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/enroll_company_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_size_16"
+            android:layout_marginBottom="@dimen/dp_size_32"
+            android:fontFamily="@font/pretendard_medium"
+            android:gravity="center"
+            android:padding="@dimen/dp_size_14"
+            android:elevation="@dimen/dp_size_10"
+            android:background="@drawable/button_enroll_company"
+            android:text="@string/enroll_company_text"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

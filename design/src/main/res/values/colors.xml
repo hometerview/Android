@@ -13,6 +13,7 @@
     <color name="blue_100">#EAF3FE</color>
     <color name="blue_300">#4880EE</color>
     <color name="blue_600">#2B5FC3</color>
+    <color name="blue_900">#4754F0</color>
     <color name="yellow_500">#F7CF6C</color>
     <color name="red_500">#E25848</color>
 </resources>

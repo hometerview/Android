@@ -1,5 +1,6 @@
 package com.ftw.hometerview.ui.login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,7 +10,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.ftw.hometerview.R
 import com.ftw.hometerview.adapter.AnimationAdapter
 import com.ftw.hometerview.databinding.ActivityLoginBinding
-import com.ftw.hometerview.ui.main.MainActivity
 import com.ftw.hometerview.ui.onboarding.OnboardingActivity
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
@@ -19,6 +19,12 @@ import com.kakao.sdk.user.UserApiClient
 const val TAG = "LoginActivity"
 
 class LoginActivity : AppCompatActivity() {
+
+    companion object {
+        fun newIntent(context: Context): Intent {
+            return Intent(context, LoginActivity::class.java)
+        }
+    }
 
     private lateinit var binding: ActivityLoginBinding
 
@@ -83,11 +89,13 @@ class LoginActivity : AppCompatActivity() {
                     UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
                 } else if (token != null) {
                     Log.i(TAG, "카카오톡으로 로그인 성공 token = ${token.accessToken}")
-                    startActivity(Intent(this, OnboardingActivity::class.java))
+                    startActivity(OnboardingActivity.newIntent(this))
+
                 }
             }
         } else {
             UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
         }
     }
+
 }
