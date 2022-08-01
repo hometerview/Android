@@ -34,4 +34,5 @@
     <!-- loginActivity dp size -->
     <dimen name="kakao_login_button_box_bottom_margin">14dp</dimen>
 
+    <dimen name="main_bottom_navigation_icon_size">26dp</dimen>
 </resources>
