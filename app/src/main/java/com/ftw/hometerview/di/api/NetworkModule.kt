@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class NetworkModule {
 
     companion object {
-        private const val BASE_URL = ""
+        private const val BASE_URL = "https://api.github.com"   // 임의로 github api 로 추가함
     }
 
     @Provides
