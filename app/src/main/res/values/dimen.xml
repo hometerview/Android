@@ -38,4 +38,12 @@
     <dimen name="dp_size_240">240dp</dimen>
     <dimen name="dp_size_400">400dp</dimen>
 
+    <!-- margin size -->
+    <dimen name="margin_size_2">2dp</dimen>
+
+
+    <!-- loginActivity dp size -->
+    <dimen name="kakao_login_button_box_bottom_margin">14dp</dimen>
+
+    <dimen name="main_bottom_navigation_icon_size">26dp</dimen>
 </resources>

@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">hometerview</string>
 
+    <string name="main_bottom_navigation_menu_home">홈</string>
+    <string name="main_bottom_navigation_menu_map">지도</string>
+    <string name="main_bottom_navigation_menu_heart">찜하기</string>
+    <string name="main_bottom_navigation_menu_user">MY</string>
+
     <string name="get_token_error">저장된 토큰이 없습니다.</string>
     <string name="guide_text1">나랑 같은 지역으로 출근하는 사람들은 어디에 살고있을까?</string>
     <string name="guide_text2">집터뷰는 같은 지하철역으로 출근하는 사람들이 많이 사는 지역을 추천해줘요!</string>
