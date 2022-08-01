@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.ftw.hometerview.R
 import com.ftw.hometerview.ui.main.MainActivity
-import com.ftw.hometerview.ui.onboardingresult.OnboardingResultActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import kotlinx.coroutines.launch

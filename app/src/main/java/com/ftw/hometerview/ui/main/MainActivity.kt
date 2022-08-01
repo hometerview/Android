@@ -4,14 +4,12 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Parcelable
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.ftw.hometerview.R
-import kotlinx.parcelize.Parcelize
 import com.ftw.hometerview.databinding.ActivityMainBinding
 import com.ftw.hometerview.ui.main.favorite.FavoriteFragment
 import com.ftw.hometerview.ui.main.home.HomeFragment
@@ -25,16 +23,9 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        val ARGUMENT_KEY = "ARGUMENT_KEY"
-        fun newIntent(context: Context, a: String, b: Int): Intent {
+        fun newIntent(context: Context): Intent {
             return Intent(context, MainActivity::class.java)
-                .putExtra(ARGUMENT_KEY, Argument(a, b))
         }
-    }
-
-
-    companion object {
-        fun newIntent(context: Context): Intent = Intent(context, MainActivity::class.java)
     }
 
     @Inject
@@ -48,9 +39,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        intent.getParcelableExtra<Argument>(ARGUMENT_KEY)?.let {
-
-        } ?: finish()
 
         DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
             .apply {
@@ -80,9 +68,4 @@ class MainActivity : AppCompatActivity() {
             .commitAllowingStateLoss()
     }
 
-    @Parcelize
-    private data class Argument(
-        val a: String,
-        val b: Int
-    ) : Parcelable
 }

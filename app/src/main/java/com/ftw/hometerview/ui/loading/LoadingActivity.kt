@@ -7,6 +7,7 @@ import android.os.Bundle
 import com.bumptech.glide.Glide
 import com.ftw.hometerview.R
 import com.ftw.hometerview.databinding.ActivityLoadingBinding
+import com.ftw.hometerview.ui.main.MainActivity
 
 class LoadingActivity : AppCompatActivity() {
 
@@ -24,7 +25,11 @@ class LoadingActivity : AppCompatActivity() {
         binding = ActivityLoadingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Glide.with(this).load(R.raw.loading).into(binding.loadView);
+        Glide.with(this).load(R.raw.loading).into(binding.loadView)
+
+        binding.loadView.setOnClickListener {
+            startActivity(MainActivity.newIntent(this))
+        }
     }
 
 }
