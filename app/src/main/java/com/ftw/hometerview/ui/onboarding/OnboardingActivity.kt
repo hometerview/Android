@@ -15,13 +15,11 @@ class OnboardingActivity : AppCompatActivity() {
             return Intent(context, OnboardingActivity::class.java)
         }
     }
-
-    private lateinit var binding: ActivityOnboardingBinding
-
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityOnboardingBinding.inflate(layoutInflater)
+        val binding: ActivityOnboardingBinding = ActivityOnboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
         
         binding.searchButton.setOnEditorActionListener { v, actionId, event ->
