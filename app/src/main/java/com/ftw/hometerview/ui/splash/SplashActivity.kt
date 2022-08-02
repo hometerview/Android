@@ -17,14 +17,6 @@ import kotlinx.parcelize.Parcelize
 @AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
 
-    companion object {
-        val ARGUMENT_KEY = "ARGUMENT_KEY"
-        fun newIntent(context: Context, a: String, b: Int): Intent {
-            return Intent(context, SplashActivity::class.java)
-                .putExtra(ARGUMENT_KEY, Argument(a, b))
-        }
-    }
-
     @Inject
     lateinit var viewModel: SplashViewModel
 
