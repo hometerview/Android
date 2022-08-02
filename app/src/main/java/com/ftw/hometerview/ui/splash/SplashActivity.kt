@@ -51,10 +51,4 @@ class SplashActivity : AppCompatActivity() {
         finish()
     }
 
-    @Parcelize
-    private data class Argument(
-        val a: String,
-        val b: Int
-    ) : Parcelable
-
 }
