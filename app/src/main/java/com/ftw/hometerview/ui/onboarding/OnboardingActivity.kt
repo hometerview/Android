@@ -29,7 +29,8 @@ class OnboardingActivity : AppCompatActivity() {
                 // 보내기 동작
                 startActivity(
                     OnboardingResultActivity.newIntent(
-                        this, binding.searchButton.text.toString()
+                        context = this, 
+                        result = binding.searchButton.text.toString()
                     )
                 )
             }
