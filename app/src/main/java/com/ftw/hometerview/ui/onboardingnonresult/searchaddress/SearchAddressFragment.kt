@@ -34,7 +34,7 @@ class SearchAddressFragment : Fragment() {
                 // 보내기 동작
                 parentFragmentManager.beginTransaction()
                     .replace(R.id.enroll_fragment,
-                        EnrollAddressFragment.newInstance( binding.searchButton.text.toString())
+                        EnrollAddressFragment.newInstance(result = binding.searchButton.text.toString())
                     ).commit()
             }
             true
