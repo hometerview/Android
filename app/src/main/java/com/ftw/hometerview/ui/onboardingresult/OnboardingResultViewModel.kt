@@ -52,8 +52,6 @@ class OnboardingResultViewModel(
 
     }
 
-    // 1. startActivity와 BindingAdapter
-    // 2. success가 안 바뀌어....
     fun noResultRecycleModel() {
         Log.d(TAG, "카카오계정공123 ${_clickState.value}")
         CoroutineScope(dispatcher.ui()).launch {
