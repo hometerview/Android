@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.ftw.hometerview.R
 import com.ftw.hometerview.databinding.ActivitySearchCompanyNonResultBinding
-import com.ftw.hometerview.ui.searchcompanynonresult.searchaddress.SearchAddressFragment
+import com.ftw.hometerview.ui.searchcompanynonresult.searchcompanyaddress.SearchCompanyAddressFragment
 
 class SearchCompanyNonResultActivity : AppCompatActivity() {
 
@@ -23,7 +23,7 @@ class SearchCompanyNonResultActivity : AppCompatActivity() {
             ActivitySearchCompanyNonResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportFragmentManager.beginTransaction().replace(R.id.enroll_fragment, SearchAddressFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.enroll_fragment, SearchCompanyAddressFragment()).commit()
     }
 
 }

@@ -1,11 +1,11 @@
-package com.ftw.hometerview.ui.searchcompanynonresult.enrollcompany
+package com.ftw.hometerview.ui.searchcompanynonresult.enrollcompanyname
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ftw.hometerview.databinding.FragmentEnrollCompanyBinding
+import com.ftw.hometerview.databinding.FragmentEnrollCompanyNameBinding
 import com.ftw.hometerview.ui.loading.LoadingActivity
 
 private const val ARG_PARAM1 = "result"
@@ -13,7 +13,7 @@ private const val ARG_PARAM1 = "result"
 class EnrollAddressFragment : Fragment() {
 
     private var result: String? = null
-    private lateinit var binding: FragmentEnrollCompanyBinding
+    private lateinit var binding: FragmentEnrollCompanyNameBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +26,7 @@ class EnrollAddressFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentEnrollCompanyBinding.inflate(inflater, container, false)
+        binding = FragmentEnrollCompanyNameBinding.inflate(inflater, container, false)
         return binding.root
     }
 

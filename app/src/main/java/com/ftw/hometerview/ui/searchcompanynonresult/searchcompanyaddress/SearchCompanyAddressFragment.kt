@@ -1,4 +1,4 @@
-package com.ftw.hometerview.ui.searchcompanynonresult.searchaddress
+package com.ftw.hometerview.ui.searchcompanynonresult.searchcompanyaddress
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,18 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import com.ftw.hometerview.R
-import com.ftw.hometerview.databinding.FragmentSearchAddressBinding
-import com.ftw.hometerview.ui.searchcompanynonresult.enrollcompany.EnrollAddressFragment
+import com.ftw.hometerview.databinding.FragmentSearchCompanyAddressBinding
+import com.ftw.hometerview.ui.searchcompanynonresult.enrollcompanyname.EnrollAddressFragment
 
-class SearchAddressFragment : Fragment() {
+class SearchCompanyAddressFragment : Fragment() {
 
-    private lateinit var binding: FragmentSearchAddressBinding
+    private lateinit var binding: FragmentSearchCompanyAddressBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentSearchAddressBinding.inflate(inflater, container, false)
+        binding = FragmentSearchCompanyAddressBinding.inflate(inflater, container, false)
         return binding.root
     }
 
