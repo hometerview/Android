@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.onboardingnonresult.OnboardingNonResultActivity">
+        tools:context=".ui.searchcompanynonresult.SearchCompanyNonResultActivity">
 
         <ImageView
             android:id="@+id/back_button"

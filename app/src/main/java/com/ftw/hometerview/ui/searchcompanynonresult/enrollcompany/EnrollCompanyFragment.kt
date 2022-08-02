@@ -1,21 +1,19 @@
-package com.ftw.hometerview.ui.onboardingnonresult.enrolladdress
+package com.ftw.hometerview.ui.searchcompanynonresult.enrollcompany
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ftw.hometerview.databinding.FragmentEnrollAddressBinding
+import com.ftw.hometerview.databinding.FragmentEnrollCompanyBinding
 import com.ftw.hometerview.ui.loading.LoadingActivity
-import com.ftw.hometerview.ui.onboardingnonresult.OnboardingNonResultActivity
 
 private const val ARG_PARAM1 = "result"
 
 class EnrollAddressFragment : Fragment() {
 
     private var result: String? = null
-    private lateinit var binding: FragmentEnrollAddressBinding
+    private lateinit var binding: FragmentEnrollCompanyBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +26,7 @@ class EnrollAddressFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentEnrollAddressBinding.inflate(inflater, container, false)
+        binding = FragmentEnrollCompanyBinding.inflate(inflater, container, false)
         return binding.root
     }
 

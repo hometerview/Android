@@ -1,4 +1,4 @@
-package com.ftw.hometerview.ui.onboardingresult
+package com.ftw.hometerview.ui.searchcompanyresult
 
 import android.util.Log
 import com.ftw.hometerview.BR
@@ -9,7 +9,7 @@ import com.ftw.hometerview.R
 import com.ftw.hometerview.adapter.RecyclerItem
 import com.ftw.hometerview.dispatcher.Dispatcher
 import com.ftw.hometerview.ui.login.TAG
-import com.ftw.hometerview.ui.onboardingresult.recyclemodel.SearchResultRecycleModel
+import com.ftw.hometerview.ui.searchcompanyresult.recyclemodel.SearchResultRecycleModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

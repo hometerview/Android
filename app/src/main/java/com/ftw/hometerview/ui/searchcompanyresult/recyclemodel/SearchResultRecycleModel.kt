@@ -1,4 +1,4 @@
-package com.ftw.hometerview.ui.onboardingresult.recyclemodel
+package com.ftw.hometerview.ui.searchcompanyresult.recyclemodel
 
 import com.ftw.domain.entitiy.SearchResult
 

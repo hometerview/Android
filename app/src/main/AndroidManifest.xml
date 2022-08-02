@@ -22,15 +22,15 @@
             android:exported="false" />
 
         <activity
-            android:name=".ui.onboardingnonresult.OnboardingNonResultActivity"
+            android:name=".ui.searchcompanynonresult.SearchCompanyNonResultActivity"
             android:exported="false" />
 
         <activity
-            android:name=".ui.onboardingresult.OnboardingResultActivity"
+            android:name=".ui.searchcompanyresult.SearchCompanyResultActivity"
             android:exported="false" />
 
         <activity
-            android:name=".ui.onboarding.OnboardingActivity"
+            android:name=".ui.searchcompany.SearchCompanyActivity"
             android:exported="false" />
 
         <activity

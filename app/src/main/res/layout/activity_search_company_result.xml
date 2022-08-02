@@ -6,13 +6,13 @@
     <data>
         <variable
             name="searchResultViewModel"
-            type="com.ftw.hometerview.ui.onboardingresult.OnboardingResultViewModel" />
+            type="com.ftw.hometerview.ui.searchcompanyresult.OnboardingResultViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.onboardingresult.OnboardingResultActivity"
+    tools:context=".ui.searchcompanyresult.SearchCompanyResultActivity"
         android:background="@color/white">
 
         <com.google.android.material.textfield.TextInputLayout

@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.onboardingnonresult.searchaddress.SearchAddressFragment">
+        tools:context=".ui.searchcompanynonresult.searchaddress.SearchAddressFragment">
 
         <TextView
             android:id="@+id/guide_text"

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="searchResult"
-            type="com.ftw.hometerview.ui.onboardingresult.recyclemodel.SearchResultRecycleModel" />
+            type="com.ftw.hometerview.ui.searchcompanyresult.recyclemodel.SearchResultRecycleModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

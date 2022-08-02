@@ -1,4 +1,4 @@
-package com.ftw.hometerview.ui.onboardingnonresult.searchaddress
+package com.ftw.hometerview.ui.searchcompanynonresult.searchaddress
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import com.ftw.hometerview.R
 import com.ftw.hometerview.databinding.FragmentSearchAddressBinding
-import com.ftw.hometerview.ui.onboardingnonresult.enrolladdress.EnrollAddressFragment
+import com.ftw.hometerview.ui.searchcompanynonresult.enrollcompany.EnrollAddressFragment
 
 class SearchAddressFragment : Fragment() {
 

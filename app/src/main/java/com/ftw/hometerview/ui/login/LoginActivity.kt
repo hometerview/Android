@@ -10,7 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.ftw.hometerview.R
 import com.ftw.hometerview.adapter.AnimationAdapter
 import com.ftw.hometerview.databinding.ActivityLoginBinding
-import com.ftw.hometerview.ui.onboarding.OnboardingActivity
+import com.ftw.hometerview.ui.searchcompany.SearchCompanyActivity
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
@@ -89,7 +89,7 @@ class LoginActivity : AppCompatActivity() {
                     UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
                 } else if (token != null) {
                     Log.i(TAG, "카카오톡으로 로그인 성공 token = ${token.accessToken}")
-                    startActivity(OnboardingActivity.newIntent(this))
+                    startActivity(SearchCompanyActivity.newIntent(this))
 
                 }
             }
