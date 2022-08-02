@@ -56,19 +56,19 @@ class LoginActivity : AppCompatActivity() {
         val guideImgaeList = listOf(R.drawable.icon1, R.drawable.icon2, R.drawable.icon3)
         val guideTextList = listOf(getString(R.string.guide_text1), getString(R.string.guide_text2), getString(R.string.guide_text3))
 
-        binding.viewpager.setPageTransformer { page, position ->
+        binding.guideViewpager.setPageTransformer { page, position ->
             page.translationX = position
         }
 
         // 몇 개의 페이지를 미리 로드 해둘것인지
-        binding.viewpager.offscreenPageLimit = 1
+        binding.guideViewpager.offscreenPageLimit = 1
         // 어댑터 생성 (Animation꺼 재활용 했습니다)
-        binding.viewpager.adapter = AnimationAdapter(guideImgaeList, guideTextList)
+        binding.guideViewpager.adapter = AnimationAdapter(guideImgaeList, guideTextList)
         // 방향을 가로로
-        binding.viewpager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        binding.guideViewpager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
         // indicator 설정
-        binding.dotsIndicator.setViewPager2(binding.viewpager)
+        binding.dotsIndicator.setViewPager2(binding.guideViewpager)
     }
 
     private fun kakaoLogin() {

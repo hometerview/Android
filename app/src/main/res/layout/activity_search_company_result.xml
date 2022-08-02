@@ -16,7 +16,7 @@
         android:background="@color/white">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
+            android:id="@+id/search_textInputLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/search_result_guide_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_size_16"
@@ -49,8 +49,8 @@
             android:fontFamily="@font/pretendard_semibold"
             android:textColor="@color/blue_300"
             android:textSize="@dimen/sp_size_11"
-            app:layout_constraintStart_toStartOf="@+id/textInputLayout"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+            app:layout_constraintStart_toStartOf="@+id/search_textInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/search_textInputLayout" />
 
         <TextView
             android:id="@+id/non_company_here"
@@ -69,13 +69,13 @@
             android:fontFamily="@font/pretendard_semibold"
             android:textColor="@color/black"
             app:drawableEndCompat="@drawable/ic_baseline_navigate_next_24"
-            app:layout_constraintBottom_toTopOf="@+id/recycler_view"
+            app:layout_constraintBottom_toTopOf="@+id/search_result_recycler_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/search_result_guide_textView" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+            android:id="@+id/search_result_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/dp_size_16"

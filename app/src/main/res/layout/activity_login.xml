@@ -21,7 +21,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewpager"
+            android:id="@+id/guide_viewpager"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_size_400"
             android:layout_marginTop="@dimen/dp_size_16"
@@ -45,7 +45,7 @@
             app:dotsStrokeWidth="@dimen/dp_size_1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewpager"
+            app:layout_constraintTop_toBottomOf="@+id/guide_viewpager"
             app:stiffness="300" />
 
         <androidx.cardview.widget.CardView
