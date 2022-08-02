@@ -23,29 +23,24 @@ class DataBindingRecyclerAdapter : ListAdapter<RecyclerItem, BindingViewHolder>(
         return BindingViewHolder(binding)
     }
 
-    override fun onBindViewHolder(
-        holder: BindingViewHolder,
-        position: Int
-    ) {
-        holder.run {
-            getItem(position).bind(binding)
-            if (binding.hasPendingBindings()) {
-                binding.executePendingBindings()
-            }
-        }
+    override fun onBindViewHolder(holder: BindingViewHolder, position: Int) {
+        holder.bind(getItem(position))
     }
 }
 
 class BindingViewHolder(
-    val binding: ViewDataBinding
-) : RecyclerView.ViewHolder(binding.root)
-
-private fun RecyclerItem.bind(binding: ViewDataBinding) {
-    val isVariableFound = binding.setVariable(variableId, data)
-    if (isVariableFound.not()) {
-        throw IllegalStateException(
-            buildErrorMessage(variableId, binding)
-        )
+    private val binding: ViewDataBinding
+) : RecyclerView.ViewHolder(binding.root) {
+    fun bind(item: RecyclerItem) {
+        val isVariableFound = binding.setVariable(item.variableId, item.data)
+        if (isVariableFound.not()) {
+            throw IllegalStateException(
+                buildErrorMessage(item.variableId, binding)
+            )
+        }
+        if (binding.hasPendingBindings()) {
+            binding.executePendingBindings()
+        }
     }
 }
 
