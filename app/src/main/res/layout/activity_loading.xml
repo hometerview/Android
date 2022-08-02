@@ -9,7 +9,7 @@
         tools:context=".ui.loading.LoadingActivity">
 
         <TextView
-            android:id="@+id/textVie7"
+            android:id="@+id/textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_size_32"
@@ -18,11 +18,11 @@
             android:textColor="@color/blue_900"
             android:text="@string/ex_station_text"
             android:textSize="@dimen/sp_size_22"
-            app:layout_constraintBottom_toTopOf="@+id/textView5"
+            app:layout_constraintBottom_toTopOf="@+id/textView3"
             app:layout_constraintStart_toStartOf="@+id/load_view" />
 
         <TextView
-            android:id="@+id/textVie6"
+            android:id="@+id/textView2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/dp_size_16"
@@ -31,11 +31,11 @@
             android:textColor="@color/black"
             android:text="@string/worker_is_text"
             android:textSize="@dimen/sp_size_22"
-            app:layout_constraintBottom_toTopOf="@+id/textView5"
+            app:layout_constraintBottom_toTopOf="@+id/textView3"
             app:layout_constraintEnd_toEndOf="@+id/load_view" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_size_48"
