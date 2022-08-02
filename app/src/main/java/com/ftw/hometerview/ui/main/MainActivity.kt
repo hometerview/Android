@@ -2,8 +2,8 @@ package com.ftw.hometerview.ui.main
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
@@ -23,7 +23,9 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        fun newIntent(context: Context): Intent = Intent(context, MainActivity::class.java)
+        fun newIntent(context: Context): Intent {
+            return Intent(context, MainActivity::class.java)
+        }
     }
 
     @Inject
@@ -62,4 +64,5 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.frame_layout, fragment)
             .commitAllowingStateLoss()
     }
+
 }

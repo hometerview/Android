@@ -1,6 +1,9 @@
 package com.ftw.hometerview.ui.splash
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -9,6 +12,7 @@ import com.ftw.hometerview.ui.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import kotlinx.coroutines.launch
+import kotlinx.parcelize.Parcelize
 
 @AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
@@ -38,4 +42,5 @@ class SplashActivity : AppCompatActivity() {
         startActivity(MainActivity.newIntent(this))
         finish()
     }
+
 }

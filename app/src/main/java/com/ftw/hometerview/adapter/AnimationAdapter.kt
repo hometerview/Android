@@ -21,7 +21,7 @@ class AnimationAdapter(var guideImgaeList: List<Int>, var guideTextList: List<St
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimationViewHolder {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.list_item_icon, parent, false)
+        var view = LayoutInflater.from(parent.context).inflate(R.layout.list_item_guide, parent, false)
         return AnimationViewHolder(view)
     }
 
