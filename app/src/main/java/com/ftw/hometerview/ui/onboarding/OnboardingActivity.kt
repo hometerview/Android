@@ -23,7 +23,7 @@ class OnboardingActivity : AppCompatActivity() {
         setContentView(binding.root)
         
         binding.searchButton.setOnEditorActionListener { v, actionId, event ->
-            if(actionId == EditorInfo.IME_ACTION_SEARCH){
+            if (actionId == EditorInfo.IME_ACTION_SEARCH){
                 // 보내기 동작
                 startActivity(
                     OnboardingResultActivity.newIntent(
