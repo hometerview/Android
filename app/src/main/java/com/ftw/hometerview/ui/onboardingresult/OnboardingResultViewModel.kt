@@ -43,7 +43,7 @@ class OnboardingResultViewModel(
 
     private fun createSearchResultRecycleModel(searchResult: SearchResult): SearchResultRecycleModel {
         return SearchResultRecycleModel(searchResult).apply {
-            itemClickHandler = { searchResult -> showClickMessage(searchResult) }
+            itemClickListener = { searchResult -> showClickMessage(searchResult) }
         }
     }
 
