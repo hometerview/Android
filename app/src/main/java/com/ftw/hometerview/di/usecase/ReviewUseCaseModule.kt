@@ -1,6 +1,6 @@
 package com.ftw.hometerview.di.usecase
 
-import com.ftw.domain.usecase.review.GetLocaionReviewsUseCase
+import com.ftw.domain.usecase.review.GetLocationReviewsUseCase
 import com.ftw.domain.usecase.review.GetLocationReviewsUseCaseImpl
 import dagger.Module
 import dagger.Provides
@@ -13,7 +13,7 @@ import javax.inject.Singleton
 class ReviewUseCaseModule {
     @Provides
     @Singleton
-    fun provideGetLocationReviewsUseCase(): GetLocaionReviewsUseCase{
+    fun provideGetLocationReviewsUseCase(): GetLocationReviewsUseCase {
         return GetLocationReviewsUseCaseImpl()
     }
 }
