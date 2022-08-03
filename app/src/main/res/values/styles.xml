@@ -5,4 +5,7 @@
         <item name="android:textSize">@dimen/sp_size_14</item>
     </style>
 
+    <style name="StarRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/selector_rating_bar_star</item>
+    </style>
 </resources>
