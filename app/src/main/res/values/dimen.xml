@@ -7,6 +7,7 @@
 
     <dimen name="sp_size_11">11sp</dimen>
     <dimen name="sp_size_13">13sp</dimen>
+    <dimen name="sp_size_14">14sp</dimen>
     <dimen name="sp_size_16">16sp</dimen>
     <dimen name="sp_size_20">20sp</dimen>
     <dimen name="sp_size_22">22sp</dimen>
@@ -33,7 +34,11 @@
     <dimen name="dp_size_24">24dp</dimen>
     <dimen name="dp_size_32">32dp</dimen>
     <dimen name="dp_size_48">48dp</dimen>
+    <dimen name="dp_size_50">50dp</dimen>
+    <dimen name="dp_size_55">55dp</dimen>
     <dimen name="dp_size_60">60dp</dimen>
+    <dimen name="dp_size_80">80dp</dimen>
+    <dimen name="dp_size_90">90dp</dimen>
     <dimen name="dp_size_120">120dp</dimen>
     <dimen name="dp_size_240">240dp</dimen>
     <dimen name="dp_size_400">400dp</dimen>
