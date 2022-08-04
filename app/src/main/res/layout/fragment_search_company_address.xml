@@ -22,7 +22,8 @@
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <TextView
             android:id="@+id/company_address_textview"
@@ -34,7 +35,8 @@
             android:text="@string/company_address_text"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/guide_text" />
+            app:layout_constraintTop_toBottomOf="@+id/guide_text"
+            />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/search_textInputLayout"
@@ -53,7 +55,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionSearch"
-                android:inputType="text" />
+                android:inputType="text"
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 

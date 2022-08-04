@@ -19,7 +19,8 @@
             android:text="@string/ex_station_text"
             android:textSize="@dimen/sp_size_22"
             app:layout_constraintBottom_toTopOf="@+id/many_live_textview"
-            app:layout_constraintStart_toStartOf="@+id/load_view" />
+            app:layout_constraintStart_toStartOf="@+id/load_view"
+            />
 
         <TextView
             android:id="@+id/worker_is_textview"
@@ -32,7 +33,8 @@
             android:text="@string/worker_is_text"
             android:textSize="@dimen/sp_size_22"
             app:layout_constraintBottom_toTopOf="@+id/many_live_textview"
-            app:layout_constraintEnd_toEndOf="@+id/load_view" />
+            app:layout_constraintEnd_toEndOf="@+id/load_view"
+            />
 
         <TextView
             android:id="@+id/many_live_textview"
@@ -47,7 +49,8 @@
             android:textSize="@dimen/sp_size_22"
             app:layout_constraintBottom_toTopOf="@+id/load_view"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            />
         
         <ImageView
             android:id="@+id/load_view"
@@ -56,7 +59,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

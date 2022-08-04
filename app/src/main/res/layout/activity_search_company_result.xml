@@ -35,7 +35,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionSearch"
-                android:inputType="text" />
+                android:inputType="text"
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -50,7 +51,8 @@
             android:textColor="@color/blue_300"
             android:textSize="@dimen/sp_size_11"
             app:layout_constraintStart_toStartOf="@+id/search_textInputLayout"
-            app:layout_constraintTop_toBottomOf="@+id/search_textInputLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/search_textInputLayout"
+            />
 
         <TextView
             android:id="@+id/non_company_here"
@@ -72,7 +74,8 @@
             app:layout_constraintBottom_toTopOf="@+id/search_result_recycler_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_result_guide_textView" />
+            app:layout_constraintTop_toBottomOf="@+id/search_result_guide_textView"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/search_result_recycler_view"
@@ -88,7 +91,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/non_company_here"
-            tools:listitem="@layout/list_item_search_result" />
+            tools:listitem="@layout/list_item_search_result"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

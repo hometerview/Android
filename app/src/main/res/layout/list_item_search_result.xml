@@ -31,7 +31,8 @@
             app:layout_constraintEnd_toStartOf="@+id/destination_textview"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="삼성전자" />
+            tools:text="삼성전자"
+            />
 
         <TextView
             android:id="@+id/address_textview"
@@ -44,7 +45,8 @@
             app:layout_constraintEnd_toEndOf="@id/company_textview"
             app:layout_constraintStart_toStartOf="@id/company_textview"
             app:layout_constraintTop_toBottomOf="@id/company_textview"
-            tools:text="서울시 마포구 흥정로 32, 34" />
+            tools:text="서울시 마포구 흥정로 32, 34"
+            />
 
         <TextView
             android:id="@+id/destination_textview"
@@ -57,7 +59,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/for_textview"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="마포역" />
+            tools:text="마포역"
+            />
 
         <TextView
             android:id="@+id/for_textview"
@@ -71,7 +74,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="으로 검색 >" />
+            tools:text="으로 검색 >"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

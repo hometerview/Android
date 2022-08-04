@@ -12,7 +12,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/guide_text"
-        app:srcCompat="@drawable/icon1" />
+        app:srcCompat="@drawable/icon1"
+        />
 
     <TextView
         android:id="@+id/guide_text"
@@ -27,6 +28,7 @@
         app:layout_constraintBottom_toTopOf="@+id/imageView_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
