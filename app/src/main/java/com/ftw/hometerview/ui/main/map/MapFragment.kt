@@ -1,22 +1,30 @@
 package com.ftw.hometerview.ui.main.map
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.Context.LOCATION_SERVICE
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.location.Location
+import android.location.LocationManager
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat.getSystemService
 import com.ftw.domain.entitiy.BuildingMarker
 import com.ftw.domain.entitiy.StationMarker
 import com.ftw.hometerview.R
 import com.ftw.hometerview.databinding.FragmentMapBinding
+import com.ftw.hometerview.ui.buildinglist.BuildingListActivity
+import com.ftw.hometerview.ui.searchaddressbuilding.SearchAddressBuildingActivity
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
@@ -52,7 +60,18 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
         sampleStationMarkerItems()
 
         // 중심점 변경 + 줌 레벨 변경
-        binding.mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(37.50745434356066, 127.03391894910082), 4, true);
+        binding.mapView.setMapCenterPointAndZoomLevel(
+            MapPoint.mapPointWithGeoCoord(
+                37.50745434356066, 127.03391894910082
+            ), 4, true)
+
+        binding.nowLocationButton.setOnClickListener {
+            startTracking()
+        }
+
+        binding.searchStationBuildingButton.setOnClickListener {
+            requireContext().startActivity(SearchAddressBuildingActivity.newIntent(requireContext()))
+        }
     }
 
     private fun setCustomMarkerView() {
@@ -85,6 +104,7 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
         cntTextview.text = stationMarker.buildingCnt.toString()
 
         customMarker.tag = 1
+        customMarker.userObject = stationMarker
         customMarker.mapPoint = MapPoint.mapPointWithGeoCoord(stationMarker.latitude,stationMarker.longitude)
         customMarker.markerType = MapPOIItem.MarkerType.CustomImage // 마커타입을 커스텀 마커로 지정.
 
@@ -126,6 +146,7 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
         customMarker.itemName = "${buildingMarker.buildingName}의 집터뷰"
 
         customMarker.tag = 1
+        customMarker.userObject = buildingMarker
         customMarker.mapPoint = MapPoint.mapPointWithGeoCoord(buildingMarker.latitude,buildingMarker.longitude)
         customMarker.markerType = MapPOIItem.MarkerType.CustomImage // 마커타입을 커스텀 마커로 지정.
 
@@ -165,6 +186,19 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
     // 마커 리스너
     override fun onPOIItemSelected(p0: MapView, p1: MapPOIItem) {
         if(p0.zoomLevel >= 4) {
+            val stationMarker: StationMarker = p1.userObject as StationMarker
+            binding.buildingListButton.apply {
+                visibility = VISIBLE
+                text = "${stationMarker.station} ${stationMarker.buildingCnt}개 건물 보기"
+                setOnClickListener {
+                       requireContext().startActivity(
+                           BuildingListActivity.newIntent(
+                               requireContext(), stationMarker.station, stationMarker.buildingCnt
+                           )
+                       )
+                }
+            }
+
             p0.setMapCenterPointAndZoomLevel(p1.mapPoint, 2, true)
         }
     }
@@ -188,9 +222,11 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
     override fun onMapViewDragEnded(p0: MapView?, p1: MapPoint?) {}
     override fun onMapViewMoveFinished(p0: MapView?, p1: MapPoint?) {}
     override fun onMapViewZoomLevelChanged(p0: MapView, p1: Int) {
-        Log.d("ABC", "onMapViewZoomLevelChanged: ${p0.zoomLevel}")
-        Log.d("ABC", "onMapViewZoomLevelChanged: $p1")
-        if(p0.zoomLevel == 4) {
+        if(p0.zoomLevel > 2) {
+            binding.buildingListButton.visibility = GONE
+        }
+
+        if(p0.zoomLevel >= 4) {
             p0.removeAllPOIItems()
             setCustomMarkerView()
             sampleStationMarkerItems()
@@ -201,4 +237,24 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
         }
     }
 
+    @SuppressLint("MissingPermission")
+    private fun startTracking() {
+        binding.mapView.currentLocationTrackingMode =
+            MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading  //이 부분
+
+        val lm: LocationManager = requireContext().getSystemService(LOCATION_SERVICE) as LocationManager
+        val userNowLocation: Location? = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+        //위도 , 경도
+        val uLatitude = userNowLocation?.latitude
+        val uLongitude = userNowLocation?.longitude
+        val uNowPosition = MapPoint.mapPointWithGeoCoord(uLatitude!!, uLongitude!!)
+
+        // 현 위치에 마커 찍기
+        val marker = MapPOIItem()
+        marker.itemName = "현 위치"
+        marker.mapPoint =uNowPosition
+        marker.markerType = MapPOIItem.MarkerType.BluePin
+        marker.selectedMarkerType = MapPOIItem.MarkerType.RedPin
+        binding.mapView.addPOIItem(marker)
+    }
 }

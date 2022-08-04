@@ -76,6 +76,6 @@ class OnboardingResultViewModel(
 
 private fun SearchResultRecycleModel.toRecyclerItem() = RecyclerItem(
     data = this,
-    layoutId = R.layout.list_item_search_result,
+    layoutId = R.layout.list_item_company_search_result,
     variableId = BR.searchResult
 )
