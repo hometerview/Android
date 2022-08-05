@@ -17,8 +17,8 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.TextView
-import androidx.core.content.ContextCompat.getSystemService
 import com.ftw.domain.entitiy.BuildingMarker
 import com.ftw.domain.entitiy.StationMarker
 import com.ftw.hometerview.R
@@ -188,6 +188,8 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
         if(p0.zoomLevel >= 4) {
             val stationMarker: StationMarker = p1.userObject as StationMarker
             binding.buildingListButton.apply {
+                val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.appear_translate)
+                startAnimation(animation)
                 visibility = VISIBLE
                 text = "${stationMarker.station} ${stationMarker.buildingCnt}개 건물 보기"
                 setOnClickListener {
@@ -223,7 +225,12 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
     override fun onMapViewMoveFinished(p0: MapView?, p1: MapPoint?) {}
     override fun onMapViewZoomLevelChanged(p0: MapView, p1: Int) {
         if(p0.zoomLevel > 2) {
-            binding.buildingListButton.visibility = GONE
+
+            binding.buildingListButton.apply {
+                val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.disappear_translate)
+                startAnimation(animation)
+                visibility = GONE
+            }
         }
 
         if(p0.zoomLevel >= 4) {
