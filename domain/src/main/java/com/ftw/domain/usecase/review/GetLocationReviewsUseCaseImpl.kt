@@ -26,9 +26,10 @@ class GetLocationReviewsUseCaseImpl : GetLocationReviewsUseCase {
 
     private fun getTempReview1(): Review {
         return Review(
+            buildingId = 0,
             buildingName = "아크로텔 오피스텔",
             buildingType = BuildingType.OFFICETEL,
-            address = "인천 남동구 구월남로 125",
+            buildingAddress = "인천 남동구 구월남로 125",
             rating = 4,
             summary = "내 집이 최고",
             officeLocation = "역삼역",
@@ -45,9 +46,10 @@ class GetLocationReviewsUseCaseImpl : GetLocationReviewsUseCase {
 
     private fun getTempReview2(): Review {
         return Review(
+            buildingId = 0,
             buildingName = "한국 아파트",
             buildingType = BuildingType.APARTMENT,
-            address = "성남대로 1226번길 2",
+            buildingAddress = "성남대로 1226번길 2",
             rating = 3,
             summary = "내 집이 최고",
             officeLocation = "삼전역",
@@ -64,9 +66,10 @@ class GetLocationReviewsUseCaseImpl : GetLocationReviewsUseCase {
 
     private fun getTempReview3(): Review {
         return Review(
+            buildingId = 0,
             buildingName = "한빛 삼성 아파트",
             buildingType = BuildingType.APARTMENT,
-            address = "서재2길 41-9",
+            buildingAddress = "서재2길 41-9",
             rating = 1,
             summary = "내 집이 최고",
             officeLocation = "몽촌토성역",
