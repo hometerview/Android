@@ -8,18 +8,18 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.location.Location
 import android.location.LocationManager
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
+import android.view.View.*
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.TextView
-import androidx.core.content.ContextCompat.getSystemService
+import androidx.lifecycle.ViewModelProvider
 import com.ftw.domain.entitiy.BuildingMarker
 import com.ftw.domain.entitiy.StationMarker
 import com.ftw.hometerview.R
@@ -29,6 +29,7 @@ import com.ftw.hometerview.ui.searchaddressbuilding.SearchAddressBuildingActivit
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
+
 
 class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEventListener {
 
@@ -191,18 +192,28 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
         if(p0.zoomLevel >= 4) {
             val stationMarker: StationMarker = p1.userObject as StationMarker
             binding.buildingListButton.apply {
-                visibility = VISIBLE
-                text = "${stationMarker.station} ${stationMarker.buildingCnt}개 건물 보기"
-                setOnClickListener {
-                       requireContext().startActivity(
-                           BuildingListActivity.newIntent(
-                               requireContext(), stationMarker.station, stationMarker.buildingCnt
-                           )
-                       )
-                }
-            }
+                visibility = INVISIBLE
+                val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.appear_translate)
+                animation.setAnimationListener(object : Animation.AnimationListener {
+                    override fun onAnimationStart(arg0: Animation) {
+                        visibility = VISIBLE
+                    }
+                    override fun onAnimationRepeat(arg0: Animation) {}
+                    override fun onAnimationEnd(arg0: Animation) {
+                        text = "${stationMarker.station} ${stationMarker.buildingCnt}개 건물 보기"
+                        setOnClickListener {
+                            requireContext().startActivity(
+                                BuildingListActivity.newIntent(
+                                    requireContext(), stationMarker.station, stationMarker.buildingCnt
+                                )
+                            )
+                        }
+                        p0.setMapCenterPointAndZoomLevel(p1.mapPoint, 2, true)
+                    }
+                })
+                startAnimation(animation)
 
-            p0.setMapCenterPointAndZoomLevel(p1.mapPoint, 2, true)
+            }
         }
     }
     override fun onCalloutBalloonOfPOIItemTouched(p0: MapView?, p1: MapPOIItem?) {}
@@ -227,7 +238,19 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
     override fun onMapViewZoomLevelChanged(p0: MapView, p1: Int) {
         Log.d("MapFragment", "zoomLevel: ${p0.zoomLevel}")
         if(p0.zoomLevel > 2) {
-            binding.buildingListButton.visibility = GONE
+
+            binding.buildingListButton.apply {
+                val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.disappear_translate)
+                animation.setAnimationListener(object : Animation.AnimationListener {
+                    override fun onAnimationStart(arg0: Animation) {}
+                    override fun onAnimationRepeat(arg0: Animation) {}
+                    override fun onAnimationEnd(arg0: Animation) {
+                        visibility = GONE
+                    }
+                })
+                startAnimation(animation)
+
+            }
         }
 
         // 2 > 7
