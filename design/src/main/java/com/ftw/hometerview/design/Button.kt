@@ -1,4 +1,4 @@
-package kr.co.remember.design
+package com.ftw.hometerview.design
 
 import android.content.Context
 import android.graphics.drawable.Drawable
