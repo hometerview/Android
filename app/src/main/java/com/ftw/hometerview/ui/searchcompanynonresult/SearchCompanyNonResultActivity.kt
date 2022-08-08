@@ -19,7 +19,7 @@ class SearchCompanyNonResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        var binding: ActivitySearchCompanyNonResultBinding =
+        val binding: ActivitySearchCompanyNonResultBinding =
             ActivitySearchCompanyNonResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
