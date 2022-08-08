@@ -33,7 +33,6 @@ class BuildingReviewActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBuildingReviewBinding
     private val adapter = DataBindingRecyclerAdapter()
-    private var appBarExpanded = true
 
     @Inject
     lateinit var viewModel: BuildingReviewViewModel
@@ -57,7 +56,6 @@ class BuildingReviewActivity : AppCompatActivity() {
                 binding.toolbarBuildingNameTextView.gravity = CENTER
                 binding.toolbarBuildingNameTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX,resources.getDimensionPixelSize(R.dimen.sp_size_14).toFloat())
             } else {
-                appBarExpanded = true
                 binding.toolbarBuildingNameTextView.gravity = LEFT
                 binding.toolbarBuildingNameTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX,resources.getDimensionPixelSize(R.dimen.sp_size_24).toFloat())
             }
