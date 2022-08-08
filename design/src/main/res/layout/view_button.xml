@@ -2,20 +2,34 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout"
     >
+
+    <ImageView
+        android:id="@+id/drawable_start_image_view"
+        android:layout_width="@dimen/button_drawable_start_size"
+        android:layout_height="@dimen/button_drawable_start_size"
+        tools:src="@drawable/icon_like"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
     <TextView
         android:id="@+id/title_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/button_drawable_padding"
+        android:gravity="center_vertical"
         android:fontFamily="@font/pretendard_regular"
         android:textColor="@color/selector_button_color"
-        android:textSize="@dimen/button_text_size"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="12dp"
+        app:layout_constraintStart_toEndOf="@id/drawable_start_image_view"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="버튼"
         />
 
     <TextView
@@ -27,6 +41,7 @@
         android:textSize="@dimen/button_text_size"
         app:layout_constraintStart_toEndOf="@id/title_text_view"
         app:layout_constraintTop_toTopOf="parent"
+        tools:text="9"
         />
 
 </merge>

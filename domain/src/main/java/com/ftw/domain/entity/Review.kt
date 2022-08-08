@@ -7,6 +7,7 @@ data class Review(
     val buildingType: BuildingType,
     val address: String,
     val rating: Int,
+    val summary: String,
     val officeLocation: String,
     val advantage: String,
     val disadvantage: String,

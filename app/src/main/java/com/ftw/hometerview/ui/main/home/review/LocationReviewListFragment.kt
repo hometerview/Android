@@ -8,11 +8,19 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.ftw.hometerview.R
+import com.ftw.hometerview.adapter.DataBindingRecyclerAdapter
+import com.ftw.hometerview.adapter.DividerItemDecoration
 import com.ftw.hometerview.databinding.FragmentLocationListBinding
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
 
+@AndroidEntryPoint
 class LocationReviewListFragment : Fragment() {
 
     companion object {
@@ -25,20 +33,53 @@ class LocationReviewListFragment : Fragment() {
         }
     }
 
+    private var _binding: FragmentLocationListBinding? = null
+    private val binding get() = _binding!!
+
+    private val adapter = DataBindingRecyclerAdapter()
+
     @Inject
-    lateinit var viewModel : LocationListViewModel
+    lateinit var viewModel: LocationReviewListViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = DataBindingUtil.inflate<FragmentLocationListBinding>(
+        _binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_location_list,
             container,
             false
         )
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val argument = arguments?.getParcelable<Argument>(this.javaClass.simpleName) ?: return
+        initList()
+        observe()
+        viewModel.setLocation(argument.location)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun initList() {
+        binding.list.adapter = adapter
+        context?.let { binding.list.addItemDecoration(DividerItemDecoration(it)) }
+    }
+
+    private fun observe() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.reviews.collect {
+                    adapter.submitList(it)
+                }
+            }
+        }
     }
 
     @Parcelize

@@ -3,7 +3,7 @@ package com.ftw.hometerview.ui.main.home
 import com.ftw.domain.entity.Company
 import com.ftw.domain.entity.LocationReview
 import com.ftw.domain.entity.User
-import com.ftw.domain.usecase.review.GetLocaionReviewsUseCase
+import com.ftw.domain.usecase.review.GetLocationReviewsUseCase
 import com.ftw.domain.usecase.user.GetCachedUserUseCase
 import com.ftw.hometerview.dispatcher.Dispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 class HomeViewModel(
     private val dispatcher: Dispatcher,
     private val getCachedUserUseCase: GetCachedUserUseCase,
-    private val getLocationReviewsUseCase: GetLocaionReviewsUseCase
+    private val getLocationReviewsUseCase: GetLocationReviewsUseCase
 ) {
     sealed class State {
         object None : State()
