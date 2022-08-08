@@ -11,6 +11,7 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.*
@@ -18,7 +19,6 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.ftw.domain.entitiy.BuildingMarker
 import com.ftw.domain.entitiy.StationMarker
@@ -42,6 +42,8 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
     private lateinit var markerRootView: View
     private lateinit var stationTextview: TextView
     private lateinit var cntTextview: TextView
+
+    private var currentZoomLevel: ZoomLevel = ZoomLevel.NONE
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -234,6 +236,7 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
     override fun onMapViewDragEnded(p0: MapView?, p1: MapPoint?) {}
     override fun onMapViewMoveFinished(p0: MapView?, p1: MapPoint?) {}
     override fun onMapViewZoomLevelChanged(p0: MapView, p1: Int) {
+        Log.d("MapFragment", "zoomLevel: ${p0.zoomLevel}")
         if(p0.zoomLevel > 2) {
 
             binding.buildingListButton.apply {
@@ -250,14 +253,17 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
             }
         }
 
-        if(p0.zoomLevel >= 4) {
+        // 2 > 7
+        if(p0.zoomLevel >= 4 && currentZoomLevel != ZoomLevel.LEVEL2) {
             p0.removeAllPOIItems()
             setCustomMarkerView()
             sampleStationMarkerItems()
-        } else if(p0.zoomLevel == 2) {
+            currentZoomLevel = ZoomLevel.LEVEL2
+        } else if(p0.zoomLevel == 2 && currentZoomLevel != ZoomLevel.LEVEL1) {
             p0.removeAllPOIItems()
             setBuildingMarkerView()
             sampleBuildingMarkerItems()
+            currentZoomLevel = ZoomLevel.LEVEL1
         }
     }
 
@@ -281,4 +287,8 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
         marker.selectedMarkerType = MapPOIItem.MarkerType.RedPin
         binding.mapView.addPOIItem(marker)
     }
+}
+
+enum class ZoomLevel {
+    NONE, LEVEL1, LEVEL2, LEVEL3
 }
