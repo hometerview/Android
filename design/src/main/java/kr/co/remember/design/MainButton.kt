@@ -49,7 +49,7 @@ class MainButton @JvmOverloads constructor(
         ).apply {
             try {
                 text = getString(R.styleable.MainButton_android_text)
-                textAlignment = getInt(R.styleable.MainButton_android_textAlignment, DEFAULT_ALIGNMENT)
+                titleTextView.textAlignment = getInt(R.styleable.MainButton_android_textAlignment, DEFAULT_ALIGNMENT)
                 elevation = getFloat(R.styleable.MainButton_android_elevation, DEFAULT_ELEVATION)
             } catch (e: Exception) {
             } finally {
