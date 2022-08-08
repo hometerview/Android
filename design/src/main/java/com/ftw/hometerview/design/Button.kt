@@ -1,8 +1,9 @@
-package kr.co.remember.design
+package com.ftw.hometerview.design
 
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
@@ -16,15 +17,14 @@ class Button @JvmOverloads constructor(
     attributeSet: AttributeSet? = null,
     defStyle: Int = 0
 ) : ConstraintLayout(context, attributeSet, defStyle) {
+    private val drawableStartImageView: ImageView
     private val titleTextView: TextView
     private val numberTextView: TextView
 
     var icon: Drawable? = null
         set(value) {
             field = value
-            titleTextView.setCompoundDrawablesWithIntrinsicBounds(value, null, null, null)
-            titleTextView.compoundDrawablePadding =
-                resources.getDimensionPixelSize(R.dimen.button_drawable_padding)
+            drawableStartImageView.setImageDrawable(value)
         }
 
     var text: String? = null
@@ -46,6 +46,7 @@ class Button @JvmOverloads constructor(
 
     init {
         inflate(context, R.layout.view_button, this)
+        drawableStartImageView = findViewById(R.id.drawable_start_image_view)
         titleTextView = findViewById(R.id.title_text_view)
         numberTextView = findViewById(R.id.number_text_view)
 
@@ -81,5 +82,4 @@ class Button @JvmOverloads constructor(
         super.setEnabled(enabled)
         children.forEach { it.isEnabled = enabled }
     }
-
 }

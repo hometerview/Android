@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModel: MainViewModel
 
-    private val homeFragment by lazy { HomeFragment() }
+    private val homeFragment by lazy { HomeFragment.newInstance() }
     private val mapFragment by lazy { MapFragment() }
     private val favoriteFragment by lazy { FavoriteFragment() }
     private val myPageFragment by lazy { MyPageFragment() }

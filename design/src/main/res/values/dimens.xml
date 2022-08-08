@@ -3,6 +3,8 @@
     <dimen name="button_text_size">12dp</dimen>
 
     <dimen name="button_height">27dp</dimen>
+    <dimen name="button_drawable_start_size">14dp</dimen>
+    <dimen name="button_drawable_start_padding">4dp</dimen>
     <dimen name="button_stroke_width">1dp</dimen>
     <dimen name="button_radius">4dp</dimen>
     <dimen name="button_horizontal_padding">8dp</dimen>
