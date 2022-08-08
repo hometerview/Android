@@ -66,7 +66,7 @@
             app:layout_constraintTop_toBottomOf="@+id/company_name_textview"
             />
 
-        <kr.co.remember.design.MainButton
+        <com.ftw.hometerview.design.MainButton
             android:id="@+id/enroll_company_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
