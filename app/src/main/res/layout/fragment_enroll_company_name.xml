@@ -66,19 +66,14 @@
             app:layout_constraintTop_toBottomOf="@+id/company_name_textview"
             />
 
-        <TextView
+        <kr.co.remember.design.MainButton
             android:id="@+id/enroll_company_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/dp_size_16"
             android:layout_marginBottom="@dimen/dp_size_32"
-            android:fontFamily="@font/pretendard_medium"
-            android:gravity="center"
-            android:padding="@dimen/dp_size_14"
-            android:elevation="@dimen/dp_size_10"
-            android:background="@drawable/button_enroll_company"
+            android:textAlignment="center"
             android:text="@string/enroll_company_text"
-            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/company_name_textview"
