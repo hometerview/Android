@@ -29,10 +29,10 @@ class ActivityViewModelModule {
 
     @Provides
     @ActivityScoped
-    fun provideOnboardResultViewModel(
+    fun provideSearchCompanyResultViewModel(
         dispatcher: Dispatcher
-    ): OnboardingResultViewModel {
-        return OnboardingResultViewModel(dispatcher)
+    ): SearchCompanyResultViewModel {
+        return SearchCompanyResultViewModel(dispatcher)
     }
 
     @Provides
