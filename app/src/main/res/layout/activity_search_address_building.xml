@@ -23,6 +23,7 @@
             android:padding="@dimen/dp_size_14"
             android:textSize="@dimen/sp_size_14"
             android:imeOptions="actionSearch"
+            android:inputType="text"
             app:drawableStartCompat="@drawable/ic_baseline_search_24"
             app:drawableTint="@color/blue_300"
             app:layout_constraintEnd_toEndOf="parent"
