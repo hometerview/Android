@@ -37,7 +37,7 @@
             android:id="@+id/address_textview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{searchResult.result.address}"
+            android:address="@{searchResult}"
             android:textSize="@dimen/sp_size_13"
             android:textColor="@color/blue_300"
             android:fontFamily="@font/pretendard_medium"
@@ -47,6 +47,15 @@
             tools:text="서울시 마포구 흥정로 32, 34"
             />
 
+        <TextView
+            android:id="@+id/type_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:icon="@{searchResult}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
