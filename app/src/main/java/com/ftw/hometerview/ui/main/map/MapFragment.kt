@@ -38,7 +38,8 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
     }
 
     private lateinit var viewModel: MapViewModel
-    private lateinit var binding: FragmentMapBinding
+    private var _binding: FragmentMapBinding? = null
+    private val binding get() = _binding!!
     private lateinit var markerRootView: View
     private lateinit var stationTextview: TextView
     private lateinit var cntTextview: TextView
@@ -49,7 +50,7 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMapBinding.inflate(inflater, container, false)
+        _binding = FragmentMapBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -67,7 +68,8 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
         binding.mapView.setMapCenterPointAndZoomLevel(
             MapPoint.mapPointWithGeoCoord(
                 37.50745434356066, 127.03391894910082
-            ), 4, true)
+            ), 4, true
+        )
 
         binding.nowLocationButton.setOnClickListener {
             startTracking()
@@ -79,7 +81,8 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
     }
 
     private fun setCustomMarkerView() {
-        markerRootView = LayoutInflater.from(requireContext()).inflate(R.layout.map_item_station_marker, null)
+        markerRootView =
+            LayoutInflater.from(requireContext()).inflate(R.layout.map_item_station_marker, null)
         stationTextview = markerRootView.findViewById(R.id.station_textview) as TextView
         cntTextview = markerRootView.findViewById(R.id.cnt_textview) as TextView
     }
@@ -109,7 +112,8 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
 
         customMarker.tag = 1
         customMarker.userObject = stationMarker
-        customMarker.mapPoint = MapPoint.mapPointWithGeoCoord(stationMarker.latitude,stationMarker.longitude)
+        customMarker.mapPoint =
+            MapPoint.mapPointWithGeoCoord(stationMarker.latitude, stationMarker.longitude)
         customMarker.markerType = MapPOIItem.MarkerType.CustomImage // 마커타입을 커스텀 마커로 지정.
 
         customMarker.customImageBitmap = createDrawableFromView(requireContext(), markerRootView)
@@ -126,7 +130,8 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
     }
 
     private fun setBuildingMarkerView() {
-        markerRootView = LayoutInflater.from(requireContext()).inflate(R.layout.map_item_building_marker, null)
+        markerRootView =
+            LayoutInflater.from(requireContext()).inflate(R.layout.map_item_building_marker, null)
     }
 
     private fun sampleBuildingMarkerItems() {
@@ -151,7 +156,8 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
 
         customMarker.tag = 1
         customMarker.userObject = buildingMarker
-        customMarker.mapPoint = MapPoint.mapPointWithGeoCoord(buildingMarker.latitude,buildingMarker.longitude)
+        customMarker.mapPoint =
+            MapPoint.mapPointWithGeoCoord(buildingMarker.latitude, buildingMarker.longitude)
         customMarker.markerType = MapPOIItem.MarkerType.CustomImage // 마커타입을 커스텀 마커로 지정.
 
         customMarker.customImageBitmap = createDrawableFromView(requireContext(), markerRootView)
@@ -189,22 +195,26 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
 
     // 마커 리스너
     override fun onPOIItemSelected(p0: MapView, p1: MapPOIItem) {
-        if(p0.zoomLevel >= 4) {
+        if (p0.zoomLevel >= 4) {
             val stationMarker: StationMarker = p1.userObject as StationMarker
             binding.buildingListButton.apply {
                 visibility = INVISIBLE
-                val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.appear_translate)
+                val animation =
+                    AnimationUtils.loadAnimation(requireContext(), R.anim.appear_translate)
                 animation.setAnimationListener(object : Animation.AnimationListener {
                     override fun onAnimationStart(arg0: Animation) {
                         visibility = VISIBLE
                     }
+
                     override fun onAnimationRepeat(arg0: Animation) {}
                     override fun onAnimationEnd(arg0: Animation) {
                         text = "${stationMarker.station} ${stationMarker.buildingCnt}개 건물 보기"
                         setOnClickListener {
                             requireContext().startActivity(
                                 BuildingListActivity.newIntent(
-                                    requireContext(), stationMarker.station, stationMarker.buildingCnt
+                                    requireContext(),
+                                    stationMarker.station,
+                                    stationMarker.buildingCnt
                                 )
                             )
                         }
@@ -216,6 +226,7 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
             }
         }
     }
+
     override fun onCalloutBalloonOfPOIItemTouched(p0: MapView?, p1: MapPOIItem?) {}
     override fun onCalloutBalloonOfPOIItemTouched(
         p0: MapView?,
@@ -223,6 +234,7 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
         p2: MapPOIItem.CalloutBalloonButtonType?
     ) {
     }
+
     override fun onDraggablePOIItemMoved(p0: MapView?, p1: MapPOIItem?, p2: MapPoint?) {}
 
 
@@ -237,10 +249,11 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
     override fun onMapViewMoveFinished(p0: MapView?, p1: MapPoint?) {}
     override fun onMapViewZoomLevelChanged(p0: MapView, p1: Int) {
         Log.d("MapFragment", "zoomLevel: ${p0.zoomLevel}")
-        if(p0.zoomLevel > 2) {
+        if (p0.zoomLevel > 2) {
 
             binding.buildingListButton.apply {
-                val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.disappear_translate)
+                val animation =
+                    AnimationUtils.loadAnimation(requireContext(), R.anim.disappear_translate)
                 animation.setAnimationListener(object : Animation.AnimationListener {
                     override fun onAnimationStart(arg0: Animation) {}
                     override fun onAnimationRepeat(arg0: Animation) {}
@@ -254,12 +267,12 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
         }
 
         // 2 > 7
-        if(p0.zoomLevel >= 4 && currentZoomLevel != ZoomLevel.LEVEL2) {
+        if (p0.zoomLevel >= 4 && currentZoomLevel != ZoomLevel.LEVEL2) {
             p0.removeAllPOIItems()
             setCustomMarkerView()
             sampleStationMarkerItems()
             currentZoomLevel = ZoomLevel.LEVEL2
-        } else if(p0.zoomLevel == 2 && currentZoomLevel != ZoomLevel.LEVEL1) {
+        } else if (p0.zoomLevel == 2 && currentZoomLevel != ZoomLevel.LEVEL1) {
             p0.removeAllPOIItems()
             setBuildingMarkerView()
             sampleBuildingMarkerItems()
@@ -272,7 +285,8 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
         binding.mapView.currentLocationTrackingMode =
             MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading  //이 부분
 
-        val lm: LocationManager = requireContext().getSystemService(LOCATION_SERVICE) as LocationManager
+        val lm: LocationManager =
+            requireContext().getSystemService(LOCATION_SERVICE) as LocationManager
         val userNowLocation: Location? = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
         //위도 , 경도
         val uLatitude = userNowLocation?.latitude
@@ -282,7 +296,7 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
         // 현 위치에 마커 찍기
         val marker = MapPOIItem()
         marker.itemName = "현 위치"
-        marker.mapPoint =uNowPosition
+        marker.mapPoint = uNowPosition
         marker.markerType = MapPOIItem.MarkerType.BluePin
         marker.selectedMarkerType = MapPOIItem.MarkerType.RedPin
         binding.mapView.addPOIItem(marker)

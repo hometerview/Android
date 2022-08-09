@@ -23,7 +23,8 @@ class SearchCompanyNonResultActivity : AppCompatActivity() {
             ActivitySearchCompanyNonResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportFragmentManager.beginTransaction().replace(R.id.enroll_fragment, SearchCompanyAddressFragment()).commit()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.enroll_fragment, SearchCompanyAddressFragment()).commit()
     }
 
 }

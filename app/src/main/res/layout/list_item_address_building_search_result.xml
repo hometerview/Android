@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    >
 
     <data>
+
         <variable
             name="searchResult"
             type="com.ftw.domain.entity.SearchAddressBuildingResult"
@@ -13,9 +15,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/dp_size_10"
+        android:background="?attr/selectableItemBackground"
         android:paddingTop="@dimen/dp_size_10"
-        android:background="?attr/selectableItemBackground">
+        android:paddingBottom="@dimen/dp_size_10"
+        >
 
         <TextView
             android:id="@+id/company_textview"
@@ -24,10 +27,10 @@
             android:layout_marginStart="@dimen/dp_size_16"
             android:layout_marginTop="@dimen/dp_size_16"
             android:layout_marginEnd="@dimen/dp_size_16"
+            android:fontFamily="@font/pretendard_semibold"
             android:text="@{searchResult.result}"
             android:textColor="@color/black"
             android:textSize="@dimen/sp_size_16"
-            android:fontFamily="@font/pretendard_semibold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="삼성전자"
@@ -38,9 +41,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:address="@{searchResult}"
-            android:textSize="@dimen/sp_size_13"
-            android:textColor="@color/blue_300"
             android:fontFamily="@font/pretendard_medium"
+            android:textColor="@color/blue_300"
+            android:textSize="@dimen/sp_size_13"
             app:layout_constraintEnd_toEndOf="@id/company_textview"
             app:layout_constraintStart_toStartOf="@id/company_textview"
             app:layout_constraintTop_toBottomOf="@id/company_textview"
@@ -55,8 +58,8 @@
             android:icon="@{searchResult}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

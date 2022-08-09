@@ -4,6 +4,7 @@
     >
 
     <data>
+
         <variable
             name="review"
             type="com.ftw.domain.entity.Review"
@@ -14,17 +15,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
-        
+
         <TextView
             android:id="@+id/building_name_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_size_32"
             android:layout_marginHorizontal="@dimen/dp_size_14"
-            android:text="@{review.buildingName}"
-            android:textSize="@dimen/sp_size_24"
-            android:textColor="@color/gray_900"
+            android:layout_marginTop="@dimen/dp_size_32"
             android:fontFamily="@font/pretendard_bold"
+            android:text="@{review.buildingName}"
+            android:textColor="@color/gray_900"
+            android:textSize="@dimen/sp_size_24"
             app:layout_constraintTop_toTopOf="parent"
             />
 
@@ -32,13 +33,13 @@
             android:id="@+id/address_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_size_16"
             android:layout_marginHorizontal="@dimen/dp_size_14"
+            android:layout_marginTop="@dimen/dp_size_16"
             android:drawablePadding="@dimen/dp_size_6"
-            android:text="@{review.address}"
-            android:textSize="@dimen/sp_size_14"
-            android:textColor="@color/gray_800"
             android:fontFamily="@font/pretendard_regular"
+            android:text="@{review.address}"
+            android:textColor="@color/gray_800"
+            android:textSize="@dimen/sp_size_14"
             app:drawableStartCompat="@drawable/icon_discovery"
             app:drawableTint="@color/gray_400"
             app:layout_constraintTop_toBottomOf="@id/building_name_text_view"
@@ -48,13 +49,13 @@
             android:id="@+id/building_type_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_size_8"
             android:layout_marginHorizontal="@dimen/dp_size_14"
+            android:layout_marginTop="@dimen/dp_size_8"
             android:drawablePadding="@dimen/dp_size_6"
-            android:text="@{review.buildingType.value}"
-            android:textSize="@dimen/sp_size_14"
-            android:textColor="@color/gray_800"
             android:fontFamily="@font/pretendard_regular"
+            android:text="@{review.buildingType.value}"
+            android:textColor="@color/gray_800"
+            android:textSize="@dimen/sp_size_14"
             app:drawableStartCompat="@drawable/icon_home_size_16"
             app:drawableTint="@color/gray_400"
             app:layout_constraintTop_toBottomOf="@id/address_text_view"
@@ -65,18 +66,18 @@
             style="@style/StarRatingBar"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dp_size_12"
-            android:layout_marginTop="@dimen/dp_size_16"
             android:layout_marginStart="@dimen/sp_size_14"
-            android:progressTint="@color/blue_300"
-            android:progressBackgroundTint="@color/gray_200"
+            android:layout_marginTop="@dimen/dp_size_16"
+            android:isIndicator="true"
             android:max="5"
             android:numStars="5"
-            android:stepSize="1"
+            android:progressBackgroundTint="@color/gray_200"
+            android:progressTint="@color/blue_300"
             android:rating="@{review.rating}"
-            android:isIndicator="true"
-            app:tint="@color/selector_rating_bar"
-            app:layout_constraintTop_toBottomOf="@id/building_type_text_view"
+            android:stepSize="1"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/building_type_text_view"
+            app:tint="@color/selector_rating_bar"
             />
 
         <TextView
@@ -84,73 +85,73 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_size_4"
+            android:fontFamily="@font/pretendard_regular"
             android:text="@{@string/home_location_review_summary(review.summary, review.leftAt, review.officeLocation)}"
             android:textColor="@color/gray_600"
             android:textSize="@dimen/sp_size_12"
-            android:fontFamily="@font/pretendard_regular"
-            app:layout_constraintTop_toTopOf="@id/rating_bar"
             app:layout_constraintBottom_toBottomOf="@id/rating_bar"
             app:layout_constraintStart_toEndOf="@id/rating_bar"
+            app:layout_constraintTop_toTopOf="@id/rating_bar"
             />
 
         <TextView
             android:id="@+id/advantage_title_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_size_12"
             android:layout_marginStart="@dimen/dp_size_14"
-            android:text="@string/advantage_title"
-            android:textSize="@dimen/sp_size_12"
-            android:textColor="@color/blue_300"
+            android:layout_marginTop="@dimen/dp_size_12"
             android:fontFamily="@font/pretendard_medium"
-            app:layout_constraintTop_toBottomOf="@id/rating_bar"
+            android:text="@string/advantage_title"
+            android:textColor="@color/blue_300"
+            android:textSize="@dimen/sp_size_12"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rating_bar"
             />
 
         <TextView
             android:id="@+id/advantage_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_size_2"
             android:layout_marginHorizontal="@dimen/dp_size_14"
-            android:maxLines="1"
+            android:layout_marginTop="@dimen/dp_size_2"
             android:ellipsize="end"
-            android:text="@{review.advantage}"
-            android:textSize="@dimen/sp_size_12"
-            android:textColor="@color/gray_800"
             android:fontFamily="@font/pretendard_medium"
-            app:layout_constraintTop_toBottomOf="@id/advantage_title_text_view"
+            android:maxLines="1"
+            android:text="@{review.advantage}"
+            android:textColor="@color/gray_800"
+            android:textSize="@dimen/sp_size_12"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/advantage_title_text_view"
             />
 
         <TextView
             android:id="@+id/disadvantage_title_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_size_16"
             android:layout_marginStart="@dimen/dp_size_14"
-            android:text="@string/disadvantage_title"
-            android:textSize="@dimen/sp_size_12"
-            android:textColor="@color/red_500"
+            android:layout_marginTop="@dimen/dp_size_16"
             android:fontFamily="@font/pretendard_medium"
-            app:layout_constraintTop_toBottomOf="@id/advantage_text_view"
+            android:text="@string/disadvantage_title"
+            android:textColor="@color/red_500"
+            android:textSize="@dimen/sp_size_12"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/advantage_text_view"
             />
 
         <TextView
             android:id="@+id/disadvantage_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_size_2"
             android:layout_marginHorizontal="@dimen/dp_size_14"
-            android:maxLines="1"
+            android:layout_marginTop="@dimen/dp_size_2"
             android:ellipsize="end"
-            android:text="@{review.disadvantage}"
-            android:textSize="@dimen/sp_size_12"
-            android:textColor="@color/gray_800"
             android:fontFamily="@font/pretendard_medium"
-            app:layout_constraintTop_toBottomOf="@id/disadvantage_title_text_view"
+            android:maxLines="1"
+            android:text="@{review.disadvantage}"
+            android:textColor="@color/gray_800"
+            android:textSize="@dimen/sp_size_12"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/disadvantage_title_text_view"
             />
 
         <com.ftw.hometerview.design.Button
@@ -159,12 +160,13 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/dp_size_24"
             android:layout_marginStart="@dimen/dp_size_14"
-            android:text="@string/heart"
             android:drawableStart="@drawable/icon_heart"
-            app:layout_constraintTop_toBottomOf="@id/disadvantage_text_view"
+            android:text="@string/heart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/disadvantage_text_view"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

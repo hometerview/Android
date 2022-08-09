@@ -15,19 +15,20 @@ class SearchCompanyActivity : AppCompatActivity() {
             return Intent(context, SearchCompanyActivity::class.java)
         }
     }
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding: ActivitySearchCompanyBinding = ActivitySearchCompanyBinding.inflate(layoutInflater)
+        val binding: ActivitySearchCompanyBinding =
+            ActivitySearchCompanyBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
+
         binding.searchButton.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH){
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 // 보내기 동작
                 startActivity(
                     SearchCompanyResultActivity.newIntent(
-                        context = this, 
+                        context = this,
                         result = binding.searchButton.text.toString()
                     )
                 )

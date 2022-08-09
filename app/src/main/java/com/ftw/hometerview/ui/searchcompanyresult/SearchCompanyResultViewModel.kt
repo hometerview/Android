@@ -20,7 +20,7 @@ class SearchCompanyResultViewModel(
     private val dispatcher: Dispatcher
 ) : ViewModel() {
 
-//    private val _recyclerItems = MutableLiveData<List<RecyclerItem>>()
+    //    private val _recyclerItems = MutableLiveData<List<RecyclerItem>>()
 //    val recyclerItems: LiveData<List<RecyclerItem>> = _recyclerItems
     private val _recyclerItems: MutableStateFlow<List<RecyclerItem>> = MutableStateFlow(listOf())
     val recyclerItems: StateFlow<List<RecyclerItem>> get() = _recyclerItems.asStateFlow()

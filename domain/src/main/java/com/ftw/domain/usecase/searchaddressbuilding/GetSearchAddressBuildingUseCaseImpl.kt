@@ -18,7 +18,7 @@ class GetSearchAddressBuildingUseCaseImpl : GetSearchAddressBuildingUseCase {
             SearchAddressBuildingResult(
                 result = "마곡 GUSEO 오피스텔",
                 address = "서울시 마포구 흥정로 32, 34",
-                type =  "건물"
+                type = "건물"
             ),
             SearchAddressBuildingResult(
                 result = "마곡 오피스텔",
@@ -27,5 +27,5 @@ class GetSearchAddressBuildingUseCaseImpl : GetSearchAddressBuildingUseCase {
             )
         )
     }
-    
+
 }

@@ -1,9 +1,8 @@
-package com.ftw.hometerview.adapter
+package com.ftw.hometerview.bindingadapter
 
 import android.view.View.GONE
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.ftw.domain.entity.SearchAddressBuildingResult
 
 @BindingAdapter("android:icon")
@@ -30,7 +29,7 @@ fun setSearchResultAddress(
     item: SearchAddressBuildingResult
 ) {
     when (item.type) {
-        "지하철역", "지역"  -> {
+        "지하철역", "지역" -> {
             textView.visibility = GONE
         }
         else -> {

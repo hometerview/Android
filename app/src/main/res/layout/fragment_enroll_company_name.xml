@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.searchcompanynonresult.enrollcompanyname.EnrollAddressFragment">
+        tools:context=".ui.searchcompanynonresult.enrollcompanyname.EnrollAddressFragment"
+        >
 
         <TextView
             android:id="@+id/company_address_textview"
@@ -72,8 +74,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/dp_size_16"
             android:layout_marginBottom="@dimen/dp_size_32"
-            android:textAlignment="center"
             android:text="@string/enroll_company_text"
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/company_name_textview"

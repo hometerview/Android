@@ -4,6 +4,7 @@
     >
 
     <data>
+
         <variable
             name="viewModel"
             type="com.ftw.hometerview.ui.main.home.HomeViewModel"
@@ -39,10 +40,10 @@
                         android:id="@+id/company_text_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_size_30"
                         android:layout_marginHorizontal="@dimen/dp_size_14"
-                        android:text="@{viewModel.user.company.name}"
+                        android:layout_marginTop="@dimen/dp_size_30"
                         android:fontFamily="@font/pretendard_medium"
+                        android:text="@{viewModel.user.company.name}"
                         android:textColor="@color/white"
                         android:textSize="@dimen/sp_size_24"
                         app:layout_constraintTop_toTopOf="parent"
@@ -53,8 +54,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/dp_size_14"
-                        android:text="@string/home_title"
                         android:fontFamily="@font/pretendard_regular"
+                        android:text="@string/home_title"
                         android:textColor="@color/white"
                         android:textSize="@dimen/sp_size_24"
                         app:layout_constraintTop_toBottomOf="@id/company_text_view"
@@ -63,15 +64,15 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/dp_size_14"
                         android:layout_marginTop="@dimen/dp_size_8"
                         android:layout_marginBottom="@dimen/dp_size_35"
-                        android:layout_marginHorizontal="@dimen/dp_size_14"
-                        android:text="@{@string/home_description(viewModel.user.company.location)}"
                         android:fontFamily="@font/pretendard_regular"
+                        android:text="@{@string/home_description(viewModel.user.company.location)}"
                         android:textColor="@color/white"
                         android:textSize="@dimen/sp_size_14"
-                        app:layout_constraintTop_toBottomOf="@id/company_guide_text_view"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/company_guide_text_view"
                         />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -81,15 +82,15 @@
                 android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/dp_size_20"
                 android:paddingHorizontal="@dimen/sp_size_14"
-                app:tabMode="scrollable"
+                android:paddingTop="@dimen/dp_size_20"
                 app:tabGravity="fill"
-                app:tabTextAppearance="@style/HomeTabLayout"
                 app:tabIndicatorColor="@color/gray_900"
                 app:tabIndicatorHeight="@dimen/dp_size_2"
-                app:tabTextColor="@color/gray_500"
+                app:tabMode="scrollable"
                 app:tabSelectedTextColor="@color/gray_900"
+                app:tabTextAppearance="@style/HomeTabLayout"
+                app:tabTextColor="@color/gray_500"
                 />
         </com.google.android.material.appbar.AppBarLayout>
 

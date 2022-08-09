@@ -43,7 +43,7 @@ class SearchAddressBuildingActivity : AppCompatActivity() {
         observe()
 
         binding.searchStationBuildingButton.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH){
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 // 보내기 동작
                 viewModel.setLocation(binding.searchStationBuildingButton.text.toString())
             }
