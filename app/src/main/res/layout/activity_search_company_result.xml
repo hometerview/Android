@@ -6,7 +6,7 @@
     <data>
         <variable
             name="searchResultViewModel"
-            type="com.ftw.hometerview.ui.searchcompanyresult.OnboardingResultViewModel" />
+            type="com.ftw.hometerview.ui.searchcompanyresult.SearchCompanyResultViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

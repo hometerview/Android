@@ -20,8 +20,8 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
-import com.ftw.domain.entitiy.BuildingMarker
-import com.ftw.domain.entitiy.StationMarker
+import com.ftw.domain.entity.BuildingMarker
+import com.ftw.domain.entity.StationMarker
 import com.ftw.hometerview.R
 import com.ftw.hometerview.databinding.FragmentMapBinding
 import com.ftw.hometerview.ui.buildinglist.BuildingListActivity

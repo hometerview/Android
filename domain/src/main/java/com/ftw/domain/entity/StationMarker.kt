@@ -1,4 +1,4 @@
-package com.ftw.domain.entitiy
+package com.ftw.domain.entity
 
 data class StationMarker(
     val station: String,
