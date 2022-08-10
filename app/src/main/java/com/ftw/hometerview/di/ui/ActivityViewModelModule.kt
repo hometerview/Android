@@ -1,9 +1,12 @@
 package com.ftw.hometerview.di.ui
 
+import com.ftw.domain.usecase.buildingreview.GetBuildingReviewsUseCase
 import com.ftw.domain.usecase.login.LoginUseCase
 import com.ftw.domain.usecase.review.GetLocationReviewsUseCase
 import com.ftw.domain.usecase.searchaddressbuilding.GetSearchAddressBuildingUseCase
 import com.ftw.hometerview.dispatcher.Dispatcher
+import com.ftw.hometerview.ui.buildingreview.BuildingReviewViewModel
+import com.ftw.hometerview.ui.searchcompanyresult.OnboardingResultViewModel
 import com.ftw.hometerview.ui.main.MainViewModel
 import com.ftw.hometerview.ui.main.home.review.LocationReviewListViewModel
 import com.ftw.hometerview.ui.searchaddressbuilding.SearchAddressBuildingViewModel
@@ -64,6 +67,19 @@ class ActivityViewModelModule {
         return SearchAddressBuildingViewModel(
             dispatcher,
             getSearchAddressBuildingUseCase
+        )
+    }
+
+    @Provides
+    @ActivityScoped
+    fun provideBuildingReviewViewModel(
+        dispatcher: Dispatcher,
+        getBuildingReviewsUseCase: GetBuildingReviewsUseCase
+    ): BuildingReviewViewModel {
+        return BuildingReviewViewModel(
+            311,
+            dispatcher,
+            getBuildingReviewsUseCase
         )
     }
 }

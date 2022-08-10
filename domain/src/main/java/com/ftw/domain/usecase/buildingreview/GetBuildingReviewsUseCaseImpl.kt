@@ -1,26 +1,44 @@
-package com.ftw.domain.usecase.review
+package com.ftw.domain.usecase.buildingreview
 
+import com.ftw.domain.entity.Address
+import com.ftw.domain.entity.Building
+import com.ftw.domain.entity.BuildingReview
 import com.ftw.domain.entity.BuildingType
-import com.ftw.domain.entity.LocationReview
+import com.ftw.domain.entity.Price
 import com.ftw.domain.entity.Review
 import java.util.Calendar
 import java.util.Date
 
-class GetLocationReviewsUseCaseImpl : GetLocationReviewsUseCase {
-    override suspend fun invoke(location: String): List<LocationReview> {
-        return listOf(
-            LocationReview(
-                location = "강남구",
-                reviews = listOf(getTempReview1(), getTempReview2(), getTempReview3())
+class GetBuildingReviewsUseCaseImpl : GetBuildingReviewsUseCase {
+    override suspend fun invoke(buildingId: Long): BuildingReview {
+        return BuildingReview(
+            building = Building(
+                id = 1,
+                name = "아크로텔 오피스텔",
+                type = BuildingType.OFFICETEL,
+                address = Address(
+                    longitude = 123,
+                    latitude = 123,
+                    addressWithLoadName = "인천 남동구 구월남로 125",
+                    addressWithHouseNumber = "구월동 1133-4"
+                ),
+                salePrice = Price(
+                    min = "4억 5,500",
+                    max = "5억 8,000"
+                ),
+                charterPrice = Price(
+                    min = "8억 1,500",
+                    max = "10억 2,000"
+                ),
+                rating = 4,
+                favorite = false
             ),
-            LocationReview(
-                location = "서초구",
-                reviews = listOf(getTempReview3(), getTempReview1(), getTempReview2())
-            ),
-            LocationReview(
-                location = "중구",
-                reviews = listOf(getTempReview2(), getTempReview3(), getTempReview1())
+            reviews = listOf(
+                getTempReview1(),
+                getTempReview2(),
+                getTempReview3()
             )
+
         )
     }
 
@@ -47,9 +65,9 @@ class GetLocationReviewsUseCaseImpl : GetLocationReviewsUseCase {
     private fun getTempReview2(): Review {
         return Review(
             buildingId = 0,
-            buildingName = "한국 아파트",
-            buildingType = BuildingType.APARTMENT,
-            buildingAddress = "성남대로 1226번길 2",
+            buildingName = "아크로텔 오피스텔",
+            buildingType = BuildingType.OFFICETEL,
+            buildingAddress = "인천 남동구 구월남로 125",
             rating = 3,
             summary = "내 집이 최고",
             officeLocation = "삼전역",
@@ -67,9 +85,9 @@ class GetLocationReviewsUseCaseImpl : GetLocationReviewsUseCase {
     private fun getTempReview3(): Review {
         return Review(
             buildingId = 0,
-            buildingName = "한빛 삼성 아파트",
-            buildingType = BuildingType.APARTMENT,
-            buildingAddress = "서재2길 41-9",
+            buildingName = "아크로텔 오피스텔",
+            buildingType = BuildingType.OFFICETEL,
+            buildingAddress = "인천 남동구 구월남로 125",
             rating = 1,
             summary = "내 집이 최고",
             officeLocation = "몽촌토성역",

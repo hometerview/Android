@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/button_number_margin_start"
         android:textColor="@color/selector_button_number_color"
-        android:textSize="@dimen/button_text_size"
+        android:textSize="12dp"
         app:layout_constraintStart_toEndOf="@id/title_text_view"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="9"
