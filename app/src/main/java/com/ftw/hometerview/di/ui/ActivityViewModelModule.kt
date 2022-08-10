@@ -6,7 +6,6 @@ import com.ftw.domain.usecase.review.GetLocationReviewsUseCase
 import com.ftw.domain.usecase.searchaddressbuilding.GetSearchAddressBuildingUseCase
 import com.ftw.hometerview.dispatcher.Dispatcher
 import com.ftw.hometerview.ui.buildingreview.BuildingReviewViewModel
-import com.ftw.hometerview.ui.searchcompanyresult.OnboardingResultViewModel
 import com.ftw.hometerview.ui.main.MainViewModel
 import com.ftw.hometerview.ui.main.home.review.LocationReviewListViewModel
 import com.ftw.hometerview.ui.searchaddressbuilding.SearchAddressBuildingViewModel
