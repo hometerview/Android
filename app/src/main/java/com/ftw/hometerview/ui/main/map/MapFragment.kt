@@ -50,6 +50,10 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
     private lateinit var cntTextview: TextView
     private lateinit var mapView: MapView
     private var currentZoomLevel: ZoomLevel = ZoomLevel.NONE
+    private var lastZoomLevel: ZoomLevel = ZoomLevel.NONE
+    private var currentLatitude: Double = 37.50745434356066
+    private var currentLongitude: Double = 127.03391894910082
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,6 +61,24 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
     ): View? {
         _binding = FragmentMapBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (::mapView.isInitialized && lastZoomLevel != ZoomLevel.NONE) {
+            mapView.removeAllPOIItems()
+            var zoom = 0
+            if (lastZoomLevel == ZoomLevel.LEVEL2) {
+                zoom = 4
+            } else if (lastZoomLevel == ZoomLevel.LEVEL1) {
+                zoom = 2
+            }
+            mapView.setMapCenterPointAndZoomLevel(
+                MapPoint.mapPointWithGeoCoord(
+                    currentLatitude, currentLongitude
+                ), zoom, true
+            )
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -254,7 +276,13 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
     override fun onMapViewLongPressed(p0: MapView?, p1: MapPoint?) {}
     override fun onMapViewDragStarted(p0: MapView?, p1: MapPoint?) {}
     override fun onMapViewDragEnded(p0: MapView?, p1: MapPoint?) {}
-    override fun onMapViewMoveFinished(p0: MapView?, p1: MapPoint?) {}
+    override fun onMapViewMoveFinished(p0: MapView?, p1: MapPoint?) {
+        if (p1 != null) {
+            currentLatitude = p1.mapPointGeoCoord.latitude
+            currentLongitude = p1.mapPointGeoCoord.longitude
+        }
+    }
+
     override fun onMapViewZoomLevelChanged(p0: MapView, p1: Int) {
         if (p0.zoomLevel > 2) {
 
@@ -274,16 +302,18 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
         }
 
         // 2 > 7
-        if (p0.zoomLevel >= 4 && currentZoomLevel != ZoomLevel.LEVEL2) {
+        if (p0.zoomLevel >= 4 && (currentZoomLevel != ZoomLevel.LEVEL2 || lastZoomLevel == ZoomLevel.LEVEL2)) {
             p0.removeAllPOIItems()
             setCustomMarkerView()
             sampleStationMarkerItems()
             currentZoomLevel = ZoomLevel.LEVEL2
-        } else if (p0.zoomLevel == 2 && currentZoomLevel != ZoomLevel.LEVEL1) {
+            lastZoomLevel = ZoomLevel.LEVEL2
+        } else if (p0.zoomLevel == 2 && (currentZoomLevel != ZoomLevel.LEVEL1 || lastZoomLevel == ZoomLevel.LEVEL1)) {
             p0.removeAllPOIItems()
             setBuildingMarkerView()
             sampleBuildingMarkerItems()
             currentZoomLevel = ZoomLevel.LEVEL1
+            lastZoomLevel = ZoomLevel.LEVEL1
         }
     }
 
