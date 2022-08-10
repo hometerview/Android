@@ -11,9 +11,13 @@ import com.ftw.hometerview.BuildConfig
 import com.ftw.hometerview.R
 import com.kakao.sdk.common.KakaoSdk
 import dagger.hilt.android.HiltAndroidApp
+import javax.inject.Inject
 
 @HiltAndroidApp
 class HometerviewApplication : Application() {
+
+    @Inject
+    lateinit var networkFlipperPlugin: NetworkFlipperPlugin
 
     override fun onCreate() {
         super.onCreate()
@@ -30,8 +34,13 @@ class HometerviewApplication : Application() {
 
         if (BuildConfig.DEBUG && FlipperUtils.shouldEnableFlipper(this)) {
             AndroidFlipperClient.getInstance(this).apply {
-                addPlugin(InspectorFlipperPlugin(this@HometerviewApplication, DescriptorMapping.withDefaults()))
-                addPlugin(NetworkFlipperPlugin())
+                addPlugin(
+                    InspectorFlipperPlugin(
+                        this@HometerviewApplication,
+                        DescriptorMapping.withDefaults()
+                    )
+                )
+                addPlugin(networkFlipperPlugin)
             }.run { start() }
         }
     }
