@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     >
 
     <data>
@@ -13,92 +14,202 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/blue_gray_100"
+        android:fitsSystemWindows="true"
         >
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:elevation="0dp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/blue_gray_100"
+            android:fitsSystemWindows="true"
             >
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/blue_300"
-                app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 >
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:layout_collapseMode="none"
                     >
 
-                    <TextView
-                        android:id="@+id/company_text_view"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/company_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_size_30"
-                        android:layout_marginHorizontal="@dimen/dp_size_14"
-                        android:text="@{viewModel.user.company.name}"
-                        android:fontFamily="@font/pretendard_medium"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/sp_size_24"
                         app:layout_constraintTop_toTopOf="parent"
-                        />
+                        >
+
+                        <TextView
+                            android:id="@+id/company_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_size_32"
+                            android:layout_marginStart="@dimen/dp_size_14"
+                            android:text="@{viewModel.user.company.name}"
+                            android:textColor="@color/blue_300"
+                            android:textSize="@dimen/sp_size_24"
+                            android:fontFamily="@font/jalnan"
+                            android:includeFontPadding="false"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            app:layout_constraintHorizontal_bias="0"
+                            app:layout_constraintHorizontal_chainStyle="packed"
+                            app:layout_constrainedWidth="true"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/search_company_navigation_image_view"
+                            tools:text="삼성전자삼성전자삼성전자삼성전자삼성전자"
+                            />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/search_company_navigation_image_view"
+                            android:layout_width="@dimen/dp_size_20"
+                            android:layout_height="@dimen/dp_size_20"
+                            android:layout_marginStart="@dimen/dp_size_8"
+                            android:layout_marginEnd="@dimen/dp_size_14"
+                            app:srcCompat="@drawable/icon_triangle"
+                            app:tint="@color/blue_300"
+                            app:layout_constraintTop_toTopOf="@id/company_text_view"
+                            app:layout_constraintBottom_toBottomOf="@id/company_text_view"
+                            app:layout_constraintStart_toEndOf="@id/company_text_view"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
                         android:id="@+id/company_guide_text_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_size_12"
                         android:layout_marginHorizontal="@dimen/dp_size_14"
                         android:text="@string/home_title"
-                        android:fontFamily="@font/pretendard_regular"
-                        android:textColor="@color/white"
+                        android:textColor="@color/gray_900"
                         android:textSize="@dimen/sp_size_24"
-                        app:layout_constraintTop_toBottomOf="@id/company_text_view"
+                        android:fontFamily="@font/jalnan"
+                        android:includeFontPadding="false"
+                        app:layout_constraintTop_toBottomOf="@id/company_layout"
                         />
 
                     <TextView
+                        android:id="@+id/description_text_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_size_8"
-                        android:layout_marginBottom="@dimen/dp_size_35"
+                        android:layout_marginTop="@dimen/dp_size_18"
                         android:layout_marginHorizontal="@dimen/dp_size_14"
                         android:text="@{@string/home_description(viewModel.user.company.location)}"
                         android:fontFamily="@font/pretendard_regular"
-                        android:textColor="@color/white"
+                        android:textColor="@color/gray_700"
                         android:textSize="@dimen/sp_size_14"
+                        android:includeFontPadding="false"
                         app:layout_constraintTop_toBottomOf="@id/company_guide_text_view"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         />
 
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/inducement_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_size_40"
+                        android:layout_marginBottom="@dimen/dp_size_56"
+                        android:layout_marginHorizontal="@dimen/dp_size_14"
+                        android:background="@drawable/bg_blue_100_radius_8"
+                        app:layout_goneMarginBottom="@dimen/dp_size_56"
+                        app:layout_constraintTop_toBottomOf="@id/description_text_view"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        >
+
+                        <ImageView
+                            android:id="@+id/inducement_image_view"
+                            android:layout_width="@dimen/dp_size_46"
+                            android:layout_height="@dimen/dp_size_46"
+                            android:layout_marginTop="@dimen/dp_size_40"
+                            app:srcCompat="@drawable/image_temp_location"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            />
+
+                        <TextView
+                            android:id="@+id/inducement_message_text_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_size_20"
+                            android:layout_marginHorizontal="@dimen/dp_size_16"
+                            android:gravity="center"
+                            android:textSize="@dimen/sp_size_14"
+                            android:textColor="@color/blue_300"
+                            android:fontFamily="@font/pretendard_semibold"
+                            app:layout_constraintTop_toBottomOf="@id/inducement_image_view"
+                            tools:text="회사 정보를 기입하고 맞춤 정보를 추천 받으세요."
+                            />
+
+                        <com.ftw.hometerview.design.Button
+                            android:id="@+id/inducement_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_size_10"
+                            android:layout_marginBottom="@dimen/dp_size_30"
+                            android:text="@string/heart"
+                            app:layout_constraintTop_toBottomOf="@id/inducement_message_text_view"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View
+                        android:id="@+id/inducement_empty_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="@id/inducement_layout"
+                        app:layout_constraintStart_toStartOf="@id/inducement_layout"
+                        app:layout_constraintEnd_toEndOf="@id/inducement_layout"
+                        app:layout_constraintBottom_toBottomOf="@id/inducement_layout"
+                        />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="@dimen/dp_size_20"
-                android:paddingHorizontal="@dimen/sp_size_14"
-                app:tabMode="scrollable"
+                android:layout_height="@dimen/home_tab_layout_expanding_contents_height"
+                android:layout_marginHorizontal="@dimen/dp_size_10"
+                android:background="@android:color/transparent"
+                app:tabPaddingStart="@dimen/dp_size_4"
+                app:tabPaddingEnd="@dimen/dp_size_4"
+                app:tabMode="fixed"
                 app:tabGravity="fill"
-                app:tabTextAppearance="@style/HomeTabLayout"
-                app:tabIndicatorColor="@color/gray_900"
-                app:tabIndicatorHeight="@dimen/dp_size_2"
-                app:tabTextColor="@color/gray_500"
-                app:tabSelectedTextColor="@color/gray_900"
+                app:tabIndicator="@null"
                 />
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/view_pager"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            />
+            >
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_size_16"
+                android:background="@drawable/bg_home_gradient_above_view_pager"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>
