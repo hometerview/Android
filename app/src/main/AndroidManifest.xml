@@ -58,6 +58,11 @@
             android:exported="true"
             />
 
+        <activity
+            android:name=".ui.review.CreateReviewActivity"
+            android:exported="true"
+            />
+
         <!-- kakao 로그인 창 -->
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
