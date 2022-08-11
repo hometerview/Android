@@ -52,7 +52,7 @@ class BuildingReviewActivity : AppCompatActivity() {
         binding.appBar.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
 
             //  Vertical offset == 0 indicates appBar is fully expanded.
-            if (abs(verticalOffset) > 200) {
+            if (abs(verticalOffset) == appBarLayout.totalScrollRange) {
                 binding.toolbarBuildingNameTextView.gravity = CENTER
                 binding.toolbarBuildingNameTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX,resources.getDimensionPixelSize(R.dimen.sp_size_14).toFloat())
             } else {
