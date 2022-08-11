@@ -5,6 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
+import android.util.TypedValue
+import android.view.Gravity.CENTER
+import android.view.Gravity.LEFT
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle
@@ -18,6 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
+import java.lang.Math.abs
 
 @AndroidEntryPoint
 class BuildingReviewActivity : AppCompatActivity() {
@@ -44,6 +48,18 @@ class BuildingReviewActivity : AppCompatActivity() {
 
         initList()
         observe()
+
+        binding.appBar.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
+
+            //  Vertical offset == 0 indicates appBar is fully expanded.
+            if (abs(verticalOffset) == appBarLayout.totalScrollRange) {
+                binding.toolbarBuildingNameTextView.gravity = CENTER
+                binding.toolbarBuildingNameTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX,resources.getDimensionPixelSize(R.dimen.sp_size_14).toFloat())
+            } else {
+                binding.toolbarBuildingNameTextView.gravity = LEFT
+                binding.toolbarBuildingNameTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX,resources.getDimensionPixelSize(R.dimen.sp_size_24).toFloat())
+            }
+        }
     }
 
     private fun initList() {
