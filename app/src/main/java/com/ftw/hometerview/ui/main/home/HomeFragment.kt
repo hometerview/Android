@@ -93,7 +93,7 @@ class HomeFragment : Fragment() {
             val totalScrollRange = binding.appBarLayout.totalScrollRange
             val absVerticalOffset = abs(verticalOffset)
 
-            if (absVerticalOffset >= totalScrollRange - TOOLBAR_LAYOUT_EXPANDING_OFFSET && toolbarLayoutState != ToolbarLayoutState.COLLAPSED) { // 접혔을 때
+            if (absVerticalOffset >= totalScrollRange - TOOLBAR_LAYOUT_EXPANDING_OFFSET && toolbarLayoutState != ToolbarLayoutState.COLLAPSED) { // collapsed
                 toolbarLayoutState = ToolbarLayoutState.COLLAPSED
                 binding.tabLayout.background = ContextCompat.getDrawable(
                     requireContext(),
