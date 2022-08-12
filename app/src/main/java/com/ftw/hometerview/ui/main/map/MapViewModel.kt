@@ -7,6 +7,7 @@ import com.ftw.domain.usecase.map.GetMarkerUseCase
 import com.ftw.hometerview.dispatcher.Dispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 
 class MapViewModel(
     dispatcher: Dispatcher,
@@ -16,32 +17,30 @@ class MapViewModel(
     private val location: MutableStateFlow<String> = MutableStateFlow("")
     private val buildingLocation: MutableStateFlow<String> = MutableStateFlow("")
 
-    val marker: StateFlow<List<StationMarker>> = location.filter { it.isNotBlank() }
-        .transformLatest { location ->
-            flow<List<StationMarker>> {
-                emit(
-                    getMarkerUseCase(location)
-                )
+    private val _marker: MutableStateFlow<List<StationMarker>> = MutableStateFlow(listOf(StationMarker.NONE))
+    val marker: StateFlow<List<StationMarker>> = _marker.asStateFlow()
+    private val _buildingMarker: MutableStateFlow<List<BuildingMarker>> = MutableStateFlow(listOf(BuildingMarker.NONE))
+    val buildingMarker: StateFlow<List<BuildingMarker>> = _buildingMarker.asStateFlow()
+
+    init {
+        CoroutineScope(dispatcher.ui()).launch {
+            flow {
+                emit(getMarkerUseCase(location.toString()))
             }
+                .catch { emit(listOf()) }
                 .collect {
-                    emit(it)
+                    _marker.value = it
+                }
+
+            flow {
+                emit(getBuildingMarkerUseCase(location.toString()))
+            }
+                .catch { emit(listOf()) }
+                .collect {
+                    _buildingMarker.value = it
                 }
         }
-        .stateIn(CoroutineScope(dispatcher.ui()), SharingStarted.Eagerly, emptyList())
-
-    val buildingMarker: StateFlow<List<BuildingMarker>> = buildingLocation.filter { it.isNotBlank() }
-        .transformLatest { location ->
-            flow<List<BuildingMarker>> {
-                emit(
-                    getBuildingMarkerUseCase(location)
-                )
-            }
-                .collect {
-                    emit(it)
-                }
-        }
-        .stateIn(CoroutineScope(dispatcher.ui()), SharingStarted.Eagerly, emptyList())
-
+    }
 
     fun setLocation(location: String) {
         this.location.value = location
