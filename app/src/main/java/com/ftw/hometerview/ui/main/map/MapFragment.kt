@@ -67,16 +67,10 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
         super.onResume()
         if (::mapView.isInitialized && lastZoomLevel != ZoomLevel.NONE) {
             mapView.removeAllPOIItems()
-            var zoom = 0
-            if (lastZoomLevel == ZoomLevel.LEVEL2) {
-                zoom = 4
-            } else if (lastZoomLevel == ZoomLevel.LEVEL1) {
-                zoom = 2
-            }
             mapView.setMapCenterPointAndZoomLevel(
                 MapPoint.mapPointWithGeoCoord(
                     currentLatitude, currentLongitude
-                ), zoom, true
+                ), lastZoomLevel.zoom, true
             )
         }
     }
@@ -97,7 +91,7 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
         mapView.setMapCenterPointAndZoomLevel(
             MapPoint.mapPointWithGeoCoord(
                 37.50745434356066, 127.03391894910082
-            ), 4, true
+            ), ZoomLevel.NONE.zoom, true
         )
 
         binding.nowLocationButton.setOnClickListener {
@@ -340,6 +334,6 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
     }
 }
 
-enum class ZoomLevel {
-    NONE, LEVEL1, LEVEL2, LEVEL3
+enum class ZoomLevel(val zoom: Int) {
+    NONE(4), LEVEL1(2), LEVEL2(4), LEVEL3(6)
 }
