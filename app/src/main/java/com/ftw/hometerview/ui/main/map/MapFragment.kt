@@ -16,7 +16,7 @@ import android.view.View.*
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -25,6 +25,8 @@ import com.ftw.domain.entity.BuildingMarker
 import com.ftw.domain.entity.StationMarker
 import com.ftw.hometerview.R
 import com.ftw.hometerview.databinding.FragmentMapBinding
+import com.ftw.hometerview.databinding.MapItemBuildingMarkerBinding
+import com.ftw.hometerview.databinding.MapItemStationMarkerBinding
 import com.ftw.hometerview.ui.buildinglist.BuildingListActivity
 import com.ftw.hometerview.ui.searchaddressbuilding.SearchAddressBuildingActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,16 +45,19 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
 
     @Inject
     lateinit var viewModel: MapViewModel
+    
     private var _binding: FragmentMapBinding? = null
     private val binding get() = _binding!!
-    private lateinit var markerRootView: View
-    private lateinit var stationTextview: TextView
-    private lateinit var cntTextview: TextView
+    private var _markerBinding: MapItemStationMarkerBinding? = null
+    private val markerBinding get() = _markerBinding!!
+    private var _buildingMarkerBinding: MapItemBuildingMarkerBinding? = null
+    private val buildingMarkerBinding get() = _buildingMarkerBinding!!
+
     private lateinit var mapView: MapView
     private var currentZoomLevel: ZoomLevel = ZoomLevel.NONE
     private var lastZoomLevel: ZoomLevel = ZoomLevel.NONE
-    private var currentLatitude: Double = 37.50745434356066
-    private var currentLongitude: Double = 127.03391894910082
+    private var lastLatitude: Double = 37.50745434356066
+    private var lastLongitude: Double = 127.03391894910082
 
 
     override fun onCreateView(
@@ -60,6 +65,10 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMapBinding.inflate(inflater, container, false)
+        _buildingMarkerBinding =
+            DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.map_item_building_marker, null, false)
+        _markerBinding =
+            DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.map_item_station_marker, null, false)
         return binding.root
     }
 
@@ -69,7 +78,7 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
             mapView.removeAllPOIItems()
             mapView.setMapCenterPointAndZoomLevel(
                 MapPoint.mapPointWithGeoCoord(
-                    currentLatitude, currentLongitude
+                    lastLatitude, lastLongitude
                 ), lastZoomLevel.zoom, true
             )
         }
@@ -84,7 +93,6 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
         mapView.setPOIItemEventListener(this@MapFragment)
         mapView.setMapViewEventListener(this@MapFragment)
 
-        setCustomMarkerView()
         sampleStationMarkerItems()
 
         // 중심점 변경 + 줌 레벨 변경
@@ -108,13 +116,6 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
         _binding = null
     }
 
-    private fun setCustomMarkerView() {
-        markerRootView =
-            LayoutInflater.from(requireContext()).inflate(R.layout.map_item_station_marker, null)
-        stationTextview = markerRootView.findViewById(R.id.station_textview) as TextView
-        cntTextview = markerRootView.findViewById(R.id.cnt_textview) as TextView
-    }
-
     private fun sampleStationMarkerItems() {
         // 이곳에서 통신 : 역에 따른 리스트, MapPointBounds를 보낸다 생각
         viewModel.setLocation("강남구")
@@ -133,8 +134,10 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
         val customMarker = MapPOIItem()
         customMarker.itemName = "${stationMarker.station} ${stationMarker.buildingCnt}개의 집터뷰"
 
-        stationTextview.text = stationMarker.station
-        cntTextview.text = stationMarker.buildingCnt.toString()
+        markerBinding.let {
+            it.stationTextview.text = stationMarker.station
+            it.cntTextview.text = stationMarker.buildingCnt.toString()
+        }
 
         customMarker.tag = 1
         customMarker.userObject = stationMarker
@@ -142,9 +145,8 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
             MapPoint.mapPointWithGeoCoord(stationMarker.latitude, stationMarker.longitude)
         customMarker.markerType = MapPOIItem.MarkerType.CustomImage // 마커타입을 커스텀 마커로 지정.
 
-        customMarker.customImageBitmap = createDrawableFromView(requireActivity(), markerRootView)
-        customMarker.isCustomImageAutoscale =
-            false // hdpi, xhdpi 등 안드로이드 플랫폼의 스케일을 사용할 경우 지도 라이브러리의 스케일 기능을 꺼줌.
+        customMarker.customImageBitmap = createDrawableFromView(requireActivity(), markerBinding.root)
+        customMarker.isCustomImageAutoscale = false // hdpi, xhdpi 등 안드로이드 플랫폼의 스케일을 사용할 경우 지도 라이브러리의 스케일 기능을 꺼줌.
 
         customMarker.setCustomImageAnchor(
             0.5f,
@@ -153,11 +155,6 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
 
         mapView.addPOIItem(customMarker)
 
-    }
-
-    private fun setBuildingMarkerView() {
-        markerRootView =
-            LayoutInflater.from(requireContext()).inflate(R.layout.map_item_building_marker, null)
     }
 
     private fun sampleBuildingMarkerItems() {
@@ -184,7 +181,7 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
             MapPoint.mapPointWithGeoCoord(buildingMarker.latitude, buildingMarker.longitude)
         customMarker.markerType = MapPOIItem.MarkerType.CustomImage // 마커타입을 커스텀 마커로 지정.
 
-        customMarker.customImageBitmap = createDrawableFromView(requireActivity(), markerRootView)
+        customMarker.customImageBitmap = createDrawableFromView(requireActivity(), buildingMarkerBinding.root)
         customMarker.isCustomImageAutoscale =
             false // hdpi, xhdpi 등 안드로이드 플랫폼의 스케일을 사용할 경우 지도 라이브러리의 스케일 기능을 꺼줌.
 
@@ -272,8 +269,8 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
     override fun onMapViewDragEnded(p0: MapView?, p1: MapPoint?) {}
     override fun onMapViewMoveFinished(p0: MapView?, p1: MapPoint?) {
         if (p1 != null) {
-            currentLatitude = p1.mapPointGeoCoord.latitude
-            currentLongitude = p1.mapPointGeoCoord.longitude
+            lastLatitude = p1.mapPointGeoCoord.latitude
+            lastLongitude = p1.mapPointGeoCoord.longitude
         }
     }
 
@@ -298,13 +295,11 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
         // 2 > 7
         if (p0.zoomLevel >= 4 && (currentZoomLevel != ZoomLevel.LEVEL2 || lastZoomLevel == ZoomLevel.LEVEL2)) {
             p0.removeAllPOIItems()
-            setCustomMarkerView()
             sampleStationMarkerItems()
             currentZoomLevel = ZoomLevel.LEVEL2
             lastZoomLevel = ZoomLevel.LEVEL2
         } else if (p0.zoomLevel == 2 && (currentZoomLevel != ZoomLevel.LEVEL1 || lastZoomLevel == ZoomLevel.LEVEL1)) {
             p0.removeAllPOIItems()
-            setBuildingMarkerView()
             sampleBuildingMarkerItems()
             currentZoomLevel = ZoomLevel.LEVEL1
             lastZoomLevel = ZoomLevel.LEVEL1

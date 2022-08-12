@@ -5,4 +5,8 @@ data class StationMarker(
     val latitude: Double,
     val longitude: Double,
     val buildingCnt: Int
-)
+) {
+    companion object {
+        val NONE = StationMarker("", 0.0, 0.0, 0)
+    }
+}
