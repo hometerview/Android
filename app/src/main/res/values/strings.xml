@@ -6,6 +6,9 @@
     <string name="save">저장하기</string>
     <string name="heart">찜하기</string>
     <string name="it_helps">도움이 돼요</string>
+    <string name="cancel">취소</string>
+    <string name="address">주소</string>
+    <string name="tip">TIP</string>
 
     <string name="main_bottom_navigation_menu_home">홈</string>
     <string name="main_bottom_navigation_menu_map">지도</string>
@@ -25,6 +28,19 @@
     <string name="building_review_commuting_time_message">삼성전자까지 약 %s 거리입니다</string>
     <string name="building_review_count">%d개의 리뷰</string>
     <string name="building_review_rating">%d 점</string>
+
+    <string name="create_review_title">집터뷰 작성</string>
+    <string name="create_review_address_edit_text_hint">주소를 검색해 주세요</string>
+    <string name="create_review_address_description">안심하세요! 작성자의 정보는 노출되지 않아요!</string>
+    <string name="create_review_address_tip_description">아래와 같은 조합으로 검색을 하시면 더욱 정확한 결과가 검색됩니다.</string>
+    <string name="create_review_address_tip_description1_title">도로명 + 건물번호</string>
+    <string name="create_review_address_tip_description1_message">예) 판교역로 235, 제주 첨단로 242</string>
+    <string name="create_review_address_tip_description2_title">지역명(동/리) + 번지</string>
+    <string name="create_review_address_tip_description2_message">예) 삼평동 681, 제주 영평동 2181</string>
+    <string name="create_review_address_tip_description3_title">지역명(동/리) + 건물명(아파트명)</string>
+    <string name="create_review_address_tip_description3_message">예) 분당 주공, 연수동 주공3차</string>
+    <string name="create_review_address_tip_description4_title">사서함명 + 번호</string>
+    <string name="create_review_address_tip_description4_message">예) 분당우체국사서함 1~100</string>
 
     <string name="get_token_error">저장된 토큰이 없습니다.</string>
     <string name="guide_text1">나랑 같은 지역으로 출근하는 사람들은 어디에 살고있을까?</string>
