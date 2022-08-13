@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.filterNot
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.transformLatest
@@ -23,11 +22,12 @@ class CreateReviewFirstStepViewModel(
     val address: MutableStateFlow<String> = MutableStateFlow("")
 
     val addressItems: StateFlow<List<RecyclerItem>> =
-        address.filterNot { it.isBlank() }
+        address
             .debounce(500)
             .transformLatest { address ->
                 flow<Result<List<String>>> {
-                    emit(getAddressUseCase(address))
+                    if (address.isNotBlank()) emit(getAddressUseCase(address))
+                    else emit(Result.success(emptyList()))
                 }.collect { result ->
                     if (result.isSuccess && result.getOrNull() != null) {
                         emit(
