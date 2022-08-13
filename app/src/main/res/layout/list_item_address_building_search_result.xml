@@ -5,7 +5,7 @@
     >
 
     <data>
-
+        <import type="android.view.View"/>
         <variable
             name="searchResult"
             type="com.ftw.domain.entity.SearchAddressBuildingResult"
@@ -40,7 +40,8 @@
             android:id="@+id/address_textview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:address="@{searchResult}"
+            android:text="@{searchResult.address}"
+            android:visibility="@{searchResult.type.toString().equals(@string/building_text)  ? View.VISIBLE : View.GONE}"
             android:fontFamily="@font/pretendard_medium"
             android:textColor="@color/blue_300"
             android:textSize="@dimen/sp_size_13"
@@ -55,7 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:icon="@{searchResult}"
+            android:text="@{searchResult.type}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

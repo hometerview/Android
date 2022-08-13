@@ -46,4 +46,7 @@
     <string name="search_hint_text">지하철 역이나 건물명 검색하기</string>
     <string name="building_list_text">역삼역 13개 건물 보기</string>
 
+    <string name="station_text">지하철역</string>
+    <string name="location_text">지역</string>
+    <string name="building_text">건물</string>
 </resources>
