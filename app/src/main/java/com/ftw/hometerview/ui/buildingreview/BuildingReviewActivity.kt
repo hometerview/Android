@@ -6,8 +6,9 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
 import android.util.TypedValue
-import android.view.Gravity.CENTER
-import android.view.Gravity.LEFT
+import android.view.View.*
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle
@@ -18,10 +19,10 @@ import com.ftw.hometerview.adapter.DataBindingRecyclerAdapter
 import com.ftw.hometerview.adapter.DividerItemDecoration
 import com.ftw.hometerview.databinding.ActivityBuildingReviewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
 import java.lang.Math.abs
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class BuildingReviewActivity : AppCompatActivity() {
@@ -44,20 +45,52 @@ class BuildingReviewActivity : AppCompatActivity() {
             R.layout.activity_building_review
         ).apply {
             viewModel = this@BuildingReviewActivity.viewModel
+            setSupportActionBar(toolbar)
+            toolbar.visibility = GONE
         }
-
         initList()
         observe()
 
-        binding.appBar.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
+        val tv = TypedValue()
+        theme.resolveAttribute(android.R.attr.actionBarSize, tv, true)
+        val actionBarHeight = resources.getDimensionPixelSize(tv.resourceId)
 
+        var animationListenerIng = false
+        binding.appBar.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
             //  Vertical offset == 0 indicates appBar is fully expanded.
-            if (abs(verticalOffset) == appBarLayout.totalScrollRange) {
-                binding.toolbarBuildingNameTextView.gravity = CENTER
-                binding.toolbarBuildingNameTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX,resources.getDimensionPixelSize(R.dimen.sp_size_14).toFloat())
+            if (abs(verticalOffset) >= appBarLayout.height - actionBarHeight) {
+                if(binding.toolbar.visibility == GONE && !animationListenerIng){
+                    animationListenerIng = true
+                    binding.toolbar.apply {
+                        visibility = INVISIBLE
+                        val animation = AnimationUtils.loadAnimation(context, R.anim.anim_fade_in)
+                        animation.setAnimationListener(object : Animation.AnimationListener {
+                            override fun onAnimationStart(arg0: Animation) {}
+                            override fun onAnimationRepeat(arg0: Animation) {}
+                            override fun onAnimationEnd(arg0: Animation) {
+                                visibility = VISIBLE
+                                animationListenerIng = false
+                            }
+                        })
+                        startAnimation(animation)
+                    }
+                }
             } else {
-                binding.toolbarBuildingNameTextView.gravity = LEFT
-                binding.toolbarBuildingNameTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX,resources.getDimensionPixelSize(R.dimen.sp_size_24).toFloat())
+                if(binding.toolbar.visibility == VISIBLE == !animationListenerIng){
+                    animationListenerIng = true
+                    binding.toolbar.apply {
+                        val animation = AnimationUtils.loadAnimation(context, R.anim.anim_fade_out)
+                        animation.setAnimationListener(object : Animation.AnimationListener {
+                            override fun onAnimationStart(arg0: Animation) {}
+                            override fun onAnimationRepeat(arg0: Animation) {}
+                            override fun onAnimationEnd(arg0: Animation) {
+                                visibility = GONE
+                                animationListenerIng = false
+                            }
+                        })
+                        startAnimation(animation)
+                    }
+                }
             }
         }
     }
