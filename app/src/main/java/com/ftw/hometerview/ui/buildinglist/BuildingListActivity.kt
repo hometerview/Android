@@ -39,7 +39,9 @@ class BuildingListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityBuildingListBinding.inflate(layoutInflater)
+        binding = ActivityBuildingListBinding.inflate(layoutInflater).apply {
+            viewModel = this@BuildingListActivity.viewModel
+        }
         setContentView(binding.root)
 
         val argument = intent.getParcelableExtra<Argument>(ARGUMENT_KEY) ?: return
