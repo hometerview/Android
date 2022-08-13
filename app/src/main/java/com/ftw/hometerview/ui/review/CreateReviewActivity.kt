@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.ftw.hometerview.R
 import com.ftw.hometerview.databinding.ActivityCreateReviewBinding
 import com.ftw.hometerview.extension.replaceFragment
@@ -18,9 +19,7 @@ class CreateReviewActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityCreateReviewBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
+        DataBindingUtil.setContentView<ActivityCreateReviewBinding>(this, R.layout.activity_create_review)
         replaceFragment(R.id.frame_layout, CreateReviewFirstStepFragment.newInstance(), false)
     }
 }
