@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import android.view.inputmethod.EditorInfo
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -36,24 +37,18 @@ class SearchAddressBuildingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivitySearchAddressBuildingBinding.inflate(layoutInflater)
+        binding = ActivitySearchAddressBuildingBinding.inflate(layoutInflater).apply {
+            viewModel = this@SearchAddressBuildingActivity.viewModel
+        }
+
         setContentView(binding.root)
 
         initList()
         observe()
-
-        binding.searchStationBuildingButton.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                // 보내기 동작
-                viewModel.setLocation(binding.searchStationBuildingButton.text.toString())
-            }
-            true
-        }
     }
 
     private fun initList() {
         binding.searchResultRecyclerView.adapter = adapter
-//        baseContext.let { binding.searchResultRecyclerView.addItemDecoration(DividerItemDecoration(it)) }
     }
 
     private fun observe() {
@@ -64,6 +59,7 @@ class SearchAddressBuildingActivity : AppCompatActivity() {
                 }
             }
         }
+        
     }
 
 }
