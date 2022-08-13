@@ -2,6 +2,7 @@
 <resources>
 
     <!-- Text size -->
+    <dimen name="sp_size_10">10sp</dimen>
     <dimen name="sp_size_11">11sp</dimen>
     <dimen name="sp_size_12">12sp</dimen>
     <dimen name="sp_size_13">13sp</dimen>
@@ -31,6 +32,7 @@
     <dimen name="dp_size_12">12dp</dimen>
     <dimen name="dp_size_14">14dp</dimen>
     <dimen name="dp_size_16">16dp</dimen>
+    <dimen name="dp_size_18">18dp</dimen>
     <dimen name="dp_size_20">20dp</dimen>
     <dimen name="dp_size_24">24dp</dimen>
     <dimen name="dp_size_28">28dp</dimen>
