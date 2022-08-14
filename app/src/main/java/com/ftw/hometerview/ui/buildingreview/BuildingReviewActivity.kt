@@ -18,10 +18,10 @@ import com.ftw.hometerview.adapter.DataBindingRecyclerAdapter
 import com.ftw.hometerview.adapter.DividerItemDecoration
 import com.ftw.hometerview.databinding.ActivityBuildingReviewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.Math.abs
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
-import java.lang.Math.abs
 
 @AndroidEntryPoint
 class BuildingReviewActivity : AppCompatActivity() {

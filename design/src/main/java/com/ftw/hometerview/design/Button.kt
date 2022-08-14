@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
 import androidx.core.view.isVisible
+import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 
 private const val DEFAULT_NUMBER = -1
@@ -24,7 +25,18 @@ class Button @JvmOverloads constructor(
     var icon: Drawable? = null
         set(value) {
             field = value
-            drawableStartImageView.setImageDrawable(value)
+            if (value == null) {
+                drawableStartImageView.isVisible = false
+                titleTextView.updateLayoutParams<MarginLayoutParams> {
+                    leftMargin = 0
+                }
+            } else {
+                drawableStartImageView.isVisible = true
+                drawableStartImageView.setImageDrawable(value)
+                titleTextView.updateLayoutParams<MarginLayoutParams> {
+                    leftMargin = resources.getDimensionPixelSize(R.dimen.button_drawable_padding)
+                }
+            }
         }
 
     var text: String? = null
