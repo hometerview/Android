@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
+
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -40,13 +41,15 @@
                     android:layout_height="200dp"
                     android:background="@color/white"
                     />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_chevron_left_24"
+                    android:padding="@dimen/dp_size_8"
+                    android:fitsSystemWindows="true"
+                    app:srcCompat="@drawable/icon_back"
                     app:layout_collapseMode="pin"
-                    android:layout_marginTop="@dimen/dp_size_16"
-                    android:layout_marginStart="@dimen/dp_size_16"/>
+                    />
 
                 <com.google.android.material.appbar.MaterialToolbar
                     android:layout_width="match_parent"
@@ -61,16 +64,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         >
-
-                        <!--                        <androidx.appcompat.widget.AppCompatImageButton-->
-                        <!--                            android:id="@+id/back_image_view"-->
-                        <!--                            android:layout_width="wrap_content"-->
-                        <!--                            android:layout_height="wrap_content"-->
-                        <!--                            app:srcCompat="@drawable/icon_back"-->
-                        <!--                            app:layout_constraintTop_toTopOf="parent"-->
-                        <!--                            app:layout_constraintBottom_toBottomOf="parent"-->
-                        <!--                            app:layout_constraintStart_toStartOf="parent"-->
-                        <!--                            />-->
 
                         <TextView
                             android:id="@+id/toolbar_building_name_text_view"
@@ -112,30 +105,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 >
-
-                <!--                <TextView-->
-                <!--                    android:id="@+id/building_name_text_view"-->
-                <!--                    android:layout_width="match_parent"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_marginTop="@dimen/dp_size_16"-->
-                <!--                    android:layout_marginHorizontal="@dimen/sp_size_14"-->
-                <!--                    android:text="@{viewModel.building.name}"-->
-                <!--                    android:textSize="@dimen/sp_size_24"-->
-                <!--                    android:textColor="@color/gray_900"-->
-                <!--                    android:fontFamily="@font/pretendard_bold"-->
-                <!--                    app:layout_constraintTop_toTopOf="parent"-->
-                <!--                    />-->
-
-                <!--                <ImageView-->
-                <!--                    android:id="@+id/img_favorite"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_marginTop="@dimen/dp_size_16"-->
-                <!--                    android:layout_marginEnd="@dimen/sp_size_14"-->
-                <!--                    app:srcCompat="@drawable/icon_heart"-->
-                <!--                    app:layout_constraintTop_toTopOf="parent"-->
-                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-                <!--                    />-->
 
                 <TextView
                     android:id="@+id/address_text_view"
