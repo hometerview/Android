@@ -1,7 +1,11 @@
 package com.ftw.hometerview.ui.main.favorite
 
-import androidx.lifecycle.ViewModel
+import com.ftw.hometerview.dispatcher.Dispatcher
 
-class FavoriteViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+
+class FavoriteViewModel (
+    dispatcher: Dispatcher
+) {
+
+
 }
