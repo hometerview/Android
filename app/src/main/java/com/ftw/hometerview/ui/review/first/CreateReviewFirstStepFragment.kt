@@ -13,6 +13,7 @@ import com.ftw.hometerview.R
 import com.ftw.hometerview.adapter.DataBindingRecyclerAdapter
 import com.ftw.hometerview.adapter.DividerItemDecoration
 import com.ftw.hometerview.databinding.FragmentCreateReviewFirstStepBinding
+import com.ftw.hometerview.extension.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import kotlinx.coroutines.launch
@@ -21,6 +22,10 @@ import kotlinx.coroutines.launch
 class CreateReviewFirstStepFragment : Fragment() {
     companion object {
         fun newInstance(): CreateReviewFirstStepFragment = CreateReviewFirstStepFragment()
+    }
+
+    interface Listener {
+        fun onClickAddressFromFirstStep(address: String)
     }
 
     private var _binding: FragmentCreateReviewFirstStepBinding? = null
@@ -65,9 +70,25 @@ class CreateReviewFirstStepFragment : Fragment() {
 
     private fun observe() {
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.CREATED) {
-                viewModel.addressItems.collect {
-                    addressAdapter.submitList(it)
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.addressItems.collect { list ->
+                    addressAdapter.submitList(list)
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.event.collect { event ->
+                    when (event) {
+                        is CreateReviewFirstStepViewModel.Event.OnClickAddress -> {
+                            hideKeyboard()
+                            (activity as? Listener)?.onClickAddressFromFirstStep(event.address)
+                        }
+                        else -> {
+                            // Do Nothing
+                        }
+                    }
                 }
             }
         }

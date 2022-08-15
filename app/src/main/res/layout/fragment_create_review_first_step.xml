@@ -270,7 +270,6 @@
             app:layout_constraintTop_toBottomOf="@id/address_edit_text"
             tools:listitem="@layout/list_item_create_review_search_address"
             tools:itemCount="10"
-            tools:visibility="visible"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

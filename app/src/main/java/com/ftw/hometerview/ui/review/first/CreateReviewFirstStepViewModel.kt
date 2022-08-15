@@ -9,6 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
@@ -18,6 +19,14 @@ class CreateReviewFirstStepViewModel(
     dispatcher: Dispatcher,
     private val getAddressUseCase: GetAddressUseCase
 ) {
+
+    sealed class Event {
+        object Nothing : Event()
+        data class OnClickAddress(val address: String) : Event()
+    }
+
+    private val _event: MutableStateFlow<Event> = MutableStateFlow(Event.Nothing)
+    val event: StateFlow<Event> = _event.asStateFlow()
 
     val address: MutableStateFlow<String> = MutableStateFlow("")
 
@@ -34,9 +43,12 @@ class CreateReviewFirstStepViewModel(
                             result.getOrDefault(emptyList())
                                 .map { searchedAddress ->
                                     RecyclerItem(
-                                        data = searchedAddress,
+                                        data = CreateReviewAddressItem(
+                                            address = searchedAddress,
+                                            onClick = { _event.value = Event.OnClickAddress(it) }
+                                        ),
                                         layoutId = R.layout.list_item_create_review_search_address,
-                                        variableId = BR.address
+                                        variableId = BR.item
                                     )
                                 }
                         )
@@ -45,5 +57,13 @@ class CreateReviewFirstStepViewModel(
                     }
                 }
             }.stateIn(CoroutineScope(dispatcher.ui()), SharingStarted.Eagerly, emptyList())
+}
 
+data class CreateReviewAddressItem(
+    val address: String,
+    val onClick: (String) -> Unit
+) {
+    fun onClick() {
+        this.onClick(address)
+    }
 }
