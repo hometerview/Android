@@ -38,6 +38,7 @@
     <string name="create_review_address_tip_description3_message">예) 분당 주공, 연수동 주공3차</string>
     <string name="create_review_address_tip_description4_title">사서함명 + 번호</string>
     <string name="create_review_address_tip_description4_message">예) 분당우체국사서함 1~100</string>
+    <string name="create_review_residential_floor_hint">거주층을 선택해 주세요</string>
 
     <string name="get_token_error">저장된 토큰이 없습니다.</string>
     <string name="guide_text1">나랑 같은 지역으로 출근하는 사람들은 어디에 살고있을까?</string>
