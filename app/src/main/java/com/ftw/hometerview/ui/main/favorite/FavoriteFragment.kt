@@ -57,8 +57,7 @@ class FavoriteFragment : Fragment() {
     private fun initTabBar() {
 
         val favorite = listOf("저장한 리뷰", "저장한 건물")
-        binding.viewPager.adapter =
-            FavoriteViewPagerAdapter(requireActivity(), favorite)
+        binding.viewPager.adapter = FavoriteViewPagerAdapter(requireActivity())
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.customView = HomeTabItemView(requireContext()).apply {

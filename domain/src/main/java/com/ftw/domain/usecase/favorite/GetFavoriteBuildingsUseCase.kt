@@ -2,6 +2,6 @@ package com.ftw.domain.usecase.favorite
 
 import com.ftw.domain.entity.FavoriteBuilding
 
-interface GetFavoriteBuildingUseCase {
+interface GetFavoriteBuildingsUseCase {
     suspend operator fun invoke(): List<FavoriteBuilding>
 }

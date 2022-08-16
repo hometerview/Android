@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.ftw.hometerview.ui.main.favorite.favoritelist.FavoriteListViewModel"
+            type="com.ftw.hometerview.ui.main.favorite.favoritelist.FavoriteBuildingsViewModel"
             />
     </data>
 
@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/list_item_location_review"
+        tools:listitem="@layout/list_item_favorite_building"
         tools:itemCount="10"
         />
 </layout>

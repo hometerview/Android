@@ -2,7 +2,7 @@ package com.ftw.domain.usecase.favorite
 
 import com.ftw.domain.entity.*
 
-class GetFavoriteBuildingUseCaseImpl : GetFavoriteBuildingUseCase {
+class GetFavoriteBuildingsUseCaseImpl : GetFavoriteBuildingsUseCase {
     override suspend fun invoke(): List<FavoriteBuilding> {
         return listOf(
             FavoriteBuilding(

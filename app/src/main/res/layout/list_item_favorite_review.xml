@@ -8,7 +8,7 @@
 
         <variable
             name="item"
-            type="com.ftw.hometerview.ui.main.favorite.favoritelist.SavedReviewItem"
+            type="com.ftw.hometerview.ui.main.favorite.favoritelist.FavoriteReviewItem"
             />
     </data>
 
@@ -29,7 +29,7 @@
             android:ellipsize="end"
             android:fontFamily="@font/pretendard_bold"
             android:maxLines="1"
-            android:text="@{item.savedReviews.buildingName}"
+            android:text="@{item.favoriteReviews.buildingName}"
             android:textColor="@color/black"
             android:textSize="@dimen/sp_size_18"
             app:drawableEndCompat="@drawable/ic_baseline_navigate_next_24"
@@ -51,7 +51,7 @@
             android:numStars="5"
             android:progressBackgroundTint="@color/gray_200"
             android:progressTint="@color/blue_300"
-            android:rating="@{item.savedReviews.rating}"
+            android:rating="@{item.favoriteReviews.rating}"
             android:stepSize="1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/building_name_text_view"
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_size_8"
             android:fontFamily="@font/pretendard_regular"
-            android:text="@{item.savedReviews.summary}"
+            android:text="@{item.favoriteReviews.summary}"
             android:textColor="@color/blue_300"
             android:textSize="@dimen/sp_size_12"
             app:layout_constraintStart_toStartOf="@+id/rating_bar"
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_size_4"
             android:fontFamily="@font/pretendard_regular"
-            android:text="@{@string/favorite_review_summary(item.savedReviews.leftAt, item.savedReviews.officeLocation)}"
+            android:text="@{@string/favorite_review_summary(item.favoriteReviews.leftAt, item.favoriteReviews.officeLocation)}"
             android:textColor="@color/gray_600"
             android:textSize="@dimen/sp_size_12"
             app:layout_constraintBottom_toBottomOf="@+id/building_summary_text_view"
@@ -120,7 +120,7 @@
             android:layout_marginHorizontal="@dimen/dp_size_14"
             android:layout_marginTop="@dimen/dp_size_2"
             android:fontFamily="@font/pretendard_medium"
-            android:text="@{item.savedReviews.savedAdvantage}"
+            android:text="@{item.favoriteReviews.savedAdvantage}"
             android:textColor="@color/gray_800"
             android:textSize="@dimen/sp_size_12"
             app:layout_constraintStart_toStartOf="parent"
@@ -148,7 +148,7 @@
             android:layout_marginHorizontal="@dimen/dp_size_14"
             android:layout_marginTop="@dimen/dp_size_2"
             android:fontFamily="@font/pretendard_medium"
-            android:text="@{item.savedReviews.savedAdvantage}"
+            android:text="@{item.favoriteReviews.savedAdvantage}"
             android:textColor="@color/gray_800"
             android:textSize="@dimen/sp_size_12"
             app:layout_constraintStart_toStartOf="parent"

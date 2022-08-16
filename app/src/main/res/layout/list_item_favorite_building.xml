@@ -8,7 +8,7 @@
 
         <variable
             name="item"
-            type="com.ftw.hometerview.ui.main.favorite.favoritelist.SavedBuildingItem"
+            type="com.ftw.hometerview.ui.main.favorite.favoritelist.FavoriteBuildingItem"
             />
     </data>
 
@@ -29,7 +29,7 @@
             android:ellipsize="end"
             android:fontFamily="@font/pretendard_bold"
             android:maxLines="1"
-            android:text="@{item.savedBuildings.buildingName}"
+            android:text="@{item.favoriteBuildings.buildingName}"
             android:textColor="@color/black"
             android:textSize="@dimen/sp_size_18"
             app:drawableEndCompat="@drawable/ic_baseline_navigate_next_24"
@@ -51,7 +51,7 @@
             android:numStars="5"
             android:progressBackgroundTint="@color/gray_200"
             android:progressTint="@color/blue_300"
-            android:rating="@{Float.valueOf(Double.toString(item.savedBuildings.rating))}"
+            android:rating="@{Float.valueOf(Double.toString(item.favoriteBuildings.rating))}"
             android:stepSize="1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/building_name_text_view"
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_size_4"
             android:fontFamily="@font/pretendard_semibold"
-            android:text="@{Double.toString(item.savedBuildings.rating)}"
+            android:text="@{Double.toString(item.favoriteBuildings.rating)}"
             android:textColor="@color/blue_300"
             android:textSize="@dimen/sp_size_12"
             app:layout_constraintBottom_toBottomOf="@+id/rating_bar"
@@ -134,7 +134,7 @@
             android:ellipsize="end"
             android:fontFamily="@font/pretendard_regular"
             android:maxLines="1"
-            android:text="@{item.savedBuildings.address.component3()}"
+            android:text="@{item.favoriteBuildings.address.component3()}"
             android:textColor="@color/gray_600"
             android:textSize="@dimen/sp_size_12"
             app:drawableTint="@color/gray_400"
@@ -166,7 +166,7 @@
             android:ellipsize="end"
             android:fontFamily="@font/pretendard_regular"
             android:maxLines="1"
-            android:text="@{item.savedBuildings.type.value}"
+            android:text="@{item.favoriteBuildings.type.value}"
             android:textColor="@color/gray_600"
             android:textSize="@dimen/sp_size_12"
             app:drawableTint="@color/gray_400"

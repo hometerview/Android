@@ -1,7 +1,7 @@
 package com.ftw.hometerview.di.usecase
 
-import com.ftw.domain.usecase.favorite.GetFavoriteBuildingUseCase
-import com.ftw.domain.usecase.favorite.GetFavoriteBuildingUseCaseImpl
+import com.ftw.domain.usecase.favorite.GetFavoriteBuildingsUseCase
+import com.ftw.domain.usecase.favorite.GetFavoriteBuildingsUseCaseImpl
 import com.ftw.domain.usecase.favorite.GetFavoriteReviewsUseCase
 import com.ftw.domain.usecase.favorite.GetFavoriteReviewsUseCaseImpl
 import dagger.Module
@@ -21,8 +21,8 @@ class FavoriteUseCaseModule {
 
     @Provides
     @Singleton
-    fun provideGetFavoriteBuildingUseCase(): GetFavoriteBuildingUseCase {
-        return GetFavoriteBuildingUseCaseImpl()
+    fun provideGetFavoriteBuildingUseCase(): GetFavoriteBuildingsUseCase {
+        return GetFavoriteBuildingsUseCaseImpl()
     }
 
 }
