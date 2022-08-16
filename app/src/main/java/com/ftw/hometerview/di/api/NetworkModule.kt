@@ -1,5 +1,7 @@
 package com.ftw.hometerview.di.api
 
+import com.facebook.flipper.plugins.network.FlipperOkhttpInterceptor
+import com.facebook.flipper.plugins.network.NetworkFlipperPlugin
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class NetworkModule {
 
     companion object {
-        private const val BASE_URL = ""
+        private const val BASE_URL = "https://api.github.com"
     }
 
     @Provides
@@ -42,13 +44,27 @@ class NetworkModule {
 
     @Provides
     @Singleton
+    fun provideNetworkFlipperPlugin(): NetworkFlipperPlugin {
+        return NetworkFlipperPlugin()
+    }
+
+    @Provides
+    @Singleton
+    fun provideFlipperInterceptor(networkFlipperPlugin: NetworkFlipperPlugin): FlipperOkhttpInterceptor {
+        return FlipperOkhttpInterceptor(networkFlipperPlugin)
+    }
+
+    @Provides
+    @Singleton
     fun provideOkHttpClient(
         headerInterceptor: Interceptor,
-        loggingInterceptor: HttpLoggingInterceptor
+        loggingInterceptor: HttpLoggingInterceptor,
+        networkFlipperOkhttpInterceptor: FlipperOkhttpInterceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(headerInterceptor)
             .addInterceptor(loggingInterceptor)
+            .addNetworkInterceptor(networkFlipperOkhttpInterceptor)
             .build()
     }
 

@@ -75,6 +75,14 @@ dependencies {
 
     implementation "com.kakao.sdk:v2-user:$kakao_version"
 
+    debugImplementation "com.facebook.flipper:flipper:$flipper_version"
+    debugImplementation "com.facebook.soloader:soloader:$soloader_version"
+    debugImplementation "com.facebook.flipper:flipper-network-plugin:$flipper_version"
+    debugImplementation "com.facebook.flipper:flipper-retrofit2-protobuf-plugin:$flipper_retrofit2_protobuf_plugin_version"
+    releaseImplementation "com.facebook.flipper:flipper-noop:$flipper_version"
+    releaseImplementation "com.github.theGlenn:flipper-android-no-op:$flipper_android_no_op_version"
+
+
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "androidx.test.ext:junit:$android_junit_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$android_espresso_core_version"
