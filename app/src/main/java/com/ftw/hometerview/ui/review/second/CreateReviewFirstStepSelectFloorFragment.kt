@@ -13,7 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.ftw.domain.entity.Floor
 import com.ftw.hometerview.R
-import com.ftw.hometerview.databinding.FragmentCreateReviewSecondStepBinding
+import com.ftw.hometerview.databinding.FragmentCreateReviewFirstStepSelectFloorBinding
 import com.ftw.hometerview.ui.review.residentialfloor.SelectResidentialFloorBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -21,11 +21,11 @@ import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
 
 @AndroidEntryPoint
-class CreateReviewSecondStepFragment : Fragment(), SelectResidentialFloorBottomSheet.Listener {
+class CreateReviewFirstStepSelectFloorFragment : Fragment(), SelectResidentialFloorBottomSheet.Listener {
     companion object {
         private const val ARGUMENT_KEY = "CREATE_REVIEW_SECOND_STEP_ARGUMENT_KEY"
-        fun newInstance(address: String): CreateReviewSecondStepFragment {
-            return CreateReviewSecondStepFragment().apply {
+        fun newInstance(address: String): CreateReviewFirstStepSelectFloorFragment {
+            return CreateReviewFirstStepSelectFloorFragment().apply {
                 arguments = bundleOf(ARGUMENT_KEY to Argument(address))
             }
         }
@@ -35,24 +35,24 @@ class CreateReviewSecondStepFragment : Fragment(), SelectResidentialFloorBottomS
         fun onClickNextFromSecondStep(address: String, floor: String)
     }
 
-    private var _binding: FragmentCreateReviewSecondStepBinding? = null
+    private var _binding: FragmentCreateReviewFirstStepSelectFloorBinding? = null
     private val binding get() = _binding!!
 
     @Inject
-    lateinit var viewModel: CreateReviewSecondStepViewModel
+    lateinit var viewModel: CreateReviewFirstStepSelectFloorViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = DataBindingUtil.inflate<FragmentCreateReviewSecondStepBinding?>(
+        _binding = DataBindingUtil.inflate<FragmentCreateReviewFirstStepSelectFloorBinding?>(
             inflater,
-            R.layout.fragment_create_review_second_step,
+            R.layout.fragment_create_review_first_step_select_floor,
             container,
             false
         ).apply {
-            this.viewModel = this@CreateReviewSecondStepFragment.viewModel
+            this.viewModel = this@CreateReviewFirstStepSelectFloorFragment.viewModel
         }
         return binding.root
     }
@@ -84,9 +84,9 @@ class CreateReviewSecondStepFragment : Fragment(), SelectResidentialFloorBottomS
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.event.collect { event ->
                     when (event) {
-                        CreateReviewSecondStepViewModel.Event.Nothing -> {}
-                        CreateReviewSecondStepViewModel.Event.OnClickResidentialFloor -> showSelectResidentialFloorBottomSheet()
-                        is CreateReviewSecondStepViewModel.Event.OnClickNext -> {
+                        CreateReviewFirstStepSelectFloorViewModel.Event.Nothing -> {}
+                        CreateReviewFirstStepSelectFloorViewModel.Event.OnClickResidentialFloor -> showSelectResidentialFloorBottomSheet()
+                        is CreateReviewFirstStepSelectFloorViewModel.Event.OnClickNext -> {
                             (parentFragment as? Listener)?.onClickNextFromSecondStep(
                                 event.address,
                                 event.floor
