@@ -44,4 +44,10 @@
     <string name="worker_is_text">직장인들이</string>
     <string name="many_live_room_text">많이 사는 동네의 리뷰를 보여줄게요!</string>
     <string name="ex_station_text">동탄역</string>
+    <string name="search_hint_text">지하철 역이나 건물명 검색하기</string>
+    <string name="building_list_text">역삼역 13개 건물 보기</string>
+
+    <string name="station_text">지하철역</string>
+    <string name="location_text">지역</string>
+    <string name="building_text">건물</string>
 </resources>

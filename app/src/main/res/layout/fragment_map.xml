@@ -1,15 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.main.map.MapFragment"
     >
 
-    <TextView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="MapFragment"
-        />
+        tools:context=".ui.main.map.MapFragment"
+        >
 
-</FrameLayout>
+        <RelativeLayout
+            android:id="@+id/map_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+        <TextView
+            android:id="@+id/search_station_building_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_size_16"
+            android:layout_marginTop="@dimen/dp_size_16"
+            android:layout_marginEnd="@dimen/dp_size_16"
+            android:background="@drawable/button_search"
+            android:drawablePadding="@dimen/dp_size_8"
+            android:elevation="@dimen/dp_size_10"
+            android:fontFamily="@font/pretendard_regular"
+            android:hint="@string/search_hint_text"
+            android:padding="@dimen/dp_size_14"
+            android:textSize="@dimen/sp_size_14"
+            app:drawableStartCompat="@drawable/ic_baseline_search_24"
+            app:drawableTint="@color/blue_300"
+            />
+
+        <TextView
+            android:id="@+id/building_list_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginStart="@dimen/dp_size_16"
+            android:layout_marginEnd="@dimen/dp_size_16"
+            android:layout_marginBottom="@dimen/dp_size_16"
+            android:background="@drawable/button_building_list"
+            android:drawablePadding="@dimen/dp_size_8"
+            android:elevation="@dimen/dp_size_10"
+            android:fontFamily="@font/pretendard_medium"
+            android:gravity="center"
+            android:padding="@dimen/dp_size_8"
+            android:text="@string/building_list_text"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_size_14"
+            android:visibility="gone"
+            app:drawableStartCompat="@drawable/icon_map"
+            app:drawableTint="@color/white"
+            />
+
+        <ImageView
+            android:id="@+id/now_location_button"
+            android:layout_width="@dimen/dp_size_80"
+            android:layout_height="@dimen/dp_size_80"
+            android:layout_gravity="bottom|end"
+            android:elevation="@dimen/dp_size_10"
+            android:src="@drawable/button_now_location"
+            />
+
+    </FrameLayout>
+
+</layout>

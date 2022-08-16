@@ -21,6 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
+import javax.inject.Named
 
 @AndroidEntryPoint
 class LocationReviewListFragment : Fragment() {
@@ -41,6 +42,7 @@ class LocationReviewListFragment : Fragment() {
     private val adapter = DataBindingRecyclerAdapter()
 
     @Inject
+    @Named("LocationReviewList")
     lateinit var viewModel: LocationReviewListViewModel
 
     override fun onCreateView(
