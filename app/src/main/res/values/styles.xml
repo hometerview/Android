@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="HomeTabLayout" parent="Widget.Material3.TabLayout">
-        <item name="fontFamily">@font/pretendard_medium</item>
-        <item name="android:textSize">@dimen/sp_size_14</item>
+    <style name="BuildingReviewToolbarTitle" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textSize">@dimen/sp_size_12</item>
+        <item name="android:fontFamily">@font/pretendard_medium</item>
     </style>
 
     <style name="StarRatingBarSize12" parent="@android:style/Widget.RatingBar">

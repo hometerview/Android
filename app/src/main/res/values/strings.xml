@@ -14,6 +14,7 @@
     <string name="home_title">통근러에게 추천하는 동네</string>
     <string name="home_description">%s 직장인들이 많이 사는 동네의 리뷰입니다</string>
     <string name="home_location_review_summary">%s · %s · %s</string>
+    <string name="home_tab_item_winner">리뷰 1위</string>
 
     <string name="building_review_price_format">%s ~ %s</string>
     <string name="building_review_sale_price_title">매매가</string>
