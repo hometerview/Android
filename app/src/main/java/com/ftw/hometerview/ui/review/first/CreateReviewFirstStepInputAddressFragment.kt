@@ -12,27 +12,28 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.ftw.hometerview.R
 import com.ftw.hometerview.adapter.DataBindingRecyclerAdapter
 import com.ftw.hometerview.adapter.DividerItemDecoration
-import com.ftw.hometerview.databinding.FragmentCreateReviewFirstStepBinding
+import com.ftw.hometerview.databinding.FragmentCreateReviewFirstStepInputAddressBinding
 import com.ftw.hometerview.extension.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class CreateReviewFirstStepFragment : Fragment() {
+class CreateReviewFirstStepInputAddressFragment : Fragment() {
     companion object {
-        fun newInstance(): CreateReviewFirstStepFragment = CreateReviewFirstStepFragment()
+        fun newInstance(): CreateReviewFirstStepInputAddressFragment =
+            CreateReviewFirstStepInputAddressFragment()
     }
 
     interface Listener {
         fun onClickAddressFromFirstStep(address: String)
     }
 
-    private var _binding: FragmentCreateReviewFirstStepBinding? = null
+    private var _binding: FragmentCreateReviewFirstStepInputAddressBinding? = null
     private val binding get() = _binding!!
 
     @Inject
-    lateinit var viewModel: CreateReviewFirstStepViewModel
+    lateinit var viewModel: CreateReviewFirstStepInputAddressViewModel
 
     private val addressAdapter = DataBindingRecyclerAdapter()
 
@@ -41,13 +42,13 @@ class CreateReviewFirstStepFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = DataBindingUtil.inflate<FragmentCreateReviewFirstStepBinding?>(
+        _binding = DataBindingUtil.inflate<FragmentCreateReviewFirstStepInputAddressBinding?>(
             inflater,
-            R.layout.fragment_create_review_first_step,
+            R.layout.fragment_create_review_first_step_input_address,
             container,
             false
         ).apply {
-            this.viewModel = this@CreateReviewFirstStepFragment.viewModel
+            this.viewModel = this@CreateReviewFirstStepInputAddressFragment.viewModel
         }
         return binding.root
     }
@@ -81,7 +82,7 @@ class CreateReviewFirstStepFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.event.collect { event ->
                     when (event) {
-                        is CreateReviewFirstStepViewModel.Event.OnClickAddress -> {
+                        is CreateReviewFirstStepInputAddressViewModel.Event.OnClickAddress -> {
                             hideKeyboard()
                             (activity as? Listener)?.onClickAddressFromFirstStep(event.address)
                         }
