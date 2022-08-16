@@ -14,7 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.ftw.hometerview.R
 import com.ftw.hometerview.adapter.DataBindingRecyclerAdapter
-import com.ftw.hometerview.adapter.DividerItemDecoration
+import com.ftw.hometerview.adapter.SpacingItemDecoration
 import com.ftw.hometerview.databinding.FragmentLocationListBinding
 import com.ftw.hometerview.ui.buildingreview.BuildingReviewActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -73,12 +73,12 @@ class LocationReviewListFragment : Fragment() {
 
     private fun initList() {
         binding.list.adapter = adapter
-        context?.let { binding.list.addItemDecoration(DividerItemDecoration(it)) }
+        context?.let { binding.list.addItemDecoration(SpacingItemDecoration(it)) }
     }
 
     private fun observe() {
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.state.collect { state ->
                     when (state) {
                         LocationReviewListViewModel.State.Loading -> Toast.makeText(requireContext(), "Loading", Toast.LENGTH_SHORT).show()
