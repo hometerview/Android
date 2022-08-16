@@ -1,4 +1,4 @@
-package com.ftw.hometerview.ui.review.second
+package com.ftw.hometerview.ui.review.first
 
 import android.os.Bundle
 import android.os.Parcelable

@@ -10,7 +10,7 @@ import com.ftw.hometerview.databinding.ActivityCreateReviewBinding
 import com.ftw.hometerview.extension.addFragment
 import com.ftw.hometerview.extension.replaceFragment
 import com.ftw.hometerview.ui.review.first.CreateReviewFirstStepInputAddressFragment
-import com.ftw.hometerview.ui.review.second.CreateReviewFirstStepSelectFloorFragment
+import com.ftw.hometerview.ui.review.first.CreateReviewFirstStepSelectFloorFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
