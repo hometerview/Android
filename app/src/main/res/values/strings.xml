@@ -1,12 +1,18 @@
 <resources>
     <string name="app_name">hometerview</string>
 
+    <string name="address">주소</string>
     <string name="advantage_title">장점</string>
+    <string name="cancel">취소</string>
     <string name="disadvantage_title">단점</string>
     <string name="heart">찜하기</string>
     <string name="it_helps">도움이 돼요</string>
-    <string name="cancel">취소</string>
-    <string name="address">주소</string>
+    <string name="next">다음</string>
+    <string name="residential_floor">거주층</string>
+    <string name="residential_floor_high">고층</string>
+    <string name="residential_floor_low">저층</string>
+    <string name="residential_floor_middle">중층</string>
+    <string name="residential_floor_private">비공개</string>
     <string name="tip">TIP</string>
 
     <string name="main_bottom_navigation_menu_home">홈</string>

@@ -2,7 +2,6 @@ package com.ftw.hometerview.ui.review.second
 
 import android.os.Bundle
 import android.os.Parcelable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,15 +11,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.ftw.domain.entity.Floor
 import com.ftw.hometerview.R
 import com.ftw.hometerview.databinding.FragmentCreateReviewSecondStepBinding
+import com.ftw.hometerview.ui.review.residentialfloor.SelectResidentialFloorBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class CreateReviewSecondStepFragment : Fragment() {
+class CreateReviewSecondStepFragment : Fragment(), SelectResidentialFloorBottomSheet.Listener {
     companion object {
         private const val ARGUMENT_KEY = "CREATE_REVIEW_SECOND_STEP_ARGUMENT_KEY"
         fun newInstance(address: String): CreateReviewSecondStepFragment {
@@ -28,6 +29,10 @@ class CreateReviewSecondStepFragment : Fragment() {
                 arguments = bundleOf(ARGUMENT_KEY to Argument(address))
             }
         }
+    }
+
+    interface Listener {
+        fun onClickNextFromSecondStep(address: String, floor: String)
     }
 
     private var _binding: FragmentCreateReviewSecondStepBinding? = null
@@ -62,11 +67,16 @@ class CreateReviewSecondStepFragment : Fragment() {
         }
 
         observe()
+        showSelectResidentialFloorBottomSheet()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onClickFromSelectResidentialFloorBottomSheet(floor: Floor) {
+        viewModel.setResidentialFloor(getFloorText(floor))
     }
 
     private fun observe() {
@@ -76,15 +86,38 @@ class CreateReviewSecondStepFragment : Fragment() {
                     when (event) {
                         CreateReviewSecondStepViewModel.Event.Nothing -> {}
                         CreateReviewSecondStepViewModel.Event.OnClickResidentialFloor -> showSelectResidentialFloorBottomSheet()
+                        is CreateReviewSecondStepViewModel.Event.OnClickNext -> {
+                            (parentFragment as? Listener)?.onClickNextFromSecondStep(
+                                event.address,
+                                event.floor
+                            )
+                        }
                     }
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.residentialFloor.collect {
+                    binding.residentialFloorEditText.setText(it)
                 }
             }
         }
     }
 
     private fun showSelectResidentialFloorBottomSheet() {
-        // TODO 거주층 선택 반팝업 노출
-        Log.d("SecondStep", "showSelectResidentialFloorBottomSheet: ")
+        SelectResidentialFloorBottomSheet.newInstance()
+            .show(childFragmentManager, SelectResidentialFloorBottomSheet::class.simpleName)
+    }
+
+    private fun getFloorText(floor: Floor): String {
+        return when (floor) {
+            Floor.HIGH -> getString(R.string.residential_floor_high)
+            Floor.MIDDLE -> getString(R.string.residential_floor_middle)
+            Floor.LOW -> getString(R.string.residential_floor_low)
+            Floor.PRIVATE -> getString(R.string.residential_floor_private)
+        }
     }
 
     @Parcelize

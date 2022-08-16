@@ -133,7 +133,7 @@
             app:layout_constraintStart_toStartOf="parent"
             />
 
-        <EditText
+        <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/residential_floor_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -155,6 +155,16 @@
             android:textColor="@color/gray_900"
             android:textColorHint="@color/gray_400"
             app:layout_constraintTop_toBottomOf="@id/floor_title_text_view"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_size_24"
+            android:layout_marginHorizontal="@dimen/dp_size_14"
+            android:onClick="@{() -> viewModel.onClickNext()}"
+            android:text="@string/next"
+            app:layout_constraintBottom_toBottomOf="parent"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
