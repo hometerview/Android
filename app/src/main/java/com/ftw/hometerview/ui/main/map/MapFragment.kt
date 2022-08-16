@@ -88,6 +88,7 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
         mapView = MapView(requireActivity())
         mapView.setPOIItemEventListener(this@MapFragment)
         mapView.setMapViewEventListener(this@MapFragment)
+        currentZoomLevel = ZoomLevel.NONE
         mapView.setMapCenterPointAndZoomLevel(
             MapPoint.mapPointWithGeoCoord(
                 37.50745434356066, 127.03391894910082
