@@ -23,6 +23,7 @@ import com.ftw.hometerview.databinding.FragmentMapBinding
 import com.ftw.hometerview.databinding.MapItemBuildingMarkerBinding
 import com.ftw.hometerview.databinding.MapItemStationMarkerBinding
 import com.ftw.hometerview.ui.buildinglist.BuildingListActivity
+import com.ftw.hometerview.ui.buildingreview.BuildingReviewActivity
 import com.ftw.hometerview.ui.main.map.maputil.createDrawable
 import com.ftw.hometerview.ui.searchaddressbuilding.SearchAddressBuildingActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -147,6 +148,8 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
         _buildingMarkerBinding =
             DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.map_item_building_marker, null, false)
 
+        buildingMarkerBinding.cntTextview.text = buildingMarker.reviewCnt.toString()
+        
         val customMarker = makeMarker(
             itemName = "${buildingMarker.buildingName}의 집터뷰",
             userObject = buildingMarker,
@@ -219,7 +222,15 @@ class MapFragment : Fragment(), MapView.POIItemEventListener, MapView.MapViewEve
         }
     }
     override fun onDraggablePOIItemMoved(p0: MapView?, p1: MapPOIItem?, p2: MapPoint?) {}
-    override fun onCalloutBalloonOfPOIItemTouched(p0: MapView?, p1: MapPOIItem?) {}
+    override fun onCalloutBalloonOfPOIItemTouched(p0: MapView?, p1: MapPOIItem?) {
+        if(p1 != null && p1.userObject is BuildingMarker){
+            val buildingMarker: BuildingMarker = p1.userObject as BuildingMarker
+            startActivity(BuildingReviewActivity.newIntent(requireContext(),
+                buildingMarker.buildingId.toLong()
+            ))
+        }
+
+    }
     override fun onCalloutBalloonOfPOIItemTouched(
         p0: MapView?,
         p1: MapPOIItem?,
