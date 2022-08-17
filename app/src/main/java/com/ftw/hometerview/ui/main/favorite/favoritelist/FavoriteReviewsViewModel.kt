@@ -8,6 +8,8 @@ import com.ftw.hometerview.adapter.RecyclerItem
 import com.ftw.hometerview.dispatcher.Dispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class FavoriteReviewsViewModel(
     dispatcher: Dispatcher,
@@ -24,12 +26,12 @@ class FavoriteReviewsViewModel(
     )
     val state: StateFlow<State> = _state.asStateFlow()
 
-    private val _favoriteReviews: MutableStateFlow<List<FavoriteReview>> =
-        MutableStateFlow(emptyList())
-    private val favoriteReviews: StateFlow<List<FavoriteReview>> = _favoriteReviews.asStateFlow()
+//    private val _favoriteReviews: MutableStateFlow<List<FavoriteReview>> =
+//        MutableStateFlow(emptyList())
+//    private val favoriteReviews: StateFlow<List<FavoriteReview>> = _favoriteReviews.asStateFlow()
 
     val favoriteReviewsItems: StateFlow<List<RecyclerItem>> =
-        favoriteReviews.transformLatest {
+        MutableStateFlow("").transformLatest {
             flow {
                 emit(
                     getFavoriteReviewsUseCase()
@@ -52,6 +54,16 @@ class FavoriteReviewsViewModel(
                 }
         }
             .stateIn(CoroutineScope(dispatcher.ui()), SharingStarted.Eagerly, emptyList())
+
+    init {
+        CoroutineScope(dispatcher.ui()).launch {
+            val favoriteReviewsItems = withContext(dispatcher.io()) {
+                getFavoriteReviewsUseCase()
+
+            }
+
+        }
+    }
 
 }
 

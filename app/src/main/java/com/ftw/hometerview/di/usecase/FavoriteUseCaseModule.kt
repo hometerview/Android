@@ -21,7 +21,7 @@ class FavoriteUseCaseModule {
 
     @Provides
     @Singleton
-    fun provideGetFavoriteBuildingUseCase(): GetFavoriteBuildingsUseCase {
+    fun provideGetFavoriteBuildingsUseCase(): GetFavoriteBuildingsUseCase {
         return GetFavoriteBuildingsUseCaseImpl()
     }
 
