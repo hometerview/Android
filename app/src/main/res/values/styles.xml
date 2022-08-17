@@ -24,4 +24,8 @@
     <style name="StarRatingBarSize28" parent="@android:style/Widget.RatingBar">
         <item name="android:progressDrawable">@drawable/selector_rating_bar_star_28</item>
     </style>
+
+    <style name="StarRatingBarSize40" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/selector_rating_bar_star_40</item>
+    </style>
 </resources>
