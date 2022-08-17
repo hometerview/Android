@@ -10,7 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.ftw.hometerview.R
-import com.ftw.hometerview.databinding.FragmentCreateReviewSecondStepBinding
+import com.ftw.hometerview.databinding.FragmentCreateReviewSecondStepReviewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Date
 import javax.inject.Inject
@@ -31,7 +31,7 @@ class CreateReviewSecondStepReviewFragment : Fragment() {
         )
     }
 
-    private var _binding: FragmentCreateReviewSecondStepBinding? = null
+    private var _binding: FragmentCreateReviewSecondStepReviewBinding? = null
     private val binding get() = _binding!!
 
     @Inject
@@ -42,7 +42,7 @@ class CreateReviewSecondStepReviewFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = DataBindingUtil.inflate<FragmentCreateReviewSecondStepBinding?>(inflater, R.layout.fragment_create_review_second_step_review, container, false).apply {
+        _binding = DataBindingUtil.inflate<FragmentCreateReviewSecondStepReviewBinding?>(inflater, R.layout.fragment_create_review_second_step_review, container, false).apply {
             this.viewModel = this@CreateReviewSecondStepReviewFragment.viewModel
         }
         return binding.root
