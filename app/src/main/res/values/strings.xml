@@ -54,6 +54,9 @@
     <string name="create_review_star_four">좋아요</string>
     <string name="create_review_star_five">최고예요</string>
     <string name="create_review_residential_period_hint">거주기간을 선택해 주세요</string>
+    <string name="create_review_residential_period_until">%d년까지</string>
+    <string name="create_review_residential_period_before">%d년이전</string>
+    <string name="create_review_residential_period_private">비공개</string>
     <string name="create_review_advantage_title">장점</string>
     <string name="create_review_advantage_sub_title">(최소 30자)</string>
     <string name="create_review_advantage_hint">예) 집 위치, 집주인, 방음 등</string>

@@ -11,13 +11,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.ftw.hometerview.R
 import com.ftw.hometerview.databinding.FragmentCreateReviewSecondStepReviewBinding
+import com.ftw.hometerview.ui.bottomsheet.TextListBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import java.util.Date
 import javax.inject.Inject
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class CreateReviewSecondStepReviewFragment : Fragment() {
+class CreateReviewSecondStepReviewFragment : Fragment(), TextListBottomSheet.Listener {
     companion object {
         fun newInstance() = CreateReviewSecondStepReviewFragment()
     }
@@ -42,7 +43,12 @@ class CreateReviewSecondStepReviewFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = DataBindingUtil.inflate<FragmentCreateReviewSecondStepReviewBinding?>(inflater, R.layout.fragment_create_review_second_step_review, container, false).apply {
+        _binding = DataBindingUtil.inflate<FragmentCreateReviewSecondStepReviewBinding?>(
+            inflater,
+            R.layout.fragment_create_review_second_step_review,
+            container,
+            false
+        ).apply {
             this.viewModel = this@CreateReviewSecondStepReviewFragment.viewModel
         }
         return binding.root
@@ -50,7 +56,8 @@ class CreateReviewSecondStepReviewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observe()
+        observeEvent()
+        observeResidentialPeriod()
     }
 
     override fun onDestroyView() {
@@ -58,22 +65,61 @@ class CreateReviewSecondStepReviewFragment : Fragment() {
         _binding = null
     }
 
-    private fun observe() {
-        lifecycleScope.launch { repeatOnLifecycle(Lifecycle.State.STARTED) {
-            viewModel.event.collect { event ->
-                when (event) {
-                    CreateReviewSecondStepReviewViewModel.State.None -> {}
-                    is CreateReviewSecondStepReviewViewModel.State.OnClickNext -> {
-                        (activity as? Listener)?.onClickNextFromSecondStep(
-                            event.rating,
-                            event.leftAt,
-                            event.advantage,
-                            event.disadvantage
-                        )
+    private fun observeEvent() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.event.collect { event ->
+                    when (event) {
+                        CreateReviewSecondStepReviewViewModel.State.None -> {}
+                        is CreateReviewSecondStepReviewViewModel.State.OnClickResidentialPeriod -> {
+                            TextListBottomSheet.newInstance(getResidentialPeriods(event.periods))
+                                .show(childFragmentManager, TextListBottomSheet::class.simpleName)
+                        }
+                        is CreateReviewSecondStepReviewViewModel.State.OnClickNext -> {
+                            (activity as? Listener)?.onClickNextFromSecondStep(
+                                event.rating,
+                                event.leftAt,
+                                event.advantage,
+                                event.disadvantage
+                            )
+                        }
                     }
                 }
             }
         }
+    }
+
+    private fun observeResidentialPeriod() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.residentialPeriod.collect { period ->
+                    binding.residentialPeriodEditText.setText(period)
+                }
+            }
         }
+    }
+
+    private fun getResidentialPeriods(periods: List<Int>): List<String> {
+        return periods.mapIndexed { index, period ->
+            if (index != periods.lastIndex) {
+                String.format(
+                    getString(R.string.create_review_residential_period_until),
+                    period
+                )
+            } else {
+                String.format(
+                    getString(R.string.create_review_residential_period_before),
+                    period
+                )
+            }
+        }
+            .toMutableList()
+            .apply {
+                add(getString(R.string.create_review_residential_period_private))
+            }
+    }
+
+    override fun onClickFromTextListBottomSheet(text: String) {
+        viewModel.residentialPeriod.value = text
     }
 }

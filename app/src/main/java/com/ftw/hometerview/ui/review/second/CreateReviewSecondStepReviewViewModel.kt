@@ -9,6 +9,7 @@ class CreateReviewSecondStepReviewViewModel {
 
     sealed class State {
         object None : State()
+        class OnClickResidentialPeriod(val periods: List<Int>) : State()
         class OnClickNext(
             val rating: Int,
             val leftAt: Date,
@@ -31,7 +32,9 @@ class CreateReviewSecondStepReviewViewModel {
     val disadvantage: MutableStateFlow<String> = MutableStateFlow("")
 
     fun onClickResidentialPeriod() {
-
+        _event.value = State.OnClickResidentialPeriod(
+            (2022 downTo 2018).toList()
+        )
     }
 
     fun onClickNext() {
