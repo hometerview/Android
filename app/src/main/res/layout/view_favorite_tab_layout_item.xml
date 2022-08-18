@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="argument"
+            type="com.ftw.hometerview.ui.main.favorite.FavoriteTabItemView.Argument"
+            />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:id="@+id/title_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/home_tab_layout_expanding_title_height"
+            android:layout_marginTop="@dimen/dp_size_6"
+            android:background="@drawable/selector_building_review_tab_background"
+            android:gravity="center"
+            android:text="@{argument.title}"
+            android:textSize="@dimen/sp_size_16"
+            android:textColor="@color/selector_building_review_expanded_tab_text_color"
+            android:fontFamily="@font/pretendard_semibold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

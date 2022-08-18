@@ -15,7 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.ftw.hometerview.R
 import com.ftw.hometerview.databinding.FragmentCreateReviewThirdSetpSearchCompanyBinding
-import com.ftw.hometerview.ui.model.ParcelableSearchResult
+import com.ftw.hometerview.ui.model.ParcelableSearchCompanyResult
 import com.ftw.hometerview.ui.searchcompany.SearchCompanyActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -40,7 +40,7 @@ class CreateReviewThirdStepSearchCompanyFragment : Fragment() {
     private val searchCompanyLauncher: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode != Activity.RESULT_OK) return@registerForActivityResult
-            result.data?.getParcelableExtra<ParcelableSearchResult>(
+            result.data?.getParcelableExtra<ParcelableSearchCompanyResult>(
                 SearchCompanyActivity.SEARCH_COMPANY_RESULT_KEY
             )?.run {
                 viewModel.company.value = company

@@ -9,7 +9,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.ftw.hometerview.databinding.ActivitySearchCompanyBinding
-import com.ftw.hometerview.ui.model.ParcelableSearchResult
+import com.ftw.hometerview.ui.model.ParcelableSearchCompanyResult
 import com.ftw.hometerview.ui.searchcompanyresult.SearchCompanyResultActivity
 
 class SearchCompanyActivity : AppCompatActivity() {
@@ -24,7 +24,7 @@ class SearchCompanyActivity : AppCompatActivity() {
     private val searchCompanyResultLauncher: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode != Activity.RESULT_OK) return@registerForActivityResult
-            result.data?.getParcelableExtra<ParcelableSearchResult>(
+            result.data?.getParcelableExtra<ParcelableSearchCompanyResult>(
                 SearchCompanyResultActivity.SEARCH_COMPANY_RESULT_KEY
             )?.let { searchResult ->
                 setResult(
@@ -38,7 +38,8 @@ class SearchCompanyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding: ActivitySearchCompanyBinding = ActivitySearchCompanyBinding.inflate(layoutInflater)
+        val binding: ActivitySearchCompanyBinding =
+            ActivitySearchCompanyBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.searchButton.setOnEditorActionListener { _, actionId, _ ->

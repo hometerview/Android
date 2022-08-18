@@ -7,14 +7,14 @@ import android.os.Bundle
 import android.os.Parcelable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.ftw.domain.entitiy.SearchResult
+import com.ftw.domain.entity.SearchCompanyResult
 import com.ftw.hometerview.databinding.ActivitySearchCompanyResultBinding
 import com.ftw.hometerview.ui.model.toParcelable
 import com.ftw.hometerview.ui.searchcompanynonresult.SearchCompanyNonResultActivity
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class SearchCompanyResultActivity : AppCompatActivity() {
@@ -29,7 +29,7 @@ class SearchCompanyResultActivity : AppCompatActivity() {
     }
 
     @Inject
-    lateinit var viewModel: OnboardingResultViewModel
+    lateinit var viewModel: SearchCompanyResultViewModel
     private lateinit var binding: ActivitySearchCompanyResultBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,8 +51,8 @@ class SearchCompanyResultActivity : AppCompatActivity() {
         lifecycleScope.launch {
             viewModel.clickState.collect { state ->
                 when (state) {
-                    OnboardingResultViewModel.State.OnClickEmpty -> noResult()
-                    is OnboardingResultViewModel.State.OnClickCompany -> onClickCompany(state.searchResult)
+                    SearchCompanyResultViewModel.State.OnClickEmpty -> noResult()
+                    is SearchCompanyResultViewModel.State.OnClickCompany -> onClickCompany(state.searchCompanyResult)
                     else -> {}
                 }
             }
@@ -64,7 +64,7 @@ class SearchCompanyResultActivity : AppCompatActivity() {
         startActivity(SearchCompanyNonResultActivity.newIntent(this))
     }
 
-    private fun onClickCompany(searchResult: SearchResult) {
+    private fun onClickCompany(searchResult: SearchCompanyResult) {
         setResult(
             Activity.RESULT_OK,
             Intent().putExtra(SEARCH_COMPANY_RESULT_KEY, searchResult.toParcelable())

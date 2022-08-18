@@ -1,18 +1,18 @@
 package com.ftw.hometerview.ui.model
 
 import android.os.Parcelable
-import com.ftw.domain.entitiy.SearchResult
+import com.ftw.domain.entity.SearchCompanyResult
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class ParcelableSearchResult(
+data class ParcelableSearchCompanyResult(
     val company: String,
     val address: String,
     val destination: String
 ) : Parcelable
 
-fun SearchResult.toParcelable(): ParcelableSearchResult {
-    return ParcelableSearchResult(
+fun SearchCompanyResult.toParcelable(): ParcelableSearchCompanyResult {
+    return ParcelableSearchCompanyResult(
         company,
         address,
         destination
