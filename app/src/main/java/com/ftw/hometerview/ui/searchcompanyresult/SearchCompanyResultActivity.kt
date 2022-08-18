@@ -25,7 +25,7 @@ class SearchCompanyResultActivity : AppCompatActivity() {
     }
 
     @Inject
-    lateinit var viewModel: OnboardingResultViewModel
+    lateinit var viewModel: SearchCompanyResultViewModel
     private lateinit var binding: ActivitySearchCompanyResultBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +47,7 @@ class SearchCompanyResultActivity : AppCompatActivity() {
         lifecycleScope.launch {
             viewModel.clickState.collect { state ->
                 when (state) {
-                    OnboardingResultViewModel.State.OnClickEmpty -> noResult()
+                    SearchCompanyResultViewModel.State.OnClickEmpty -> noResult()
                     else -> {}
                 }
             }
