@@ -29,6 +29,7 @@ class OnboardingResultViewModel(
 
     sealed class State {
         object OnClickEmpty : State()
+        class OnClickCompany(val searchResult: SearchResult) : State()
         object Failure : State()
         object Loading : State()
         object Nothing : State()
@@ -49,7 +50,7 @@ class OnboardingResultViewModel(
 
     private fun showClickMessage(searchResult: SearchResult) {
         //통신으로 받아온 정보를 State와 조합해서 사용하면 될 듯 함
-
+        _clickState.value = State.OnClickCompany(searchResult)
     }
 
     fun noResultRecycleModel() {

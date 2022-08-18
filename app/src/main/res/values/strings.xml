@@ -65,6 +65,8 @@
     <string name="create_review_disadvantage_sub_title">(최소 30자)</string>
     <string name="create_review_disadvantage_hint">예) 집 위치, 집주인, 방음 등</string>
     <string name="create_review_disadvantage_max_length">900</string>
+    <string name="create_review_search_company_title">이 집에서 통근하던 직장을 입력해 주세요 (선택사항)</string>
+    <string name="create_review_search_company_hint">직장을 검색해 주세요</string>
 
     <string name="get_token_error">저장된 토큰이 없습니다.</string>
     <string name="guide_text1">나랑 같은 지역으로 출근하는 사람들은 어디에 살고있을까?</string>
@@ -86,4 +88,6 @@
     <string name="worker_is_text">직장인들이</string>
     <string name="many_live_room_text">많이 사는 동네의 리뷰를 보여줄게요!</string>
     <string name="ex_station_text">동탄역</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
