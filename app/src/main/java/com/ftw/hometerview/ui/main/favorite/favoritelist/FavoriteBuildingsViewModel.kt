@@ -24,32 +24,23 @@ class FavoriteBuildingsViewModel(
     )
     val state: StateFlow<State> = _state.asStateFlow()
 
-    private val _favoriteBuildings: MutableStateFlow<List<FavoriteBuilding>> =
-        MutableStateFlow(emptyList())
-    private val favoriteBuildings: StateFlow<List<FavoriteBuilding>> = _favoriteBuildings.asStateFlow()
-
     val favoriteBuildingsItems: StateFlow<List<RecyclerItem>> =
-        favoriteBuildings.transformLatest {
-            flow {
-                emit(
-                    getFavoriteBuildingsUseCase()
-                        .map { building ->
-                            RecyclerItem(
-                                data = FavoriteBuildingItem(
-                                    onClickItem = { buildingId ->
-                                        _state.value = State.OnClickReview(buildingId)
-                                    },
-                                    favoriteBuildings = building
-                                ),
-                                layoutId = R.layout.list_item_favorite_building,
-                                variableId = BR.item
-                            )
-                        }
-                )
-            }
-                .collect {
-                    emit(it)
-                }
+        flow {
+            emit(
+                getFavoriteBuildingsUseCase()
+                    .map { building ->
+                        RecyclerItem(
+                            data = FavoriteBuildingItem(
+                                onClickItem = { buildingId ->
+                                    _state.value = State.OnClickReview(buildingId)
+                                },
+                                favoriteBuildings = building
+                            ),
+                            layoutId = R.layout.list_item_favorite_building,
+                            variableId = BR.item
+                        )
+                    }
+            )
         }
             .stateIn(CoroutineScope(dispatcher.ui()), SharingStarted.Eagerly, emptyList())
 

@@ -8,8 +8,6 @@ import com.ftw.hometerview.adapter.RecyclerItem
 import com.ftw.hometerview.dispatcher.Dispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class FavoriteReviewsViewModel(
     dispatcher: Dispatcher,
@@ -26,44 +24,25 @@ class FavoriteReviewsViewModel(
     )
     val state: StateFlow<State> = _state.asStateFlow()
 
-//    private val _favoriteReviews: MutableStateFlow<List<FavoriteReview>> =
-//        MutableStateFlow(emptyList())
-//    private val favoriteReviews: StateFlow<List<FavoriteReview>> = _favoriteReviews.asStateFlow()
-
     val favoriteReviewsItems: StateFlow<List<RecyclerItem>> =
-        MutableStateFlow("").transformLatest {
-            flow {
-                emit(
-                    getFavoriteReviewsUseCase()
-                        .map { reviews ->
-                            RecyclerItem(
-                                data = FavoriteReviewItem(
-                                    onClickItem = { buildingId ->
-                                        _state.value = State.OnClickReview(buildingId)
-                                    },
-                                    favoriteReviews = reviews
-                                ),
-                                layoutId = R.layout.list_item_favorite_review,
-                                variableId = BR.item
-                            )
-                        }
-                )
-            }
-                .collect {
-                    emit(it)
-                }
+        flow {
+            emit(
+                getFavoriteReviewsUseCase()
+                    .map { reviews ->
+                        RecyclerItem(
+                            data = FavoriteReviewItem(
+                                onClickItem = { buildingId ->
+                                    _state.value = State.OnClickReview(buildingId)
+                                },
+                                favoriteReviews = reviews
+                            ),
+                            layoutId = R.layout.list_item_favorite_review,
+                            variableId = BR.item
+                        )
+                    }
+            )
         }
             .stateIn(CoroutineScope(dispatcher.ui()), SharingStarted.Eagerly, emptyList())
-
-    init {
-        CoroutineScope(dispatcher.ui()).launch {
-            val favoriteReviewsItems = withContext(dispatcher.io()) {
-                getFavoriteReviewsUseCase()
-
-            }
-
-        }
-    }
 
 }
 
