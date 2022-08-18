@@ -1,11 +1,15 @@
 package com.ftw.hometerview.ui.main.home
 
 import android.animation.ValueAnimator
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -18,11 +22,13 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.ftw.hometerview.R
 import com.ftw.hometerview.databinding.FragmentHomeBinding
 import com.ftw.hometerview.ui.main.HomeTabItemView
+import com.ftw.hometerview.ui.model.ParcelableReview
+import com.ftw.hometerview.ui.review.CreateReviewActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.math.abs
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -40,6 +46,14 @@ class HomeFragment : Fragment() {
 
     private lateinit var adapter: HomeViewPagerAdapter
     private var toolbarLayoutState: ToolbarLayoutState = ToolbarLayoutState.EXPANDING
+
+    private val createReviewLauncher: ActivityResultLauncher<Intent> =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode != Activity.RESULT_OK) return@registerForActivityResult
+            val review = result.data?.getParcelableExtra<ParcelableReview>(CreateReviewActivity.CREATE_REVIEW_RESULT_KEY)
+            if (review == null) return@registerForActivityResult
+            viewModel.showBanner.value = false
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,7 +74,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setOnOffsetChangedListener()
         startInducementBanner()
-        observe()
+        observeState()
+        observeReviews()
+        observeShowBanner()
     }
 
     override fun onDestroyView() {
@@ -68,7 +84,21 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    private fun observe() {
+    private fun observeState() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collect { state ->
+                    when (state) {
+                        is HomeViewModel.State.Error -> { }
+                        HomeViewModel.State.None -> { }
+                        HomeViewModel.State.OnClickBanner -> showCreateReviewActivity()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun observeReviews() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.reviews.collect { reviews ->
@@ -86,6 +116,20 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun observeShowBanner() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.showBanner.collect { showBanner ->
+                    binding.inducementLayout.isVisible = showBanner
+                }
+            }
+        }
+    }
+
+    private fun showCreateReviewActivity() {
+        createReviewLauncher.launch(CreateReviewActivity.newIntent(requireContext()))
     }
 
     private fun setOnOffsetChangedListener() {
@@ -145,6 +189,7 @@ class HomeFragment : Fragment() {
                         duration = 1000
                     }
                 )
+                binding.inducementEmptyLayout.isVisible = false
             }
             duration = 2000
         }.start()

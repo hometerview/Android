@@ -50,6 +50,7 @@
     <dimen name="dp_size_56">56dp</dimen>
     <dimen name="dp_size_60">60dp</dimen>
     <dimen name="dp_size_80">80dp</dimen>
+    <dimen name="dp_size_84">84dp</dimen>
     <dimen name="dp_size_90">90dp</dimen>
     <dimen name="dp_size_62">62dp</dimen>
     <dimen name="dp_size_70">70dp</dimen>
@@ -66,9 +67,9 @@
 
     <dimen name="main_bottom_navigation_icon_size">26dp</dimen>
 
-    <dimen name="home_inducement_banner_height">274dp</dimen>
-    <dimen name="home_tab_layout_expanding_contents_height">68dp</dimen>
-    <dimen name="home_tab_layout_expanding_title_height">62dp</dimen>
+    <dimen name="home_inducement_banner_height">255dp</dimen>
+    <dimen name="home_tab_layout_expanding_contents_height">86dp</dimen>
+    <dimen name="home_tab_layout_expanding_title_height">80dp</dimen>
     <dimen name="home_tab_layout_expanding_corner_radius">8dp</dimen>
     <dimen name="home_tab_layout_collapsed_contents_height">46dp</dimen>
     <dimen name="home_tab_layout_collapsed_title_height">38dp</dimen>

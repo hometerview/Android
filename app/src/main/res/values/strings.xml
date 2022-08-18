@@ -24,6 +24,12 @@
 
     <string name="home_title">통근러에게 추천하는 동네</string>
     <string name="home_description">%s 직장인들이 많이 사는 동네의 리뷰입니다</string>
+    <string name="home_review_inducement_message1">집터뷰를 작성하면</string>
+    <string name="home_review_inducement_message2">모든 집터뷰를 볼 수 있어요!</string>
+    <string name="home_review_inducement_button">집터뷰 진행하기</string>
+    <string name="home_company_inducement_message1">회사 주소만 있으면</string>
+    <string name="home_company_inducement_message2">맞춤 정보를 추천해드려요!</string>
+    <string name="home_company_inducement_button">입력하고 추천받기</string>
     <string name="home_location_review_summary">%s · %s · %s</string>
     <string name="favorite_review_summary">%s · %s</string>
     <string name="home_tab_item_winner">리뷰 1위</string>
