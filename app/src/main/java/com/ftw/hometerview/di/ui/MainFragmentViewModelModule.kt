@@ -9,6 +9,7 @@ import com.ftw.hometerview.ui.main.favorite.favoritelist.FavoriteBuildingsViewMo
 import com.ftw.hometerview.ui.main.favorite.favoritelist.FavoriteReviewsViewModel
 import com.ftw.hometerview.ui.main.home.HomeViewModel
 import com.ftw.hometerview.ui.main.home.review.LocationReviewListViewModel
+import com.ftw.hometerview.ui.main.mypage.MyPageViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -44,6 +45,18 @@ class MainFragmentViewModelModule {
         return LocationReviewListViewModel(
             dispatcher,
             getLocationReviewsUseCase
+        )
+    }
+
+    @Provides
+    @FragmentScoped
+    fun provideUpdateNicknameViewModel(
+        dispatcher: Dispatcher,
+        getCachedUserUseCase: GetCachedUserUseCase
+    ): MyPageViewModel {
+        return MyPageViewModel(
+            dispatcher,
+            getCachedUserUseCase
         )
     }
 

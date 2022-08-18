@@ -59,4 +59,17 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="favorite_review_text">저장한 리뷰</string>
     <string name="favorite_building_text">저장한 건물</string>
+
+    <string name="my_info_text">내 정보</string>
+    <string name="nickname_text">닉네임</string>
+    <string name="company_text">직장</string>
+    <string name="activity_text">활동</string>
+    <string name="written_hometerview_text">내가 작성한 집터뷰</string>
+    <string name="account_text">계정</string>
+    <string name="account_manage_text">계정 관리</string>
+    <string name="logout_text">로그아웃</string>
+    <string name="version_text">현재 버전</string>
+    <string name="request_company_text">회사를 입력해주세요</string>
+    <string name="current_version">6.5.1 (65101)</string>
+
 </resources>
