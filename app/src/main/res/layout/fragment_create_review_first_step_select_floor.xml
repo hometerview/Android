@@ -133,7 +133,7 @@
             app:layout_constraintStart_toStartOf="parent"
             />
 
-        <androidx.appcompat.widget.AppCompatEditText
+        <EditText
             android:id="@+id/residential_floor_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

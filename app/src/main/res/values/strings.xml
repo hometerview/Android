@@ -5,6 +5,7 @@
     <string name="advantage_title">장점</string>
     <string name="cancel">취소</string>
     <string name="disadvantage_title">단점</string>
+    <string name="save">저장하기</string>
     <string name="heart">찜하기</string>
     <string name="it_helps">도움이 돼요</string>
     <string name="next">다음</string>
@@ -23,6 +24,8 @@
     <string name="home_title">통근러에게 추천하는 동네</string>
     <string name="home_description">%s 직장인들이 많이 사는 동네의 리뷰입니다</string>
     <string name="home_location_review_summary">%s · %s · %s</string>
+    <string name="favorite_review_summary">%s · %s</string>
+    <string name="home_tab_item_winner">리뷰 1위</string>
 
     <string name="building_review_price_format">%s ~ %s</string>
     <string name="building_review_sale_price_title">매매가</string>
@@ -66,4 +69,17 @@
     <string name="worker_is_text">직장인들이</string>
     <string name="many_live_room_text">많이 사는 동네의 리뷰를 보여줄게요!</string>
     <string name="ex_station_text">동탄역</string>
+    <string name="search_hint_text">지하철 역이나 건물명 검색하기</string>
+    <string name="building_list_text">역삼역 13개 건물 보기</string>
+
+    <string name="station_text">지하철역</string>
+    <string name="location_text">지역</string>
+    <string name="building_text">건물</string>
+
+
+    <string name="cnt_text">개의 리뷰</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="favorite_review_text">저장한 리뷰</string>
+    <string name="favorite_building_text">저장한 건물</string>
 </resources>
