@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
-    private val dispatcher: Dispatcher,
+    dispatcher: Dispatcher,
     private val getCachedUserUseCase: GetCachedUserUseCase,
     private val getLocationReviewsUseCase: GetLocationReviewsUseCase
 ) {

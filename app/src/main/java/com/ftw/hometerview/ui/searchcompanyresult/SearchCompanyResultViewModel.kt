@@ -3,8 +3,8 @@ package com.ftw.hometerview.ui.searchcompanyresult
 import android.util.Log
 import com.ftw.hometerview.BR
 import androidx.lifecycle.ViewModel
-import com.ftw.domain.entitiy.DEMO_RESULTS
-import com.ftw.domain.entitiy.SearchResult
+import com.ftw.domain.entity.DEMO_COMPANY_RESULTS
+import com.ftw.domain.entity.SearchCompanyResult
 import com.ftw.hometerview.R
 import com.ftw.hometerview.adapter.RecyclerItem
 import com.ftw.hometerview.dispatcher.Dispatcher
@@ -16,11 +16,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class OnboardingResultViewModel(
+class SearchCompanyResultViewModel(
     private val dispatcher: Dispatcher
 ) : ViewModel() {
 
-//    private val _recyclerItems = MutableLiveData<List<RecyclerItem>>()
+    //    private val _recyclerItems = MutableLiveData<List<RecyclerItem>>()
 //    val recyclerItems: LiveData<List<RecyclerItem>> = _recyclerItems
     private val _recyclerItems: MutableStateFlow<List<RecyclerItem>> = MutableStateFlow(listOf())
     val recyclerItems: StateFlow<List<RecyclerItem>> get() = _recyclerItems.asStateFlow()
@@ -41,13 +41,13 @@ class OnboardingResultViewModel(
 
     }
 
-    private fun createSearchResultRecycleModel(searchResult: SearchResult): SearchResultRecycleModel {
+    private fun createSearchResultRecycleModel(searchResult: SearchCompanyResult): SearchResultRecycleModel {
         return SearchResultRecycleModel(searchResult).apply {
             itemClickListener = { searchResult -> showClickMessage(searchResult) }
         }
     }
 
-    private fun showClickMessage(searchResult: SearchResult) {
+    private fun showClickMessage(searchResult: SearchCompanyResult) {
         //통신으로 받아온 정보를 State와 조합해서 사용하면 될 듯 함
 
     }
@@ -70,12 +70,12 @@ class OnboardingResultViewModel(
         }
     }
 
-    private fun loadDemoDatas(): List<SearchResult> = DEMO_RESULTS
+    private fun loadDemoDatas(): List<SearchCompanyResult> = DEMO_COMPANY_RESULTS
 
 }
 
 private fun SearchResultRecycleModel.toRecyclerItem() = RecyclerItem(
     data = this,
-    layoutId = R.layout.list_item_search_result,
+    layoutId = R.layout.list_item_company_search_result,
     variableId = BR.searchResult
 )

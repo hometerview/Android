@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    >
 
     <data>
+
         <variable
             name="searchResultViewModel"
-            type="com.ftw.hometerview.ui.searchcompanyresult.OnboardingResultViewModel" />
+            type="com.ftw.hometerview.ui.searchcompanyresult.SearchCompanyResultViewModel"
+            />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.searchcompanyresult.SearchCompanyResultActivity"
-        android:background="@color/white">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.searchcompanyresult.SearchCompanyResultActivity"
+        >
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/search_textInputLayout"
@@ -28,14 +32,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:startIconDrawable="@drawable/ic_baseline_search_24"
-            app:startIconTint="@color/blue_300">
+            app:startIconTint="@color/blue_300"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/search_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionSearch"
-                android:inputType="text" />
+                android:inputType="text"
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -45,12 +51,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_size_16"
             android:layout_marginTop="@dimen/dp_size_8"
-            android:text="@string/search_result_guide_text"
             android:fontFamily="@font/pretendard_semibold"
+            android:text="@string/search_result_guide_text"
             android:textColor="@color/blue_300"
             android:textSize="@dimen/sp_size_11"
             app:layout_constraintStart_toStartOf="@+id/search_textInputLayout"
-            app:layout_constraintTop_toBottomOf="@+id/search_textInputLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/search_textInputLayout"
+            />
 
         <TextView
             android:id="@+id/non_company_here"
@@ -62,17 +69,18 @@
             android:layout_marginBottom="@dimen/dp_size_8"
             android:background="@drawable/button_non_company"
             android:elevation="@dimen/dp_size_10"
+            android:fontFamily="@font/pretendard_semibold"
             android:gravity="center_vertical"
-            android:text="@string/non_result_text"
             android:onClick="@{() -> searchResultViewModel.noResultRecycleModel()}"
             android:padding="@dimen/dp_size_14"
-            android:fontFamily="@font/pretendard_semibold"
+            android:text="@string/non_result_text"
             android:textColor="@color/black"
             app:drawableEndCompat="@drawable/ic_baseline_navigate_next_24"
             app:layout_constraintBottom_toTopOf="@+id/search_result_recycler_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_result_guide_textView" />
+            app:layout_constraintTop_toBottomOf="@+id/search_result_guide_textView"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/search_result_recycler_view"
@@ -81,14 +89,15 @@
             android:layout_marginStart="@dimen/dp_size_16"
             android:layout_marginTop="@dimen/dp_size_8"
             android:layout_marginEnd="@dimen/dp_size_16"
-            app:items="@{searchResultViewModel.recyclerItems}"
             android:clipToPadding="false"
+            app:items="@{searchResultViewModel.recyclerItems}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/non_company_here"
-            tools:listitem="@layout/list_item_search_result" />
+            tools:listitem="@layout/list_item_company_search_result"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

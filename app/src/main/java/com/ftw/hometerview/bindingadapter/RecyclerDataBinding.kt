@@ -1,7 +1,9 @@
-package com.ftw.hometerview.adapter
+package com.ftw.hometerview.bindingadapter
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.ftw.hometerview.adapter.DataBindingRecyclerAdapter
+import com.ftw.hometerview.adapter.RecyclerItem
 
 @BindingAdapter("items")
 fun setRecyclerViewItems(

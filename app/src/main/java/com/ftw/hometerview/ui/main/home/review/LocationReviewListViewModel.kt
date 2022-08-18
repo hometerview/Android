@@ -32,7 +32,7 @@ class LocationReviewListViewModel(
 
     val reviews: StateFlow<List<RecyclerItem>> = location.filter { it.isNotBlank() }
         .transformLatest { location ->
-            flow<List<RecyclerItem>> {
+            flow {
                 emit(
                     getLocationReviewsUseCase(location)
                         .flatMap { it.reviews }

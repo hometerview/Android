@@ -84,6 +84,8 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$android_junit_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$android_espresso_core_version"
 
+    //kakaomap
+    implementation files('libs/libDaumMapAndroid.jar')
 }
 
 kapt {
