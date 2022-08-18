@@ -24,7 +24,7 @@ class CreateReviewSecondStepReviewFragment : Fragment(), TextListBottomSheet.Lis
     }
 
     interface Listener {
-        fun onClickNextFromSecondStep(
+        fun onClickNextFromSecondStepReview(
             rating: Int,
             leftAt: Date,
             advantage: String,
@@ -76,7 +76,7 @@ class CreateReviewSecondStepReviewFragment : Fragment(), TextListBottomSheet.Lis
                                 .show(childFragmentManager, TextListBottomSheet::class.simpleName)
                         }
                         is CreateReviewSecondStepReviewViewModel.State.OnClickNext -> {
-                            (activity as? Listener)?.onClickNextFromSecondStep(
+                            (activity as? Listener)?.onClickNextFromSecondStepReview(
                                 event.rating,
                                 event.leftAt,
                                 event.advantage,
