@@ -17,6 +17,11 @@
         <item name="android:textSize">@dimen/sp_size_14</item>
     </style>
 
+    <style name="BuildingReviewToolbarTitle" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textSize">@dimen/sp_size_12</item>
+        <item name="android:fontFamily">@font/pretendard_medium</item>
+    </style>
+
     <style name="StarRatingBarSize12" parent="@android:style/Widget.RatingBar">
         <item name="android:progressDrawable">@drawable/selector_rating_bar_star_12</item>
     </style>
