@@ -162,8 +162,13 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dp_size_24"
             android:layout_marginHorizontal="@dimen/dp_size_14"
+            android:background="@drawable/bg_blue_300_radius_8"
+            android:paddingVertical="@dimen/dp_size_16"
             android:onClick="@{() -> viewModel.onClickNext()}"
+            android:fontFamily="@font/pretendard_medium"
             android:text="@string/next"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_size_16"
             app:layout_constraintBottom_toBottomOf="parent"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
