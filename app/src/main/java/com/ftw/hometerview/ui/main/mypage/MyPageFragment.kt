@@ -26,14 +26,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MyPageFragment : Fragment() {
 
-    private val updateNicknameLauncher: ActivityResultLauncher<Intent> =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode != Activity.RESULT_OK) return@registerForActivityResult
-            val nickname =
-                result.data?.getStringExtra(UpdateNicknameActivity.UPDATE_NICKNAME_RESULT_KEY)
-            if (nickname == null) return@registerForActivityResult
-            viewModel.showPopup.value = true
-        }
+    private lateinit var updateNicknameLauncher: ActivityResultLauncher<Intent>
 
     companion object {
         fun newInstance() = MyPageFragment()
@@ -44,7 +37,6 @@ class MyPageFragment : Fragment() {
 
     @Inject
     lateinit var viewModel: MyPageViewModel
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -64,6 +56,7 @@ class MyPageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setLauncher()
         observeEvent()
         observeShowBanner()
     }
@@ -135,5 +128,16 @@ class MyPageFragment : Fragment() {
 
     private fun updateNicknameActivity(nickname: String) {
         updateNicknameLauncher.launch(UpdateNicknameActivity.newIntent(requireContext(), nickname))
+    }
+
+    private fun setLauncher() {
+        updateNicknameLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode != Activity.RESULT_OK) return@registerForActivityResult
+                val nickname =
+                    result.data?.getStringExtra(UpdateNicknameActivity.UPDATE_NICKNAME_RESULT_KEY)
+                if (nickname == null) return@registerForActivityResult
+                viewModel.showPopup.value = true
+            }
     }
 }
