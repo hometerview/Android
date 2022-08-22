@@ -13,8 +13,18 @@ class MyPageViewModel (
     private val getCachedUserUseCase: GetCachedUserUseCase
 ) {
 
+    sealed class Event {
+        object None : Event()
+        class onClickUpdateNickname(val nickname: String) : Event()
+    }
+
     private val _user: MutableStateFlow<User> = MutableStateFlow(User.NONE)
     val user: StateFlow<User> = _user.asStateFlow()
+
+    private val _event: MutableStateFlow<Event> = MutableStateFlow(Event.None)
+    val event: StateFlow<Event> = _event.asStateFlow()
+
+    val showPopup: MutableStateFlow<Boolean> = MutableStateFlow(false)
 
     init {
         CoroutineScope(dispatcher.ui()).launch {
@@ -25,7 +35,11 @@ class MyPageViewModel (
                 .collect {
                     _user.value = it
                 }
-
         }
+    }
+
+    fun onClickUpdateNickname() {
+        _event.value = Event.onClickUpdateNickname(user.value.nickName)
+        _event.value = Event.None
     }
 }

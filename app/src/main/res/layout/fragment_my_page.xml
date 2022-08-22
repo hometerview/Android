@@ -13,377 +13,393 @@
         <import type="android.view.View"/>
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.main.mypage.MyPageFragment"
         >
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <TextView
+                android:id="@+id/my_page_text"
+                style="@style/MyPageTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_size_8"
+                android:layout_marginTop="@dimen/dp_size_16"
+                android:text="@string/my_info_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/nickname_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/dp_size_16"
+                android:onClick="@{() -> viewModel.onClickUpdateNickname()}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/my_page_text"
+                >
+
+                <TextView
+                    android:id="@+id/nickname_text"
+                    style="@style/MyPageMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_size_16"
+                    android:text="@string/nickname_text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <TextView
+                    android:id="@+id/user_nickname_text"
+                    style="@style/MyPageMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.user.nickName}"
+                    android:layout_marginEnd="@dimen/dp_size_8"
+                    app:layout_constraintBottom_toBottomOf="@+id/nickname_text"
+                    app:layout_constraintEnd_toStartOf="@+id/change_nickname_next"
+                    app:layout_constraintTop_toTopOf="@+id/nickname_text"
+                    tools:text="홍길동씨"
+                    />
+
+                <ImageView
+                    android:id="@+id/change_nickname_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_size_8"
+                    android:src="@drawable/ic_baseline_navigate_next_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/nickname_text"
+                    app:layout_constraintEnd_toEndOf="@+id/nickname_box"
+                    app:layout_constraintTop_toTopOf="@+id/nickname_text"
+                    app:tint="@color/gray_500"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/divide_nickname_with_company"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_size_1"
+                android:background="@color/gray_100"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nickname_box"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/company_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/dp_size_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divide_nickname_with_company"
+                >
+
+                <TextView
+                    android:id="@+id/company_text"
+                    style="@style/MyPageMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_size_16"
+                    android:text="@string/company_text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <TextView
+                    android:id="@+id/user_company_text"
+                    style="@style/MyPageMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_size_8"
+                    android:text="@{viewModel.user.company.name}"
+                    android:visibility="@{viewModel.user.company.location.equals(null) ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintEnd_toStartOf="@+id/company_next"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="삼성전자 서울 R&amp;D 캠퍼스"
+                    />
+
+                <TextView
+                    android:id="@+id/user_company_address_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_size_8"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:textColor="@color/gray_400"
+                    android:textSize="@dimen/sp_size_12"
+                    android:text="@{viewModel.user.company.location}"
+                    android:visibility="@{viewModel.user.company.location.equals(null) ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/company_next"
+                    app:layout_constraintTop_toBottomOf="@+id/user_company_text"
+                    tools:text="서울특별시 서초구 성촌길 56 · 동탄역"
+                    />
+
+                <TextView
+                    android:id="@+id/request_company_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_size_8"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text="@string/request_company_text"
+                    android:visibility="@{viewModel.user.company.location.equals(null) ? View.VISIBLE : View.GONE}"
+                    android:textColor="@color/gray_400"
+                    android:textSize="@dimen/sp_size_14"
+                    app:layout_constraintBottom_toBottomOf="@+id/company_next"
+                    app:layout_constraintEnd_toStartOf="@+id/company_next"
+                    app:layout_constraintTop_toTopOf="@+id/company_next"
+                    />
+
+                <ImageView
+                    android:id="@+id/company_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_size_8"
+                    android:src="@drawable/ic_baseline_navigate_next_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/company_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/company_text"
+                    app:tint="@color/gray_500"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/divide_myinfo_with_activity"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_size_12"
+                android:background="@color/gray_100"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/company_box"
+                />
+
+            <TextView
+                android:id="@+id/activity_text"
+                style="@style/MyPageTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_size_16"
+                android:text="@string/activity_text"
+                app:layout_constraintStart_toStartOf="@+id/my_page_text"
+                app:layout_constraintTop_toBottomOf="@+id/divide_myinfo_with_activity"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/written_hometerview_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/dp_size_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_text"
+                >
+
+                <TextView
+                    android:id="@+id/written_hometerview_text"
+                    style="@style/MyPageMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_size_16"
+                    android:text="@string/written_hometerview_text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <ImageView
+                    android:id="@+id/written_hometerview_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_size_8"
+                    android:src="@drawable/ic_baseline_navigate_next_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/written_hometerview_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/written_hometerview_text"
+                    app:tint="@color/gray_500"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/divide_activity_with_account"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_size_12"
+                android:background="@color/gray_100"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/written_hometerview_box"
+                />
+
+            <TextView
+                android:id="@+id/account_text"
+                style="@style/MyPageTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_size_16"
+                android:text="@string/account_text"
+                app:layout_constraintStart_toStartOf="@+id/my_page_text"
+                app:layout_constraintTop_toBottomOf="@+id/divide_activity_with_account"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/manage_account_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/dp_size_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/account_text"
+                >
+
+                <TextView
+                    android:id="@+id/manage_account_text"
+                    style="@style/MyPageMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_size_16"
+                    android:text="@string/account_manage_text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <ImageView
+                    android:id="@+id/manage_account_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_size_8"
+                    android:src="@drawable/ic_baseline_navigate_next_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/manage_account_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/manage_account_text"
+                    app:tint="@color/gray_500"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/divide_manage_account_with_logout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_size_1"
+                android:background="@color/gray_100"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/manage_account_box"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/logout_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/dp_size_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divide_manage_account_with_logout"
+                >
+
+                <TextView
+                    android:id="@+id/logout_text"
+                    style="@style/MyPageMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_size_16"
+                    android:text="@string/logout_text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <ImageView
+                    android:id="@+id/logout_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_size_8"
+                    android:src="@drawable/ic_baseline_navigate_next_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/logout_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/logout_text"
+                    app:tint="@color/gray_500"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/divide_account_with_version"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_size_12"
+                android:background="@color/gray_100"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/logout_box"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/current_version_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/dp_size_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divide_account_with_version"
+                >
+
+                <TextView
+                    android:id="@+id/version_text"
+                    style="@style/MyPageMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_size_16"
+                    android:text="@string/version_text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <TextView
+                    android:id="@+id/current_version_text"
+                    android:textSize="@dimen/sp_size_14"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:textColor="@color/gray_400"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/current_version"
+                    android:layout_marginEnd="@dimen/dp_size_8"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <TextView
-            android:id="@+id/my_page_text"
-            style="@style/MyPageTitle"
-            android:layout_width="wrap_content"
+            android:id="@+id/update_complete_popup"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_size_8"
+            android:layout_marginHorizontal="@dimen/dp_size_16"
+            android:background="@drawable/button_main_button"
+            android:fontFamily="@font/pretendard_semibold"
             android:layout_marginTop="@dimen/dp_size_16"
-            android:text="@string/my_info_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:paddingVertical="@dimen/dp_size_24"
+            android:paddingStart="@dimen/dp_size_24"
+            android:text="@string/update_complete"
+            android:textColor="@color/blue_100"
+            android:textSize="@dimen/sp_size_14"
+            android:visibility="@{viewModel.showPopup ? View.VISIBLE : View.GONE}"
             />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/nickname_box"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="@dimen/dp_size_16"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/my_page_text"
-            >
-
-            <TextView
-                android:id="@+id/nickname_text"
-                style="@style/MyPageMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_size_16"
-                android:text="@string/nickname_text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
-
-            <TextView
-                android:id="@+id/user_nickname_text"
-                style="@style/MyPageMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{viewModel.user.nickName}"
-                android:layout_marginEnd="@dimen/dp_size_8"
-                app:layout_constraintBottom_toBottomOf="@+id/nickname_text"
-                app:layout_constraintEnd_toStartOf="@+id/change_nickname_next"
-                app:layout_constraintTop_toTopOf="@+id/nickname_text"
-                tools:text="홍길동씨"
-                />
-
-            <ImageView
-                android:id="@+id/change_nickname_next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dp_size_8"
-                android:src="@drawable/ic_baseline_navigate_next_24"
-                app:layout_constraintBottom_toBottomOf="@+id/nickname_text"
-                app:layout_constraintEnd_toEndOf="@+id/nickname_box"
-                app:layout_constraintTop_toTopOf="@+id/nickname_text"
-                app:tint="@color/gray_500"
-                />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        <View
-            android:id="@+id/divide_nickname_with_company"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_size_1"
-            android:background="@color/gray_100"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nickname_box"
-            />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/company_box"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="@dimen/dp_size_16"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divide_nickname_with_company"
-            >
-
-            <TextView
-                android:id="@+id/company_text"
-                style="@style/MyPageMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_size_16"
-                android:text="@string/company_text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
-
-            <TextView
-                android:id="@+id/user_company_text"
-                style="@style/MyPageMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dp_size_8"
-                android:text="@{viewModel.user.company.name}"
-                android:visibility="@{viewModel.user.company.location.equals(null) ? View.GONE : View.VISIBLE}"
-                app:layout_constraintEnd_toStartOf="@+id/company_next"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="삼성전자 서울 R&amp;D 캠퍼스"
-                />
-
-            <TextView
-                android:id="@+id/user_company_address_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dp_size_8"
-                android:fontFamily="@font/pretendard_regular"
-                android:textColor="@color/gray_400"
-                android:textSize="@dimen/sp_size_12"
-                android:text="@{viewModel.user.company.location}"
-                android:visibility="@{viewModel.user.company.location.equals(null) ? View.GONE : View.VISIBLE}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/company_next"
-                app:layout_constraintTop_toBottomOf="@+id/user_company_text"
-                tools:text="서울특별시 서초구 성촌길 56 · 동탄역"
-                />
-
-            <TextView
-                android:id="@+id/request_company_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dp_size_8"
-                android:fontFamily="@font/pretendard_regular"
-                android:text="@string/request_company_text"
-                android:visibility="@{viewModel.user.company.location.equals(null) ? View.VISIBLE : View.GONE}"
-                android:textColor="@color/gray_400"
-                android:textSize="@dimen/sp_size_14"
-                app:layout_constraintBottom_toBottomOf="@+id/company_next"
-                app:layout_constraintEnd_toStartOf="@+id/company_next"
-                app:layout_constraintTop_toTopOf="@+id/company_next"
-                />
-
-            <ImageView
-                android:id="@+id/company_next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dp_size_8"
-                android:src="@drawable/ic_baseline_navigate_next_24"
-                app:layout_constraintBottom_toBottomOf="@+id/company_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/company_text"
-                app:tint="@color/gray_500"
-                />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        <View
-            android:id="@+id/divide_myinfo_with_activity"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_size_12"
-            android:background="@color/gray_100"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/company_box"
-            />
-
-        <TextView
-            android:id="@+id/activity_text"
-            style="@style/MyPageTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_size_16"
-            android:text="@string/activity_text"
-            app:layout_constraintStart_toStartOf="@+id/my_page_text"
-            app:layout_constraintTop_toBottomOf="@+id/divide_myinfo_with_activity"
-            />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/written_hometerview_box"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="@dimen/dp_size_16"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_text"
-            >
-
-            <TextView
-                android:id="@+id/written_hometerview_text"
-                style="@style/MyPageMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_size_16"
-                android:text="@string/written_hometerview_text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
-
-            <ImageView
-                android:id="@+id/written_hometerview_next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dp_size_8"
-                android:src="@drawable/ic_baseline_navigate_next_24"
-                app:layout_constraintBottom_toBottomOf="@+id/written_hometerview_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/written_hometerview_text"
-                app:tint="@color/gray_500"
-                />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        <View
-            android:id="@+id/divide_activity_with_account"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_size_12"
-            android:background="@color/gray_100"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/written_hometerview_box"
-            />
-
-        <TextView
-            android:id="@+id/account_text"
-            style="@style/MyPageTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_size_16"
-            android:text="@string/account_text"
-            app:layout_constraintStart_toStartOf="@+id/my_page_text"
-            app:layout_constraintTop_toBottomOf="@+id/divide_activity_with_account"
-            />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/manage_account_box"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="@dimen/dp_size_16"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/account_text"
-            >
-
-            <TextView
-                android:id="@+id/manage_account_text"
-                style="@style/MyPageMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_size_16"
-                android:text="@string/account_manage_text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
-
-            <ImageView
-                android:id="@+id/manage_account_next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dp_size_8"
-                android:src="@drawable/ic_baseline_navigate_next_24"
-                app:layout_constraintBottom_toBottomOf="@+id/manage_account_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/manage_account_text"
-                app:tint="@color/gray_500"
-                />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        <View
-            android:id="@+id/divide_manage_account_with_logout"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_size_1"
-            android:background="@color/gray_100"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/manage_account_box"
-            />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/logout_box"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="@dimen/dp_size_16"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divide_manage_account_with_logout"
-            >
-
-            <TextView
-                android:id="@+id/logout_text"
-                style="@style/MyPageMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_size_16"
-                android:text="@string/logout_text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
-
-            <ImageView
-                android:id="@+id/logout_next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dp_size_8"
-                android:src="@drawable/ic_baseline_navigate_next_24"
-                app:layout_constraintBottom_toBottomOf="@+id/logout_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/logout_text"
-                app:tint="@color/gray_500"
-                />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        <View
-            android:id="@+id/divide_account_with_version"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_size_12"
-            android:background="@color/gray_100"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/logout_box"
-            />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/current_version_box"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="@dimen/dp_size_16"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divide_account_with_version"
-            >
-
-            <TextView
-                android:id="@+id/version_text"
-                style="@style/MyPageMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_size_16"
-                android:text="@string/version_text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
-
-            <TextView
-                android:id="@+id/current_version_text"
-                android:textSize="@dimen/sp_size_14"
-                android:fontFamily="@font/pretendard_regular"
-                android:textColor="@color/gray_400"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/current_version"
-                android:layout_marginEnd="@dimen/dp_size_8"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 
 </layout>
-

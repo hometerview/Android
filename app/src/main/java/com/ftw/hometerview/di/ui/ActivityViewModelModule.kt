@@ -11,6 +11,7 @@ import com.ftw.hometerview.ui.main.home.review.LocationReviewListViewModel
 import com.ftw.hometerview.ui.searchaddressbuilding.SearchAddressBuildingViewModel
 import com.ftw.hometerview.ui.searchcompanyresult.SearchCompanyResultViewModel
 import com.ftw.hometerview.ui.splash.SplashViewModel
+import com.ftw.hometerview.ui.updatenickname.UpdateNicknameViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -82,4 +83,13 @@ class ActivityViewModelModule {
         )
     }
 
+    @Provides
+    @ActivityScoped
+    fun provideUpdateNicknameViewModel(
+        dispatcher: Dispatcher
+    ): UpdateNicknameViewModel {
+        return UpdateNicknameViewModel(
+            dispatcher
+        )
+    }
 }
