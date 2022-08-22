@@ -6,8 +6,8 @@ import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
 
 @BindingAdapter("android:rating")
-fun setRating(ratingBar: RatingBar, rating: Float?) {
-    ratingBar.rating = rating ?: 0F
+fun setRating(ratingBar: RatingBar, rating: Float) {
+    ratingBar.rating = rating
 }
 
 @InverseBindingAdapter(attribute = "android:rating", event = "ratingBarRatingChanged")
