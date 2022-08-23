@@ -4,6 +4,7 @@ import com.ftw.domain.usecase.buildingreview.GetBuildingReviewsUseCase
 import com.ftw.domain.usecase.login.LoginUseCase
 import com.ftw.domain.usecase.review.GetLocationReviewsUseCase
 import com.ftw.domain.usecase.searchaddressbuilding.GetSearchAddressBuildingUseCase
+import com.ftw.domain.usecase.writtenreview.GetWrittenReviewsUseCase
 import com.ftw.hometerview.dispatcher.Dispatcher
 import com.ftw.hometerview.ui.buildingreview.BuildingReviewViewModel
 import com.ftw.hometerview.ui.main.MainViewModel
@@ -12,6 +13,7 @@ import com.ftw.hometerview.ui.searchaddressbuilding.SearchAddressBuildingViewMod
 import com.ftw.hometerview.ui.searchcompanyresult.SearchCompanyResultViewModel
 import com.ftw.hometerview.ui.splash.SplashViewModel
 import com.ftw.hometerview.ui.updatenickname.UpdateNicknameViewModel
+import com.ftw.hometerview.ui.writtenreview.WrittenReviewViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -90,6 +92,18 @@ class ActivityViewModelModule {
     ): UpdateNicknameViewModel {
         return UpdateNicknameViewModel(
             dispatcher
+        )
+    }
+
+    @Provides
+    @ActivityScoped
+    fun provideWrittenReviewsViewModel(
+        dispatcher: Dispatcher,
+        getWrittenReviewsUseCase: GetWrittenReviewsUseCase
+    ): WrittenReviewViewModel {
+        return WrittenReviewViewModel(
+            dispatcher,
+            getWrittenReviewsUseCase
         )
     }
 }
