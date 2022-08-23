@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.ftw.hometerview.ui.manageaccount.ManageAccountViewModel"
+            />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main.mypage.MyPageFragment"
+        >
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="@dimen/dp_size_32"
+            android:layout_height="@dimen/dp_size_32"
+            android:layout_marginStart="@dimen/dp_size_16"
+            android:layout_marginTop="@dimen/dp_size_16"
+            android:src="@drawable/ic_baseline_navigate_before_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/manage_account_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="@string/manage_account_title"
+            android:textColor="@color/gray_900"
+            android:textSize="@dimen/sp_size_15"
+            app:layout_constraintBottom_toBottomOf="@+id/back_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/back_button"
+            />
+
+        <View
+            android:id="@+id/divide_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_size_1"
+            android:layout_marginTop="@dimen/dp_size_16"
+            android:background="@color/gray_200"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/manage_account_title"
+            />
+
+        <TextView
+            android:id="@+id/service_use_terms_subtitle"
+            style="@style/MyPageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_size_8"
+            android:layout_marginTop="@dimen/dp_size_8"
+            android:text="@string/service_use_terms_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divide_view"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/service_use_terms_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.onClickServiceUseTerms()}"
+            android:paddingVertical="@dimen/dp_size_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/service_use_terms_subtitle"
+            >
+
+            <TextView
+                android:id="@+id/service_use_terms_text"
+                style="@style/MyPageMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_size_16"
+                android:text="@string/service_use_terms_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <ImageView
+                android:id="@+id/service_use_terms_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_size_8"
+                android:src="@drawable/ic_baseline_navigate_next_24"
+                app:layout_constraintBottom_toBottomOf="@+id/service_use_terms_text"
+                app:layout_constraintEnd_toEndOf="@+id/service_use_terms_box"
+                app:layout_constraintTop_toTopOf="@+id/service_use_terms_text"
+                app:tint="@color/gray_500"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/divide_terms_with_useinfo"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_size_1"
+            android:background="@color/gray_100"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/service_use_terms_box"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/use_user_info_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.onClickUseUserInfo()}"
+            android:paddingVertical="@dimen/dp_size_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divide_terms_with_useinfo"
+            >
+
+            <TextView
+                android:id="@+id/use_user_info_text"
+                style="@style/MyPageMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_size_16"
+                android:text="@string/use_user_info_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <ImageView
+                android:id="@+id/use_user_info_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_size_8"
+                android:src="@drawable/ic_baseline_navigate_next_24"
+                app:layout_constraintBottom_toBottomOf="@+id/use_user_info_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/use_user_info_text"
+                app:tint="@color/gray_500"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/divide_useinfo_with_loc"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_size_1"
+            android:background="@color/gray_100"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/use_user_info_box"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/loc_for_service_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.onClickLocationForService()}"
+            android:paddingVertical="@dimen/dp_size_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divide_useinfo_with_loc"
+            >
+
+            <TextView
+                android:id="@+id/loc_for_service_text"
+                style="@style/MyPageMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_size_16"
+                android:text="@string/loc_for_service_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <ImageView
+                android:id="@+id/loc_for_service_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_size_8"
+                android:src="@drawable/ic_baseline_navigate_next_24"
+                app:layout_constraintBottom_toBottomOf="@+id/loc_for_service_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/loc_for_service_text"
+                app:tint="@color/gray_500"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/divide_loc_with_opensource"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_size_1"
+            android:background="@color/gray_100"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/loc_for_service_box"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/open_source_license_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.onClickOpenSourceLibrary()}"
+            android:paddingVertical="@dimen/dp_size_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divide_loc_with_opensource"
+            >
+
+            <TextView
+                android:id="@+id/open_source_license_text"
+                style="@style/MyPageMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_size_16"
+                android:text="@string/open_source_license_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <ImageView
+                android:id="@+id/open_source_license_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_size_8"
+                android:src="@drawable/ic_baseline_navigate_next_24"
+                app:layout_constraintBottom_toBottomOf="@+id/open_source_license_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/open_source_license_text"
+                app:tint="@color/gray_500"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/divide_activity_with_account"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_size_12"
+            android:background="@color/gray_100"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/open_source_license_box"
+            />
+
+        <TextView
+            android:id="@+id/account_title"
+            style="@style/MyPageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_size_8"
+            android:layout_marginTop="@dimen/dp_size_16"
+            android:text="@string/account_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divide_activity_with_account"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/withdrawal_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/dp_size_16"
+            android:onClick="@{() -> viewModel.onClickWithdrawal()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/account_title"
+            >
+
+            <TextView
+                android:id="@+id/withdrawal_text"
+                style="@style/MyPageMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_size_16"
+                android:text="@string/withdrawal_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <ImageView
+                android:id="@+id/withdrawal_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_size_8"
+                android:src="@drawable/ic_baseline_navigate_next_24"
+                app:layout_constraintBottom_toBottomOf="@+id/withdrawal_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/withdrawal_text"
+                app:tint="@color/gray_500"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

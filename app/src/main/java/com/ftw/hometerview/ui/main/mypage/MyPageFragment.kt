@@ -18,6 +18,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.ftw.hometerview.R
 import com.ftw.hometerview.databinding.FragmentMyPageBinding
+import com.ftw.hometerview.ui.manageaccount.ManageAccountActivity
 import com.ftw.hometerview.ui.updatenickname.UpdateNicknameActivity
 import com.ftw.hometerview.ui.writtenreview.WrittenReviewsActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -73,12 +74,9 @@ class MyPageFragment : Fragment() {
                 viewModel.event.collect { event ->
                     when (event) {
                         MyPageViewModel.Event.None -> {}
-                        is MyPageViewModel.Event.onClickUpdateNickname -> {
-                            updateNicknameActivity(event.nickname)
-                        }
-                        MyPageViewModel.Event.onClickWrittenReview -> {
-                            writtenReviewActivity()
-                        }
+                        is MyPageViewModel.Event.onClickUpdateNickname -> updateNicknameActivity(event.nickname)
+                        MyPageViewModel.Event.onClickWrittenReview -> writtenReviewActivity()
+                        MyPageViewModel.Event.onClickManageAccount -> manageAccountActivity()
                     }
                 }
             }
@@ -136,6 +134,10 @@ class MyPageFragment : Fragment() {
 
     private fun writtenReviewActivity() {
         startActivity(WrittenReviewsActivity.newIntent(requireContext()))
+    }
+
+    private fun manageAccountActivity() {
+        startActivity(ManageAccountActivity.newIntent(requireContext()))
     }
 
     private fun setLauncher() {

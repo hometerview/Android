@@ -9,6 +9,7 @@ import com.ftw.hometerview.dispatcher.Dispatcher
 import com.ftw.hometerview.ui.buildingreview.BuildingReviewViewModel
 import com.ftw.hometerview.ui.main.MainViewModel
 import com.ftw.hometerview.ui.main.home.review.LocationReviewListViewModel
+import com.ftw.hometerview.ui.manageaccount.ManageAccountViewModel
 import com.ftw.hometerview.ui.searchaddressbuilding.SearchAddressBuildingViewModel
 import com.ftw.hometerview.ui.searchcompanyresult.SearchCompanyResultViewModel
 import com.ftw.hometerview.ui.splash.SplashViewModel
@@ -19,6 +20,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.scopes.ActivityScoped
+import dagger.hilt.android.scopes.FragmentScoped
 import javax.inject.Named
 
 @Module
@@ -105,5 +107,11 @@ class ActivityViewModelModule {
             dispatcher,
             getWrittenReviewsUseCase
         )
+    }
+
+    @Provides
+    @ActivityScoped
+    fun provideManageAccountViewModel(): ManageAccountViewModel {
+        return ManageAccountViewModel()
     }
 }

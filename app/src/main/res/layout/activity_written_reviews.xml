@@ -33,10 +33,10 @@
             android:id="@+id/written_hometerview_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/pretendard_regular"
-            android:text="내가 작성한 집터뷰"
-            android:textColor="@color/black"
-            android:textSize="15sp"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="@string/written_review_title"
+            android:textColor="@color/gray_900"
+            android:textSize="@dimen/sp_size_15"
             app:layout_constraintBottom_toBottomOf="@+id/back_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,52 +63,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divide_view"
             />
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/written_review_recyclerview"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="0dp"-->
-<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--            app:layout_constraintBottom_toTopOf="@+id/end_view"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/divide_view"-->
-<!--            />-->
-
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="0dp"-->
-<!--            app:layout_constraintBottom_toTopOf="@+id/end_view"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/divide_view"-->
-<!--            >-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/non_review_text"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:fontFamily="@font/pretendard_regular"-->
-<!--                android:textColor="@color/gray_600"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                tools:text="작성한 집터뷰가 없어요"-->
-<!--                />                      -->
-
-<!--&lt;!&ndash;            <com.ftw.hometerview.design.MainButton&ndash;&gt;-->
-<!--&lt;!&ndash;                android:id="@+id/write_review_button"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:fontFamily="@font/pretendard_regular"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:textColor="@color/gray_600"&ndash;&gt;-->
-<!--&lt;!&ndash;                app:layout_constraintBottom_toottomOf="parent"&ndash;&gt;-->
-<!--&lt;!&ndash;                app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
-<!--&lt;!&ndash;                app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
-<!--&lt;!&ndash;                app:layout_constraintTop_toBottomOf="@+id/non_review_text"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:text="집터뷰 작성하기"&ndash;&gt;-->
-<!--&lt;!&ndash;                />&ndash;&gt;-->
-
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
         <View
             android:id="@+id/end_view"
