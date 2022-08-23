@@ -22,7 +22,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31"
         >
-
+        <activity
+            android:name=".ui.withdrawal.WithdrawalActivity"
+            android:exported="false"
+            />
         <activity
             android:name=".ui.manageaccount.ManageAccountActivity"
             android:exported="false"
