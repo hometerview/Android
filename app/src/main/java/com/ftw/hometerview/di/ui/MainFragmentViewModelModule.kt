@@ -4,12 +4,15 @@ import com.ftw.domain.usecase.favorite.GetFavoriteBuildingsUseCase
 import com.ftw.domain.usecase.favorite.GetFavoriteReviewsUseCase
 import com.ftw.domain.usecase.review.GetLocationReviewsUseCase
 import com.ftw.domain.usecase.user.GetCachedUserUseCase
+import com.ftw.domain.usecase.writtenreview.GetWrittenReviewsUseCase
 import com.ftw.hometerview.dispatcher.Dispatcher
 import com.ftw.hometerview.ui.main.favorite.favoritelist.FavoriteBuildingsViewModel
 import com.ftw.hometerview.ui.main.favorite.favoritelist.FavoriteReviewsViewModel
 import com.ftw.hometerview.ui.main.home.HomeViewModel
 import com.ftw.hometerview.ui.main.home.review.LocationReviewListViewModel
 import com.ftw.hometerview.ui.main.mypage.MyPageViewModel
+import com.ftw.hometerview.ui.writtenreview.nonreview.NonReviewViewModel
+import com.ftw.hometerview.ui.writtenreview.writtenreviewlist.WrittenReviewListViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -84,4 +87,17 @@ class MainFragmentViewModelModule {
             getFavoriteReviewsUseCase
         )
     }
+
+    @Provides
+    @FragmentScoped
+    fun provideWrittenReviewListViewModel(
+        dispatcher: Dispatcher,
+        getWrittenReviewsUseCase: GetWrittenReviewsUseCase
+    ): WrittenReviewListViewModel {
+        return WrittenReviewListViewModel(
+            dispatcher,
+            getWrittenReviewsUseCase
+        )
+    }
+
 }
