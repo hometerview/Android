@@ -16,6 +16,7 @@ class MyPageViewModel (
     sealed class Event {
         object None : Event()
         class onClickUpdateNickname(val nickname: String) : Event()
+        object onClickWrittenReview : Event()
     }
 
     private val _user: MutableStateFlow<User> = MutableStateFlow(User.NONE)
@@ -40,6 +41,11 @@ class MyPageViewModel (
 
     fun onClickUpdateNickname() {
         _event.value = Event.onClickUpdateNickname(user.value.nickName)
+        _event.value = Event.None
+    }
+
+    fun onClickWrittenReview() {
+        _event.value = Event.onClickWrittenReview
         _event.value = Event.None
     }
 }
