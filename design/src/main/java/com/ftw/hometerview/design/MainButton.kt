@@ -12,6 +12,7 @@ import androidx.core.view.updatePadding
 
 private const val DEFAULT_ALIGNMENT = TEXT_ALIGNMENT_CENTER
 private const val DEFAULT_ELEVATION = 10.0f
+private const val DEFAULT_ENABLED = true
 
 @RequiresApi(Build.VERSION_CODES.M)
 class MainButton @JvmOverloads constructor(
@@ -30,8 +31,7 @@ class MainButton @JvmOverloads constructor(
     init {
         inflate(context, R.layout.view_main_button, this)
         titleTextView = findViewById(R.id.title_text_view)
-        
-        setBackgroundResource(R.drawable.button_main_button)
+
         val horizontalPadding = resources.getDimensionPixelSize(R.dimen.button_horizontal_padding)
         val verticalPadding = resources.getDimensionPixelSize(R.dimen.main_button_vertical_padding)
         updatePadding(
@@ -51,6 +51,7 @@ class MainButton @JvmOverloads constructor(
                 text = getString(R.styleable.MainButton_android_text)
                 titleTextView.textAlignment = getInt(R.styleable.MainButton_android_textAlignment, DEFAULT_ALIGNMENT)
                 elevation = getFloat(R.styleable.MainButton_android_elevation, DEFAULT_ELEVATION)
+                isEnabled = getBoolean(R.styleable.MainButton_android_enabled, DEFAULT_ENABLED)
             } catch (e: Exception) {
             } finally {
                 recycle()
@@ -68,4 +69,12 @@ class MainButton @JvmOverloads constructor(
         children.forEach { it.textAlignment = textAlignment }
     }
 
+    override fun setEnabled(enabled: Boolean) {
+        super.setEnabled(enabled)
+        if(enabled){
+            setBackgroundResource(R.drawable.button_main_button)
+        } else{
+            setBackgroundResource(R.drawable.bg_button_disabled)
+        }
+    }
 }
