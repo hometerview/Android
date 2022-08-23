@@ -21,10 +21,10 @@ import javax.inject.Inject
 class UpdateNicknameActivity : AppCompatActivity() {
 
     companion object {
-        val UPDATE_NICKNAME_RESULT_KEY = "UPDATE_NICKNAME_RESULT_KEY"
+        val UPDATE_NICKNAME_ARGUMENT_KEY = "UPDATE_NICKNAME_ARGUMENT_KEY"
         fun newIntent(context: Context, nickname: String): Intent {
             return Intent(context, UpdateNicknameActivity::class.java)
-                .putExtra(UPDATE_NICKNAME_RESULT_KEY, nickname)
+                .putExtra(UPDATE_NICKNAME_ARGUMENT_KEY, nickname)
         }
     }
 
@@ -43,7 +43,7 @@ class UpdateNicknameActivity : AppCompatActivity() {
             viewModel = this@UpdateNicknameActivity.viewModel
         }
 
-        val nickname = intent.getStringExtra(UPDATE_NICKNAME_RESULT_KEY) ?: return
+        val nickname = intent.getStringExtra(UPDATE_NICKNAME_ARGUMENT_KEY) ?: return
         viewModel.nickname.value = nickname
         observe()
     }
@@ -73,7 +73,7 @@ class UpdateNicknameActivity : AppCompatActivity() {
     private fun onClickNextFromThirdStepSearchCompany(nickname: String) {
         setResult(
             Activity.RESULT_OK,
-            Intent().putExtra(UPDATE_NICKNAME_RESULT_KEY, nickname)
+            Intent().putExtra(UPDATE_NICKNAME_ARGUMENT_KEY, nickname)
         )
         finish()
     }
