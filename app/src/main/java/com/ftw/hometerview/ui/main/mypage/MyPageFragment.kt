@@ -135,7 +135,7 @@ class MyPageFragment : Fragment() {
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode != Activity.RESULT_OK) return@registerForActivityResult
                 val nickname =
-                    result.data?.getStringExtra(UpdateNicknameActivity.UPDATE_NICKNAME_RESULT_KEY)
+                    result.data?.getStringExtra(UpdateNicknameActivity.UPDATE_NICKNAME_ARGUMENT_KEY)
                 if (nickname == null) return@registerForActivityResult
                 viewModel.showPopup.value = true
             }
