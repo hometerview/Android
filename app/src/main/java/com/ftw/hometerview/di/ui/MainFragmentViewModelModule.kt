@@ -100,4 +100,9 @@ class MainFragmentViewModelModule {
         )
     }
 
+    @Provides
+    @FragmentScoped
+    fun provideNonReviewViewModel(): NonReviewViewModel {
+        return NonReviewViewModel()
+    }
 }

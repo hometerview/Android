@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.ftw.hometerview.ui.writtenreview.nonreview.NonReviewViewModel"
+            />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:id="@+id/non_review_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="작성한 집터뷰가 없어요"
+            android:textColor="@color/gray_600"
+            android:layout_marginBottom="@dimen/dp_size_32"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="작성한 집터뷰가 없어요"
+            />
+
+        <com.ftw.hometerview.design.MainButton
+            android:id="@+id/write_review_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="집터뷰 작성하기"
+            android:onClick="@{() -> viewModel.onClickWriteReview()}"
+            android:layout_marginTop="@dimen/dp_size_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/non_review_text"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
