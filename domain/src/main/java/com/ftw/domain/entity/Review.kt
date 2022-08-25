@@ -18,6 +18,6 @@ data class Review(
     val leftAt: Date
 ) {
     companion object {
-        val NONE = Review(0, "", BuildingType.OFFICETEL, "", 0, "", "", "", "", false, Date())
+        val NONE = Review(0, "", BuildingType.OFFICETEL, "", 0, "", "", "", "", "", "", false, Date())
     }
 }
