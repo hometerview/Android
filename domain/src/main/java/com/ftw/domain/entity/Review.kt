@@ -16,4 +16,8 @@ data class Review(
     val disadvantage: String,
     val favorite: Boolean,
     val leftAt: Date
-)
+) {
+    companion object {
+        val NONE = Review(0, "", BuildingType.OFFICETEL, "", 0, "", "", "", "", false, Date())
+    }
+}
