@@ -1,7 +1,7 @@
-package com.ftw.hometerview.ui.writtenreview
+package com.ftw.hometerview.ui.myreviews
 
 import com.ftw.domain.entity.WrittenReview
-import com.ftw.domain.usecase.writtenreview.GetWrittenReviewsUseCase
+import com.ftw.domain.usecase.myreviews.GetMyReviewsUseCase
 import com.ftw.hometerview.BR
 import com.ftw.hometerview.R
 import com.ftw.hometerview.adapter.RecyclerItem
@@ -9,9 +9,9 @@ import com.ftw.hometerview.dispatcher.Dispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
 
-class WrittenReviewsViewModel(
+class MyReviewsViewModel(
     dispatcher: Dispatcher,
-    private val getWrittenReviewsUseCase: GetWrittenReviewsUseCase
+    private val getMyReviewsUseCase: GetMyReviewsUseCase
 ) {
 
     sealed class State {
@@ -30,19 +30,19 @@ class WrittenReviewsViewModel(
     private val _state: MutableStateFlow<State> = MutableStateFlow(State.Loading)
     val state: StateFlow<State> = _state.asStateFlow()
 
-    val writtenRevieewItems: StateFlow<List<RecyclerItem>> =
+    val myReviewsItems: StateFlow<List<RecyclerItem>> =
         flow {
             emit(
-                getWrittenReviewsUseCase()
+                getMyReviewsUseCase()
                     .map { writtenReview ->
                         RecyclerItem(
-                            data = WrittenReviewItem(
+                            data = MyReviewItem(
                                 onClickItem = { buildingId ->
                                     _state.value = State.OnClickReview(buildingId)
                                 },
-                                writtenReview = writtenReview
+                                myReview = writtenReview
                             ),
-                            layoutId = R.layout.list_item_written_review,
+                            layoutId = R.layout.list_item_my_review,
                             variableId = BR.item
                         )
                     }
@@ -55,12 +55,12 @@ class WrittenReviewsViewModel(
     }
 }
 
-data class WrittenReviewItem(
+data class MyReviewItem(
     val onClickItem: (buildingId: Long) -> Unit,
-    val writtenReview: WrittenReview
+    val myReview: WrittenReview
 ) {
 
     fun onItemClick() {
-        onClickItem(writtenReview.buildingId)
+        onClickItem(myReview.buildingId)
     }
 }

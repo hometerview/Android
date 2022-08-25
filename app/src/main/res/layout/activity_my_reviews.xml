@@ -5,10 +5,9 @@
     >
 
     <data>
-
         <variable
             name="viewModel"
-            type="com.ftw.hometerview.ui.writtenreview.WrittenReviewsViewModel"
+            type="com.ftw.hometerview.ui.myreviews.MyReviewsViewModel"
             />
         <import type="android.view.View"/>
     </data>
@@ -16,7 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.writtenreview.WrittenReviewsActivity"
+        tools:context=".ui.myreviews.MyReviewsActivity"
         >
 
         <ImageView
@@ -31,11 +30,11 @@
             />
 
         <TextView
-            android:id="@+id/written_hometerview_text"
+            android:id="@+id/my_review_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pretendard_regular"
-            android:text="내가 작성한 집터뷰"
+            android:text="@string/my_review"
             android:textColor="@color/black"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/back_button"
@@ -52,7 +51,7 @@
             android:background="@color/gray_200"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/written_hometerview_text"
+            app:layout_constraintTop_toBottomOf="@+id/my_review_text"
             />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -63,11 +62,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divide_view"
-            android:visibility="@{viewModel.writtenRevieewItems.empty ? View.GONE : View.VISIBLE}"
+            android:visibility="@{viewModel.myReviewsItems.empty ? View.GONE : View.VISIBLE}"
             >
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/written_review_recyclerview"
+                android:id="@+id/my_review_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -78,7 +77,6 @@
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/non_my_review_view"
             android:layout_width="match_parent"
@@ -87,7 +85,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divide_view"
-            android:visibility="@{viewModel.writtenRevieewItems.empty ? View.VISIBLE : View.GONE}"
+            android:visibility="@{viewModel.myReviewsItems.empty ? View.VISIBLE : View.GONE}"
             >
 
             <TextView
@@ -95,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/pretendard_regular"
-                android:text="작성한 집터뷰가 없어요"
+                android:text="@string/non_review"
                 android:textColor="@color/gray_600"
                 android:layout_marginBottom="@dimen/dp_size_60"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -109,7 +107,7 @@
                 android:id="@+id/write_review_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="집터뷰 작성하기"
+                android:text="@string/write_review"
                 android:onClick="@{() -> viewModel.onClickWriteReview()}"
                 android:layout_marginTop="@dimen/dp_size_16"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -1,10 +1,10 @@
-package com.ftw.domain.usecase.writtenreview
+package com.ftw.domain.usecase.myreviews
 
 import com.ftw.domain.entity.WrittenReview
 import java.util.Calendar
 import java.util.Date
 
-class GetWrittenReviewsUseCaseImpl : GetWrittenReviewsUseCase {
+class GetMyReviewsUseCaseImpl : GetMyReviewsUseCase {
     override suspend fun invoke(): List<WrittenReview> {
         return listOf(
             WrittenReview(

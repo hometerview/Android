@@ -1,7 +1,7 @@
-package com.ftw.domain.usecase.writtenreview
+package com.ftw.domain.usecase.myreviews
 
 import com.ftw.domain.entity.WrittenReview
 
-interface GetWrittenReviewsUseCase {
+interface GetMyReviewsUseCase {
     suspend operator fun invoke(): List<WrittenReview>
 }

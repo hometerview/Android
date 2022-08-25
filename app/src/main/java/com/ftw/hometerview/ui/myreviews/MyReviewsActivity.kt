@@ -1,4 +1,4 @@
-package com.ftw.hometerview.ui.writtenreview
+package com.ftw.hometerview.ui.myreviews
 
 import android.content.Context
 import android.content.Intent
@@ -11,34 +11,34 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.ftw.hometerview.R
 import com.ftw.hometerview.adapter.DataBindingRecyclerAdapter
 import com.ftw.hometerview.adapter.SpacingItemDecoration
-import com.ftw.hometerview.databinding.ActivityWrittenReviewsBinding
+import com.ftw.hometerview.databinding.ActivityMyReviewsBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class WrittenReviewsActivity : AppCompatActivity() {
+class MyReviewsActivity : AppCompatActivity() {
 
     companion object {
         fun newIntent(context: Context): Intent {
-            return Intent(context, WrittenReviewsActivity::class.java)
+            return Intent(context, MyReviewsActivity::class.java)
         }
     }
 
     @Inject
-    lateinit var viewModel: WrittenReviewsViewModel
+    lateinit var viewModel: MyReviewsViewModel
 
-    private lateinit var binding: ActivityWrittenReviewsBinding
+    private lateinit var binding: ActivityMyReviewsBinding
 
     private val adapter = DataBindingRecyclerAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView<ActivityWrittenReviewsBinding>(
+        binding = DataBindingUtil.setContentView<ActivityMyReviewsBinding>(
             this,
-            R.layout.activity_written_reviews
+            R.layout.activity_my_reviews
         ).apply {
-            viewModel = this@WrittenReviewsActivity.viewModel
+            viewModel = this@MyReviewsActivity.viewModel
         }
 
         initList()
@@ -46,14 +46,14 @@ class WrittenReviewsActivity : AppCompatActivity() {
     }
 
     private fun initList() {
-        binding.writtenReviewRecyclerview.adapter = adapter
-        this.let { binding.writtenReviewRecyclerview.addItemDecoration(SpacingItemDecoration(it)) }
+        binding.myReviewRecyclerview.adapter = adapter
+        this.let { binding.myReviewRecyclerview.addItemDecoration(SpacingItemDecoration(it)) }
     }
 
     private fun observe() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.writtenRevieewItems.collect {
+                viewModel.myReviewsItems.collect {
                     adapter.submitList(it)
                 }
             }
@@ -62,8 +62,8 @@ class WrittenReviewsActivity : AppCompatActivity() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.event.collect { event ->
                     when (event) {
-                        WrittenReviewsViewModel.Event.None -> {}
-                        WrittenReviewsViewModel.Event.onClickWriteReview -> {
+                        MyReviewsViewModel.Event.None -> {}
+                        MyReviewsViewModel.Event.onClickWriteReview -> {
                             // ㄹㅣ뷰 작성 화면으로 이동
                         }
                     }

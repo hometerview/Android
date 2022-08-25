@@ -62,6 +62,11 @@
     <string name="written_nickname_length">%s / 20 자</string>
     <string name="update_complete">닉네임이 변경되었어요!</string>
 
+
+    <string name="my_review">내가 작성한 집터뷰</string>
+    <string name="write_review">집터뷰 작성하기</string>
+    <string name="non_review">작성한 집터뷰가 없어요</string>
+
     <string name="my_info_text">내 정보</string>
     <string name="nickname_text">닉네임</string>
     <string name="company_text">직장</string>
@@ -73,5 +78,6 @@
     <string name="version_text">현재 버전</string>
     <string name="request_company_text">회사를 입력해주세요</string>
     <string name="current_version">6.5.1 (65101)</string>
+
 
 </resources>
