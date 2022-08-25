@@ -32,6 +32,7 @@ class MainButton @JvmOverloads constructor(
         inflate(context, R.layout.view_main_button, this)
         titleTextView = findViewById(R.id.title_text_view)
 
+        setBackgroundResource(R.drawable.selector_bg_main_button)
         val horizontalPadding = resources.getDimensionPixelSize(R.dimen.button_horizontal_padding)
         val verticalPadding = resources.getDimensionPixelSize(R.dimen.main_button_vertical_padding)
         updatePadding(
@@ -71,10 +72,6 @@ class MainButton @JvmOverloads constructor(
 
     override fun setEnabled(enabled: Boolean) {
         super.setEnabled(enabled)
-        if(enabled){
-            setBackgroundResource(R.drawable.button_main_button)
-        } else{
-            setBackgroundResource(R.drawable.bg_button_disabled)
-        }
+        children.forEach { it.isEnabled = enabled }
     }
 }

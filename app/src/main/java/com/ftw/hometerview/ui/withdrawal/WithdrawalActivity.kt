@@ -63,10 +63,10 @@ class WithdrawalActivity : AppCompatActivity() {
     }
 
     private fun onClickWithdrawalFirstCheck() {
-        if(viewModel.withdrawalFirstCheck.value){
+        if (viewModel.withdrawalFirstCheck.value) {
             viewModel.withdrawalFirstCheck.value = false
             binding.withdrawalFirstCheck.setImageResource(R.drawable.icon_check_disabled)
-        } else{
+        } else {
             viewModel.withdrawalFirstCheck.value = true
             binding.withdrawalFirstCheck.setImageResource(R.drawable.icon_check_enabled)
         }
@@ -74,10 +74,10 @@ class WithdrawalActivity : AppCompatActivity() {
     }
 
     private fun onClickWithdrawalSecondCheck() {
-        if(viewModel.withdrawalSecondCheck.value){
+        if (viewModel.withdrawalSecondCheck.value) {
             viewModel.withdrawalSecondCheck.value = false
             binding.withdrawalSecondCheck.setImageResource(R.drawable.icon_check_disabled)
-        } else{
+        } else {
             viewModel.withdrawalSecondCheck.value = true
             binding.withdrawalSecondCheck.setImageResource(R.drawable.icon_check_enabled)
         }
@@ -85,20 +85,21 @@ class WithdrawalActivity : AppCompatActivity() {
     }
 
     private fun onClickWithdrawalThirdCheck() {
-        if(viewModel.withdrawalThirdCheck.value){
+        if (viewModel.withdrawalThirdCheck.value) {
             viewModel.withdrawalThirdCheck.value = false
             binding.withdrawalThirdCheck.setImageResource(R.drawable.icon_check_disabled)
-        } else{
+        } else {
             viewModel.withdrawalThirdCheck.value = true
             binding.withdrawalThirdCheck.setImageResource(R.drawable.icon_check_enabled)
         }
         viewModel.withdrawalCheck.value = withdrawalCheck()
     }
-    
+
     private fun withdrawalCheck(): Boolean {
-        if(viewModel.withdrawalFirstCheck.value
+        if (viewModel.withdrawalFirstCheck.value
             && viewModel.withdrawalSecondCheck.value
-            && viewModel.withdrawalThirdCheck.value) return true
+            && viewModel.withdrawalThirdCheck.value
+        ) return true
         return false
     }
 }
