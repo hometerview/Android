@@ -55,7 +55,7 @@ class CreateReviewActivity :
         )
     }
 
-    override fun onClickNextFromSecondStep(rating: Int, leftAt: Date, advantage: String, disadvantage: String) {
+    override fun onClickNextFromSecondStepReview(rating: Int, leftAt: Date, advantage: String, disadvantage: String) {
         TODO("Not yet implemented")
     }
 }
