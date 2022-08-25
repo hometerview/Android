@@ -62,5 +62,4 @@ class ManageAccountActivity : AppCompatActivity() {
     private fun onClickLocationForService() {    }
     private fun onClickOpenSourceLibrary() {    }
     private fun onClickWithdrawal() {    }
-
 }
