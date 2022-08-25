@@ -14,7 +14,11 @@ import com.ftw.hometerview.ui.review.second.CreateReviewSecondStepFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CreateReviewActivity : AppCompatActivity(), CreateReviewFirstStepFragment.Listener {
+class CreateReviewActivity :
+    AppCompatActivity(),
+    CreateReviewFirstStepFragment.Listener,
+    CreateReviewSecondStepFragment.Listener {
+
     companion object {
         fun newIntent(context: Context): Intent = Intent(context, CreateReviewActivity::class.java)
     }
@@ -27,5 +31,9 @@ class CreateReviewActivity : AppCompatActivity(), CreateReviewFirstStepFragment.
 
     override fun onClickAddressFromFirstStep(address: String) {
         addFragment(R.id.fragment_container_view, CreateReviewSecondStepFragment.newInstance(address), true)
+    }
+
+    override fun onClickNextFromSecondStep(address: String, floor: String) {
+        addFragment(R.id.fragment_container_view, CreateReviewFirstStepFragment.newInstance(), true)
     }
 }
