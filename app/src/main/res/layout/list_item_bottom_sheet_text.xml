@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="item"
+            type="com.ftw.hometerview.ui.bottomsheet.TextListBottomSheet.Item"
+            />
+    </data>
+
+    <TextView
+        android:id="@+id/floor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/sp_size_14"
+        android:paddingVertical="@dimen/dp_size_18"
+        android:onClick="@{() -> item.onClick()}"
+        android:fontFamily="@font/pretendard_regular"
+        android:text="@{item.text}"
+        android:textSize="@dimen/sp_size_14"
+        android:textColor="@color/gray_800"
+        />
+</layout>

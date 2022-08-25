@@ -1,10 +1,10 @@
 package com.ftw.hometerview.ui.searchcompanyresult
 
 import android.util.Log
-import com.ftw.hometerview.BR
 import androidx.lifecycle.ViewModel
 import com.ftw.domain.entity.DEMO_COMPANY_RESULTS
 import com.ftw.domain.entity.SearchCompanyResult
+import com.ftw.hometerview.BR
 import com.ftw.hometerview.R
 import com.ftw.hometerview.adapter.RecyclerItem
 import com.ftw.hometerview.dispatcher.Dispatcher
@@ -29,6 +29,7 @@ class SearchCompanyResultViewModel(
 
     sealed class State {
         object OnClickEmpty : State()
+        class OnClickCompany(val searchCompanyResult: SearchCompanyResult) : State()
         object Failure : State()
         object Loading : State()
         object Nothing : State()
@@ -49,7 +50,7 @@ class SearchCompanyResultViewModel(
 
     private fun showClickMessage(searchResult: SearchCompanyResult) {
         //통신으로 받아온 정보를 State와 조합해서 사용하면 될 듯 함
-
+        _clickState.value = State.OnClickCompany(searchResult)
     }
 
     fun noResultRecycleModel() {

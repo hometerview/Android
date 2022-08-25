@@ -2,6 +2,7 @@
 <resources>
     <color name="gray_100">#F2F4F6</color>
     <color name="gray_200">#D2D6DB</color>
+    <color name="gray_300">#CCD0D4</color>
     <color name="gray_400">#B1B8C0</color>
     <color name="gray_500">#8D94A0</color>
     <color name="gray_600">#6C737D</color>
