@@ -13,7 +13,7 @@ import com.ftw.hometerview.ui.searchaddressbuilding.SearchAddressBuildingViewMod
 import com.ftw.hometerview.ui.searchcompanyresult.SearchCompanyResultViewModel
 import com.ftw.hometerview.ui.splash.SplashViewModel
 import com.ftw.hometerview.ui.updatenickname.UpdateNicknameViewModel
-import com.ftw.hometerview.ui.writtenreview.WrittenReviewViewModel
+import com.ftw.hometerview.ui.writtenreview.WrittenReviewsViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -100,8 +100,8 @@ class ActivityViewModelModule {
     fun provideWrittenReviewsViewModel(
         dispatcher: Dispatcher,
         getWrittenReviewsUseCase: GetWrittenReviewsUseCase
-    ): WrittenReviewViewModel {
-        return WrittenReviewViewModel(
+    ): WrittenReviewsViewModel {
+        return WrittenReviewsViewModel(
             dispatcher,
             getWrittenReviewsUseCase
         )

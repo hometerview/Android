@@ -9,9 +9,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.ftw.hometerview.R
+import com.ftw.hometerview.adapter.DataBindingRecyclerAdapter
+import com.ftw.hometerview.adapter.SpacingItemDecoration
 import com.ftw.hometerview.databinding.ActivityWrittenReviewsBinding
-import com.ftw.hometerview.ui.writtenreview.nonreview.NonReviewFragment
-import com.ftw.hometerview.ui.writtenreview.writtenreviewlist.WrittenReviewListFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -26,9 +26,11 @@ class WrittenReviewsActivity : AppCompatActivity() {
     }
 
     @Inject
-    lateinit var viewModel: WrittenReviewViewModel
+    lateinit var viewModel: WrittenReviewsViewModel
 
     private lateinit var binding: ActivityWrittenReviewsBinding
+
+    private val adapter = DataBindingRecyclerAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,31 +40,35 @@ class WrittenReviewsActivity : AppCompatActivity() {
         ).apply {
             viewModel = this@WrittenReviewsActivity.viewModel
         }
+
+        initList()
         observe()
     }
 
+    private fun initList() {
+        binding.writtenReviewRecyclerview.adapter = adapter
+        this.let { binding.writtenReviewRecyclerview.addItemDecoration(SpacingItemDecoration(it)) }
+    }
 
     private fun observe() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.writtenRevieewItems.collect {
-                    if(it.isEmpty()){
-                        replaceNonReviewFragment()
-                    } else {
-                        replaceWrittenReviewListFragment()
+                    adapter.submitList(it)
+                }
+            }
+        }
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.event.collect { event ->
+                    when (event) {
+                        WrittenReviewsViewModel.Event.None -> {}
+                        WrittenReviewsViewModel.Event.onClickWriteReview -> {
+                            // ㄹㅣ뷰 작성 화면으로 이동
+                        }
                     }
                 }
             }
         }
-    }
-
-    private fun replaceWrittenReviewListFragment() {
-        supportFragmentManager.beginTransaction().replace(
-            R.id.fragment_view, WrittenReviewListFragment.newInstance()).commit()
-    }
-
-    private fun replaceNonReviewFragment() {
-        supportFragmentManager.beginTransaction().replace(
-            R.id.fragment_view, NonReviewFragment.newInstance()).commit()
     }
 }

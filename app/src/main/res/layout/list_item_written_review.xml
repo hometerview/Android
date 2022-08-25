@@ -8,7 +8,7 @@
 
         <variable
             name="item"
-            type="com.ftw.hometerview.ui.writtenreview.writtenreviewlist.WrittenReviewItem"
+            type="com.ftw.hometerview.ui.writtenreview.WrittenReviewItem"
             />
     </data>
 
