@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.ftw.hometerview.ui.review.second.CreateReviewSecondStepViewModel"
+            type="com.ftw.hometerview.ui.review.first.CreateReviewFirstStepSelectFloorViewModel"
             />
 
     </data>

@@ -9,15 +9,15 @@ import com.ftw.hometerview.R
 import com.ftw.hometerview.databinding.ActivityCreateReviewBinding
 import com.ftw.hometerview.extension.addFragment
 import com.ftw.hometerview.extension.replaceFragment
-import com.ftw.hometerview.ui.review.first.CreateReviewFirstStepFragment
-import com.ftw.hometerview.ui.review.second.CreateReviewSecondStepFragment
+import com.ftw.hometerview.ui.review.first.CreateReviewFirstStepInputAddressFragment
+import com.ftw.hometerview.ui.review.first.CreateReviewFirstStepSelectFloorFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CreateReviewActivity :
     AppCompatActivity(),
-    CreateReviewFirstStepFragment.Listener,
-    CreateReviewSecondStepFragment.Listener {
+    CreateReviewFirstStepInputAddressFragment.Listener,
+    CreateReviewFirstStepSelectFloorFragment.Listener {
 
     companion object {
         fun newIntent(context: Context): Intent = Intent(context, CreateReviewActivity::class.java)
@@ -26,14 +26,14 @@ class CreateReviewActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DataBindingUtil.setContentView<ActivityCreateReviewBinding>(this, R.layout.activity_create_review)
-        replaceFragment(R.id.fragment_container_view, CreateReviewFirstStepFragment.newInstance(), false)
+        replaceFragment(R.id.fragment_container_view, CreateReviewFirstStepInputAddressFragment.newInstance(), false)
     }
 
     override fun onClickAddressFromFirstStep(address: String) {
-        addFragment(R.id.fragment_container_view, CreateReviewSecondStepFragment.newInstance(address), true)
+        addFragment(R.id.fragment_container_view, CreateReviewFirstStepSelectFloorFragment.newInstance(address), true)
     }
 
     override fun onClickNextFromSecondStep(address: String, floor: String) {
-        addFragment(R.id.fragment_container_view, CreateReviewFirstStepFragment.newInstance(), true)
+        addFragment(R.id.fragment_container_view, CreateReviewFirstStepInputAddressFragment.newInstance(), true)
     }
 }

@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.transformLatest
 
-class CreateReviewFirstStepViewModel(
+class CreateReviewFirstStepInputAddressViewModel(
     dispatcher: Dispatcher,
     private val getAddressUseCase: GetAddressUseCase
 ) {

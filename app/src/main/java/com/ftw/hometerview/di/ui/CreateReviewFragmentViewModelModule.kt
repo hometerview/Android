@@ -2,8 +2,8 @@ package com.ftw.hometerview.di.ui
 
 import com.ftw.domain.usecase.address.GetAddressUseCase
 import com.ftw.hometerview.dispatcher.Dispatcher
-import com.ftw.hometerview.ui.review.first.CreateReviewFirstStepViewModel
-import com.ftw.hometerview.ui.review.second.CreateReviewSecondStepViewModel
+import com.ftw.hometerview.ui.review.first.CreateReviewFirstStepInputAddressViewModel
+import com.ftw.hometerview.ui.review.first.CreateReviewFirstStepSelectFloorViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,11 +16,11 @@ class CreateReviewFragmentViewModelModule {
 
     @Provides
     @FragmentScoped
-    fun provideCreateReviewFirstStepViewModel(
+    fun provideCreateReviewFirstStepInputAddressViewModel(
         dispatcher: Dispatcher,
         getAddressUseCase: GetAddressUseCase
-    ): CreateReviewFirstStepViewModel {
-        return CreateReviewFirstStepViewModel(
+    ): CreateReviewFirstStepInputAddressViewModel {
+        return CreateReviewFirstStepInputAddressViewModel(
             dispatcher,
             getAddressUseCase
         )
@@ -28,7 +28,7 @@ class CreateReviewFragmentViewModelModule {
 
     @Provides
     @FragmentScoped
-    fun provideCreateReviewSecondStepViewModel(): CreateReviewSecondStepViewModel {
-        return CreateReviewSecondStepViewModel()
+    fun provideCreateReviewFirstStepSelectFloorViewModel(): CreateReviewFirstStepSelectFloorViewModel {
+        return CreateReviewFirstStepSelectFloorViewModel()
     }
 }

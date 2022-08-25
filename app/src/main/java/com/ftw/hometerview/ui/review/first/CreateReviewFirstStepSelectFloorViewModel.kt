@@ -1,10 +1,10 @@
-package com.ftw.hometerview.ui.review.second
+package com.ftw.hometerview.ui.review.first
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class CreateReviewSecondStepViewModel {
+class CreateReviewFirstStepSelectFloorViewModel {
 
     sealed class Event {
         object Nothing : Event()
