@@ -20,7 +20,7 @@ import com.ftw.hometerview.R
 import com.ftw.hometerview.databinding.FragmentMyPageBinding
 import com.ftw.hometerview.ui.manageaccount.ManageAccountActivity
 import com.ftw.hometerview.ui.updatenickname.UpdateNicknameActivity
-import com.ftw.hometerview.ui.writtenreview.WrittenReviewsActivity
+import com.ftw.hometerview.ui.myreviews.MyReviewsActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -133,7 +133,7 @@ class MyPageFragment : Fragment() {
     }
 
     private fun writtenReviewActivity() {
-        startActivity(WrittenReviewsActivity.newIntent(requireContext()))
+        startActivity(MyReviewsActivity.newIntent(requireContext()))
     }
 
     private fun manageAccountActivity() {
