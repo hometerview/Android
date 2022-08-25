@@ -72,6 +72,7 @@
         <activity
             android:name=".ui.review.CreateReviewActivity"
             android:exported="true"
+            android:windowSoftInputMode="adjustResize"
             />
 
         <!-- kakao 로그인 창 -->

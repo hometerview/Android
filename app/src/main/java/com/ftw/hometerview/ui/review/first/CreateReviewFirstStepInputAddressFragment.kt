@@ -26,7 +26,7 @@ class CreateReviewFirstStepInputAddressFragment : Fragment() {
     }
 
     interface Listener {
-        fun onClickAddressFromFirstStep(address: String)
+        fun onClickAddressFromFirstStepAddress(address: String)
     }
 
     private var _binding: FragmentCreateReviewFirstStepInputAddressBinding? = null
@@ -84,7 +84,7 @@ class CreateReviewFirstStepInputAddressFragment : Fragment() {
                     when (event) {
                         is CreateReviewFirstStepInputAddressViewModel.Event.OnClickAddress -> {
                             hideKeyboard()
-                            (activity as? Listener)?.onClickAddressFromFirstStep(event.address)
+                            (activity as? Listener)?.onClickAddressFromFirstStepAddress(event.address)
                         }
                         else -> {
                             // Do Nothing

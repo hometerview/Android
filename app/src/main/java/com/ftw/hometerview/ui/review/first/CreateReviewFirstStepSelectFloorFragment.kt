@@ -32,7 +32,7 @@ class CreateReviewFirstStepSelectFloorFragment : Fragment(), SelectResidentialFl
     }
 
     interface Listener {
-        fun onClickNextFromSecondStep(address: String, floor: String)
+        fun onClickNextFromFirstStepResidentialFloor(address: String, floor: String)
     }
 
     private var _binding: FragmentCreateReviewFirstStepSelectFloorBinding? = null
@@ -87,7 +87,7 @@ class CreateReviewFirstStepSelectFloorFragment : Fragment(), SelectResidentialFl
                         CreateReviewFirstStepSelectFloorViewModel.Event.Nothing -> {}
                         CreateReviewFirstStepSelectFloorViewModel.Event.OnClickResidentialFloor -> showSelectResidentialFloorBottomSheet()
                         is CreateReviewFirstStepSelectFloorViewModel.Event.OnClickNext -> {
-                            (parentFragment as? Listener)?.onClickNextFromSecondStep(
+                            (activity as? Listener)?.onClickNextFromFirstStepResidentialFloor(
                                 event.address,
                                 event.floor
                             )

@@ -14,6 +14,7 @@
     <string name="residential_floor_low">저층</string>
     <string name="residential_floor_middle">중층</string>
     <string name="residential_floor_private">비공개</string>
+    <string name="residential_period">거주 기간</string>
     <string name="tip">TIP</string>
 
     <string name="main_bottom_navigation_menu_home">홈</string>
@@ -48,6 +49,22 @@
     <string name="create_review_address_tip_description4_title">사서함명 + 번호</string>
     <string name="create_review_address_tip_description4_message">예) 분당우체국사서함 1~100</string>
     <string name="create_review_residential_floor_hint">거주층을 선택해 주세요</string>
+    <string name="create_review_star_title">별점주기</string>
+    <string name="create_review_star_guide">별점을 남겨주세요</string>
+    <string name="create_review_star_one">별로예요</string>
+    <string name="create_review_star_two">그저그래요</string>
+    <string name="create_review_star_three">괜찮아요</string>
+    <string name="create_review_star_four">좋아요</string>
+    <string name="create_review_star_five">최고예요</string>
+    <string name="create_review_residential_period_hint">거주기간을 선택해 주세요</string>
+    <string name="create_review_advantage_title">장점</string>
+    <string name="create_review_advantage_sub_title">(최소 30자)</string>
+    <string name="create_review_advantage_hint">예) 집 위치, 집주인, 방음 등</string>
+    <string name="create_review_advantage_max_length">/900</string>
+    <string name="create_review_disadvantage_title">단점</string>
+    <string name="create_review_disadvantage_sub_title">(최소 30자)</string>
+    <string name="create_review_disadvantage_hint">예) 집 위치, 집주인, 방음 등</string>
+    <string name="create_review_disadvantage_max_length">900</string>
 
     <string name="get_token_error">저장된 토큰이 없습니다.</string>
     <string name="guide_text1">나랑 같은 지역으로 출근하는 사람들은 어디에 살고있을까?</string>
