@@ -16,7 +16,6 @@ import com.ftw.hometerview.ui.splash.SplashViewModel
 import com.ftw.hometerview.ui.updatenickname.UpdateNicknameViewModel
 import com.ftw.hometerview.ui.myreviews.MyReviewsViewModel
 import com.ftw.hometerview.ui.withdrawal.WithdrawalViewModel
-import com.ftw.hometerview.ui.writtenreview.WrittenReviewViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
