@@ -1,6 +1,6 @@
 package com.ftw.hometerview.ui.myreviews
 
-import com.ftw.domain.entity.WrittenReview
+import com.ftw.domain.entity.Review
 import com.ftw.domain.usecase.myreviews.GetMyReviewsUseCase
 import com.ftw.hometerview.BR
 import com.ftw.hometerview.R
@@ -34,13 +34,13 @@ class MyReviewsViewModel(
         flow {
             emit(
                 getMyReviewsUseCase()
-                    .map { writtenReview ->
+                    .map { myReview ->
                         RecyclerItem(
                             data = MyReviewItem(
                                 onClickItem = { buildingId ->
                                     _state.value = State.OnClickReview(buildingId)
                                 },
-                                myReview = writtenReview
+                                myReview = myReview
                             ),
                             layoutId = R.layout.list_item_my_review,
                             variableId = BR.item
@@ -57,7 +57,7 @@ class MyReviewsViewModel(
 
 data class MyReviewItem(
     val onClickItem: (buildingId: Long) -> Unit,
-    val myReview: WrittenReview
+    val myReview: Review
 ) {
 
     fun onItemClick() {
