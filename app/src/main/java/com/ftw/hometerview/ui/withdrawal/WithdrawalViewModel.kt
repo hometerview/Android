@@ -1,23 +1,17 @@
 package com.ftw.hometerview.ui.withdrawal
 
+import com.ftw.hometerview.BR
+import com.ftw.hometerview.R
+import com.ftw.hometerview.adapter.RecyclerItem
 import com.ftw.hometerview.dispatcher.Dispatcher
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import com.ftw.hometerview.ui.main.favorite.favoritelist.FavoriteBuildingItem
+import com.ftw.hometerview.ui.main.favorite.favoritelist.FavoriteBuildingsViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.*
 
 class WithdrawalViewModel(
     dispatcher: Dispatcher
 ) {
-
-    sealed class Event {
-        object None : Event()
-        object OnClickWithdrawalFirstCheck : Event()
-        object OnClickWithdrawalSecondCheck : Event()
-        object OnClickWithdrawalThirdCheck : Event()
-    }
-
-    private val _event: MutableStateFlow<Event> = MutableStateFlow(Event.None)
-    val event: StateFlow<Event> = _event.asStateFlow()
 
     val withdrawalFirstCheck: MutableStateFlow<Boolean> = MutableStateFlow(false)
     val withdrawalSecondCheck: MutableStateFlow<Boolean> = MutableStateFlow(false)
@@ -25,18 +19,25 @@ class WithdrawalViewModel(
     val withdrawalCheck: MutableStateFlow<Boolean> = MutableStateFlow(false)
 
     fun onClickWithdrawalFirstCheck() {
-        _event.value = Event.OnClickWithdrawalFirstCheck
-        _event.value = Event.None
+        withdrawalFirstCheck.value = !withdrawalFirstCheck.value
+        withdrawalCheck.value = withdrawalCheck()
     }
 
     fun onClickWithdrawalSecondCheck() {
-        _event.value = Event.OnClickWithdrawalSecondCheck
-        _event.value = Event.None
+        withdrawalSecondCheck.value = !withdrawalSecondCheck.value
+        withdrawalCheck.value = withdrawalCheck()
     }
 
     fun onClickWithdrawalThirdCheck() {
-        _event.value = Event.OnClickWithdrawalThirdCheck
-        _event.value = Event.None
+        withdrawalThirdCheck.value = !withdrawalThirdCheck.value
+        withdrawalCheck.value = withdrawalCheck()
     }
 
+    private fun withdrawalCheck(): Boolean {
+        if (withdrawalFirstCheck.value
+            && withdrawalSecondCheck.value
+            && withdrawalThirdCheck.value
+        ) return true
+        return false
+    }
 }

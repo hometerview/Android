@@ -42,64 +42,10 @@ class WithdrawalActivity : AppCompatActivity() {
     private fun observe() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.event.collect { event ->
-                    when (event) {
-                        WithdrawalViewModel.Event.None -> {}
-                        WithdrawalViewModel.Event.OnClickWithdrawalFirstCheck -> onClickWithdrawalFirstCheck()
-                        WithdrawalViewModel.Event.OnClickWithdrawalSecondCheck -> onClickWithdrawalSecondCheck()
-                        WithdrawalViewModel.Event.OnClickWithdrawalThirdCheck -> onClickWithdrawalThirdCheck()
-                    }
-                }
-            }
-        }
-
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.withdrawalCheck.collect { showBanner ->
                     binding.withdrawalButton.isEnabled = showBanner
                 }
             }
         }
-    }
-
-    private fun onClickWithdrawalFirstCheck() {
-        if (viewModel.withdrawalFirstCheck.value) {
-            viewModel.withdrawalFirstCheck.value = false
-            binding.withdrawalFirstCheck.setImageResource(R.drawable.icon_check_disabled)
-        } else {
-            viewModel.withdrawalFirstCheck.value = true
-            binding.withdrawalFirstCheck.setImageResource(R.drawable.icon_check_enabled)
-        }
-        viewModel.withdrawalCheck.value = withdrawalCheck()
-    }
-
-    private fun onClickWithdrawalSecondCheck() {
-        if (viewModel.withdrawalSecondCheck.value) {
-            viewModel.withdrawalSecondCheck.value = false
-            binding.withdrawalSecondCheck.setImageResource(R.drawable.icon_check_disabled)
-        } else {
-            viewModel.withdrawalSecondCheck.value = true
-            binding.withdrawalSecondCheck.setImageResource(R.drawable.icon_check_enabled)
-        }
-        viewModel.withdrawalCheck.value = withdrawalCheck()
-    }
-
-    private fun onClickWithdrawalThirdCheck() {
-        if (viewModel.withdrawalThirdCheck.value) {
-            viewModel.withdrawalThirdCheck.value = false
-            binding.withdrawalThirdCheck.setImageResource(R.drawable.icon_check_disabled)
-        } else {
-            viewModel.withdrawalThirdCheck.value = true
-            binding.withdrawalThirdCheck.setImageResource(R.drawable.icon_check_enabled)
-        }
-        viewModel.withdrawalCheck.value = withdrawalCheck()
-    }
-
-    private fun withdrawalCheck(): Boolean {
-        if (viewModel.withdrawalFirstCheck.value
-            && viewModel.withdrawalSecondCheck.value
-            && viewModel.withdrawalThirdCheck.value
-        ) return true
-        return false
     }
 }

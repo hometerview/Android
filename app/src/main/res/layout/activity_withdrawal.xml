@@ -67,14 +67,16 @@
             app:layout_constraintTop_toBottomOf="@+id/divide_view"
             />
 
-        <ImageView
+        <CheckBox
             android:id="@+id/withdrawal_first_check"
             android:layout_width="@dimen/dp_size_28"
             android:layout_height="@dimen/dp_size_28"
             android:layout_marginStart="@dimen/dp_size_12"
             android:layout_marginTop="@dimen/dp_size_16"
+            android:background="@drawable/selector_bg_checkbox"
+            android:button="@android:color/transparent"
+            android:checked="@{viewModel.withdrawalFirstCheck}"
             android:onClick="@{() -> viewModel.onClickWithdrawalFirstCheck()}"
-            android:src="@drawable/icon_check_disabled"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/withdrawal_check_text"
             />
@@ -83,25 +85,27 @@
             android:id="@+id/withdrawal_first_check_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_size_16"
             android:layout_marginEnd="@dimen/dp_size_16"
             android:fontFamily="@font/pretendard_regular"
             android:text="@string/withdrawal_first_check_text"
             android:textColor="@color/gray_900"
             android:textSize="@dimen/sp_size_12"
-            android:layout_marginStart="@dimen/dp_size_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/withdrawal_first_check"
             app:layout_constraintTop_toTopOf="@+id/withdrawal_first_check"
             />
 
-        <ImageView
+        <CheckBox
             android:id="@+id/withdrawal_second_check"
             android:layout_width="@dimen/dp_size_28"
             android:layout_height="@dimen/dp_size_28"
             android:layout_marginStart="@dimen/dp_size_12"
             android:layout_marginTop="@dimen/dp_size_16"
+            android:background="@drawable/selector_bg_checkbox"
+            android:button="@android:color/transparent"
+            android:checked="@{viewModel.withdrawalSecondCheck}"
             android:onClick="@{() -> viewModel.onClickWithdrawalSecondCheck()}"
-            android:src="@drawable/icon_check_disabled"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/withdrawal_first_check_text"
             />
@@ -110,25 +114,27 @@
             android:id="@+id/withdrawal_second_check_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_size_16"
             android:layout_marginEnd="@dimen/dp_size_16"
             android:fontFamily="@font/pretendard_regular"
             android:text="@string/withdrawal_second_check_text"
             android:textColor="@color/gray_900"
             android:textSize="@dimen/sp_size_12"
-            android:layout_marginStart="@dimen/dp_size_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/withdrawal_second_check"
             app:layout_constraintTop_toTopOf="@+id/withdrawal_second_check"
             />
 
-        <ImageView
+        <CheckBox
             android:id="@+id/withdrawal_third_check"
             android:layout_width="@dimen/dp_size_28"
             android:layout_height="@dimen/dp_size_28"
             android:layout_marginStart="@dimen/dp_size_12"
             android:layout_marginTop="@dimen/dp_size_16"
+            android:background="@drawable/selector_bg_checkbox"
+            android:button="@android:color/transparent"
+            android:checked="@{viewModel.withdrawalThirdCheck}"
             android:onClick="@{() -> viewModel.onClickWithdrawalThirdCheck()}"
-            android:src="@drawable/icon_check_disabled"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/withdrawal_second_check_text"
             />
@@ -137,23 +143,24 @@
             android:id="@+id/withdrawal_third_check_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_size_16"
             android:layout_marginEnd="@dimen/dp_size_16"
             android:fontFamily="@font/pretendard_regular"
             android:text="@string/withdrawal_third_check_text"
             android:textColor="@color/gray_900"
             android:textSize="@dimen/sp_size_12"
-            android:layout_marginStart="@dimen/dp_size_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/withdrawal_third_check"
             app:layout_constraintTop_toTopOf="@+id/withdrawal_third_check"
             />
-        
+
         <com.ftw.hometerview.design.MainButton
             android:id="@+id/withdrawal_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dp_size_32"
             android:layout_marginHorizontal="@dimen/dp_size_16"
+            android:layout_marginBottom="@dimen/dp_size_32"
+            android:enabled="@{viewModel.withdrawalCheck}"
             android:text="@string/withdrawal_button_text"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
