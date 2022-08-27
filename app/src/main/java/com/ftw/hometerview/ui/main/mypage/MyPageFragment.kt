@@ -18,6 +18,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.ftw.hometerview.R
 import com.ftw.hometerview.databinding.FragmentMyPageBinding
+import com.ftw.hometerview.ui.dialog.LogoutDialog
+import com.ftw.hometerview.ui.login.LoginActivity
 import com.ftw.hometerview.ui.manageaccount.ManageAccountActivity
 import com.ftw.hometerview.ui.updatenickname.UpdateNicknameActivity
 import com.ftw.hometerview.ui.myreviews.MyReviewsActivity
@@ -77,6 +79,7 @@ class MyPageFragment : Fragment() {
                         is MyPageViewModel.Event.onClickUpdateNickname -> updateNicknameActivity(event.nickname)
                         MyPageViewModel.Event.onClickWrittenReview -> writtenReviewActivity()
                         MyPageViewModel.Event.onClickManageAccount -> manageAccountActivity()
+                        MyPageViewModel.Event.onClickLogout -> onClickLogoutDialog()
                     }
                 }
             }
@@ -140,6 +143,18 @@ class MyPageFragment : Fragment() {
         startActivity(ManageAccountActivity.newIntent(requireContext()))
     }
 
+    private fun onClickLogoutDialog(){
+        val customDialog = LogoutDialog(logout = {onClickLogout()})
+        customDialog.show(parentFragmentManager, "CustomDialog")
+    }
+
+    private fun onClickLogout(){
+        requireActivity().apply {
+            finish()
+            startActivity(LoginActivity.newIntent(requireContext()))
+        }
+    }
+    
     private fun setLauncher() {
         updateNicknameLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->

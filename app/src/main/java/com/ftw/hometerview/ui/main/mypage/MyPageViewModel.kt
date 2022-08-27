@@ -18,6 +18,7 @@ class MyPageViewModel (
         class onClickUpdateNickname(val nickname: String) : Event()
         object onClickWrittenReview : Event()
         object onClickManageAccount : Event()
+        object onClickLogout : Event()
     }
 
     private val _user: MutableStateFlow<User> = MutableStateFlow(User.NONE)
@@ -52,6 +53,11 @@ class MyPageViewModel (
 
     fun onClickManageAccount() {
         _event.value = Event.onClickManageAccount
+        _event.value = Event.None
+    }
+
+    fun onClickLogout() {
+        _event.value = Event.onClickLogout
         _event.value = Event.None
     }
 }
