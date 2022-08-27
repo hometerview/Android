@@ -52,13 +52,13 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/pretendard_regular"
             android:textSize="@dimen/sp_size_12"
+            android:text="@{@string/written_nickname_length(viewModel.nickname.length())}"
             android:textColor="@color/gray_400"
             android:layout_marginTop="@dimen/dp_size_8"
             app:layout_constraintEnd_toEndOf="@+id/nickname_edittext"
             app:layout_constraintTop_toBottomOf="@+id/nickname_edittext"
             tools:text="3/20 자"
             />
-
 
         <com.ftw.hometerview.design.MainButton
             android:id="@+id/update_nickname_button"
