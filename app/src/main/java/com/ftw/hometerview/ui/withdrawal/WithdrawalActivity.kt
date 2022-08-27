@@ -5,13 +5,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import com.ftw.hometerview.R
 import com.ftw.hometerview.databinding.ActivityWithdrawalBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -34,18 +30,9 @@ class WithdrawalActivity : AppCompatActivity() {
             this,
             R.layout.activity_withdrawal
         ).apply {
+            lifecycleOwner = this@WithdrawalActivity
             viewModel = this@WithdrawalActivity.viewModel
         }
-        observe()
     }
 
-    private fun observe() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.withdrawalCheck.collect { showBanner ->
-                    binding.withdrawalButton.isEnabled = showBanner
-                }
-            }
-        }
-    }
 }
