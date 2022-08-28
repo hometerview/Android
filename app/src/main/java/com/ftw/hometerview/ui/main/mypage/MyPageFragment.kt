@@ -76,10 +76,10 @@ class MyPageFragment : Fragment() {
                 viewModel.event.collect { event ->
                     when (event) {
                         MyPageViewModel.Event.None -> {}
-                        is MyPageViewModel.Event.onClickUpdateNickname -> updateNicknameActivity(event.nickname)
-                        MyPageViewModel.Event.onClickWrittenReview -> writtenReviewActivity()
-                        MyPageViewModel.Event.onClickManageAccount -> manageAccountActivity()
-                        MyPageViewModel.Event.onClickLogout -> onClickLogoutDialog()
+                        is MyPageViewModel.Event.OnClickUpdateNickname -> updateNicknameActivity(event.nickname)
+                        MyPageViewModel.Event.OnClickWrittenReview -> writtenReviewActivity()
+                        MyPageViewModel.Event.OnClickManageAccount -> manageAccountActivity()
+                        MyPageViewModel.Event.OnClickLogout -> onClickLogoutDialog()
                     }
                 }
             }
