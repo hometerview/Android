@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.ftw.hometerview.ui.myreviews.MyReviewsViewModel"
+            />
+        <import type="android.view.View"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.myreviews.MyReviewsActivity"
+        >
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="@dimen/dp_size_32"
+            android:layout_height="@dimen/dp_size_32"
+            android:layout_marginStart="@dimen/dp_size_16"
+            android:layout_marginTop="@dimen/dp_size_16"
+            android:src="@drawable/ic_baseline_navigate_before_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/my_review_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="@string/my_review"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/back_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/back_button"
+            />
+
+        <View
+            android:id="@+id/divide_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_size_1"
+            android:layout_marginTop="@dimen/dp_size_16"
+            android:background="@color/gray_200"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/my_review_text"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/my_review_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/end_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divide_view"
+            android:visibility="@{viewModel.myReviewsItems.empty ? View.GONE : View.VISIBLE}"
+            >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/my_review_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/non_my_review_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/end_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divide_view"
+            android:visibility="@{viewModel.myReviewsItems.empty ? View.VISIBLE : View.GONE}"
+            >
+
+            <TextView
+                android:id="@+id/non_review_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendard_regular"
+                android:text="@string/non_review"
+                android:textColor="@color/gray_600"
+                android:layout_marginBottom="@dimen/dp_size_60"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="작성한 집터뷰가 없어요"
+                />
+
+            <com.ftw.hometerview.design.MainButton
+                android:id="@+id/write_review_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/write_review"
+                android:onClick="@{() -> viewModel.onClickWriteReview()}"
+                android:layout_marginTop="@dimen/dp_size_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/non_review_text"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/end_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_size_16"
+            android:background="@drawable/bg_home_gradient_above_view_pager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

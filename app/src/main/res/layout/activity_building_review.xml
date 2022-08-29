@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="viewModel"
+            type="com.ftw.hometerview.ui.buildingreview.BuildingReviewViewModel"
+            />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                >
+
+                <RelativeLayout
+                    android:id="@+id/map_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@color/gray_400"
+                    />
+
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:titleTextColor="@color/gray_900"
+                    app:contentInsetStart="0dp"
+                    android:background="@color/white"
+                    app:layout_collapseMode="pin"
+                    >
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+
+                        <TextView
+                            android:id="@+id/toolbar_building_name_text_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/sp_size_14"
+                            android:fontFamily="@font/pretendard_bold"
+                            android:text="@{viewModel.building.name}"
+                            android:textColor="@color/gray_900"
+                            android:textSize="@dimen/sp_size_14"
+                            android:gravity="center"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/toolbar_favorite_image_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/sp_size_14"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/icon_heart" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.appcompat.widget.Toolbar>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_chevron_left_24"
+                    app:layout_collapseMode="pin"
+                    android:layout_marginTop="@dimen/dp_size_16"
+                    android:layout_marginStart="@dimen/dp_size_16"/>
+                
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <TextView
+                    android:id="@+id/building_name_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_size_16"
+                    android:layout_marginHorizontal="@dimen/sp_size_14"
+                    android:text="@{viewModel.building.name}"
+                    android:textSize="@dimen/sp_size_24"
+                    android:textColor="@color/gray_900"
+                    android:fontFamily="@font/pretendard_bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <ImageView
+                    android:id="@+id/img_favorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_size_16"
+                    android:layout_marginEnd="@dimen/sp_size_14"
+                    app:srcCompat="@drawable/icon_heart"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    />
+
+                <TextView
+                    android:id="@+id/address_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_size_8"
+                    android:layout_marginHorizontal="@dimen/dp_size_14"
+                    android:drawablePadding="@dimen/dp_size_6"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text="@{viewModel.building.address.addressWithLoadName}"
+                    android:textColor="@color/gray_800"
+                    android:textSize="@dimen/sp_size_14"
+                    app:drawableStartCompat="@drawable/icon_discovery"
+                    app:drawableTint="@color/gray_400"
+                    app:layout_constraintTop_toBottomOf="@+id/building_name_text_view"
+                    tools:layout_editor_absoluteX="14dp"
+                    />
+
+                <TextView
+                    android:id="@+id/building_type_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_size_8"
+                    android:layout_marginHorizontal="@dimen/dp_size_14"
+                    android:drawablePadding="@dimen/dp_size_6"
+                    android:text="@{viewModel.building.type.value}"
+                    android:textSize="@dimen/sp_size_14"
+                    android:textColor="@color/gray_800"
+                    android:fontFamily="@font/pretendard_regular"
+                    app:drawableStartCompat="@drawable/icon_home_size_16"
+                    app:drawableTint="@color/gray_400"
+                    app:layout_constraintTop_toBottomOf="@id/address_text_view"
+                    />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/sale_price_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_size_16"
+                    android:layout_marginHorizontal="@dimen/dp_size_14"
+                    android:background="@drawable/bg_gray_100_radius_4"
+                    app:layout_constraintTop_toBottomOf="@id/building_type_text_view"
+                    >
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/sale_price_guide_line"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.5"
+                        />
+
+                    <TextView
+                        android:id="@+id/sale_price_title_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_size_16"
+                        android:layout_marginStart="@dimen/dp_size_16"
+                        android:text="@string/building_review_sale_price_title"
+                        android:textSize="@dimen/sp_size_12"
+                        android:textColor="@color/gray_800"
+                        android:fontFamily="@font/pretendard_regular"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        />
+
+                    <TextView
+                        android:id="@+id/sale_price_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_size_16"
+                        android:layout_marginBottom="@dimen/dp_size_16"
+                        android:text="@{@string/building_review_price_format(viewModel.building.salePrice.min, viewModel.building.salePrice.max)}"
+                        android:textSize="@dimen/sp_size_12"
+                        android:textColor="@color/gray_800"
+                        android:fontFamily="@font/pretendard_semibold"
+                        app:layout_constraintTop_toBottomOf="@id/sale_price_title_text_view"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        />
+
+                    <TextView
+                        android:id="@+id/sale_charter_title_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_size_16"
+                        android:layout_marginStart="@dimen/dp_size_16"
+                        android:text="@string/building_review_sale_price_title"
+                        android:textSize="@dimen/sp_size_12"
+                        android:textColor="@color/gray_800"
+                        android:fontFamily="@font/pretendard_regular"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/sale_price_guide_line"
+                        />
+
+                    <TextView
+                        android:id="@+id/charter_price_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_size_16"
+                        android:layout_marginBottom="@dimen/dp_size_16"
+                        android:text="@{@string/building_review_price_format(viewModel.building.salePrice.min, viewModel.building.salePrice.max)}"
+                        android:textSize="@dimen/sp_size_12"
+                        android:textColor="@color/gray_800"
+                        android:fontFamily="@font/pretendard_semibold"
+                        app:layout_constraintTop_toBottomOf="@id/sale_charter_title_text_view"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/sale_price_guide_line"
+                        />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/commuting_time_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_size_8"
+                    android:layout_marginHorizontal="@dimen/dp_size_14"
+                    android:background="@drawable/bg_blue_100_radius_4"
+                    app:layout_constraintTop_toBottomOf="@id/sale_price_layout"
+                    >
+
+                    <TextView
+                        android:id="@+id/commuting_time_title_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_size_16"
+                        android:layout_marginHorizontal="@dimen/dp_size_16"
+                        android:text="@{@string/building_review_commuting_time_title(7)}"
+                        android:textSize="@dimen/sp_size_14"
+                        android:textColor="@color/blue_300"
+                        android:fontFamily="@font/pretendard_regular"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_size_2"
+                        android:layout_marginBottom="@dimen/dp_size_16"
+                        android:layout_marginHorizontal="@dimen/dp_size_16"
+                        android:text="@{@string/building_review_commuting_time_message(viewModel.time)}"
+                        android:textSize="@dimen/sp_size_16"
+                        android:textColor="@color/blue_300"
+                        android:fontFamily="@font/pretendard_semibold"
+                        app:layout_constraintTop_toBottomOf="@id/commuting_time_title_text_view"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <View
+                    android:id="@+id/border"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_size_12"
+                    android:layout_marginTop="@dimen/sp_size_24"
+                    android:background="@color/gray_100"
+                    app:layout_constraintTop_toBottomOf="@id/commuting_time_layout"
+                    />
+
+                <ImageView
+                    android:id="@+id/reviews_count_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_size_40"
+                    android:layout_marginStart="@dimen/dp_size_14"
+                    app:srcCompat="@drawable/icon_3user"
+                    app:layout_constraintTop_toBottomOf="@id/border"
+                    app:layout_constraintStart_toStartOf="parent"
+                    />
+
+                <TextView
+                    android:id="@+id/reviews_count_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_size_40"
+                    android:layout_marginStart="@dimen/dp_size_4"
+                    android:text="@{@string/building_review_count(2)}"
+                    android:textSize="@dimen/sp_size_14"
+                    android:textColor="@color/gray_600"
+                    android:fontFamily="@font/pretendard_regular"
+                    app:layout_constraintTop_toBottomOf="@id/border"
+                    app:layout_constraintStart_toEndOf="@id/reviews_count_image_view"
+                    />
+
+                <RatingBar
+                    android:id="@+id/rating_bar"
+                    style="@style/StarRatingBarSize28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_size_28"
+                    android:layout_marginTop="@dimen/dp_size_8"
+                    android:layout_marginStart="@dimen/sp_size_14"
+                    android:progressTint="@color/blue_300"
+                    android:progressBackgroundTint="@color/gray_200"
+                    android:max="5"
+                    android:numStars="5"
+                    android:stepSize="1"
+                    android:rating="@{viewModel.building.rating}"
+                    android:isIndicator="true"
+                    app:tint="@color/selector_rating_bar"
+                    app:layout_constraintTop_toBottomOf="@id/reviews_count_image_view"
+                    app:layout_constraintStart_toStartOf="parent"
+                    />
+
+                <TextView
+                    android:id="@+id/rating_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_size_8"
+                    android:text="@{@string/building_review_rating(4)}"
+                    android:textSize="@dimen/sp_size_24"
+                    android:textColor="@color/blue_300"
+                    android:fontFamily="@font/pretendard_medium"
+                    app:layout_constraintTop_toTopOf="@id/rating_bar"
+                    app:layout_constraintBottom_toBottomOf="@id/rating_bar"
+                    app:layout_constraintStart_toEndOf="@id/rating_bar"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/rating_bar"
+                    tools:listitem="@layout/list_item_building_review"
+                    tools:itemCount="5"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

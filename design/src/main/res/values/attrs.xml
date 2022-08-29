@@ -6,4 +6,11 @@
         <attr name="android:enabled" />
         <attr name="number" format="integer" />
     </declare-styleable>
+
+    <declare-styleable name="MainButton">
+        <attr name="android:text" />
+        <attr name="android:textAlignment" />
+        <attr name="android:elevation" />
+        <attr name="android:enabled" />
+    </declare-styleable>
 </resources>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="background">@drawable/bg_bottom_sheet</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+    </style>
+
+    <style name="HomeTabLayout" parent="Widget.Material3.TabLayout">
+        <item name="fontFamily">@font/pretendard_medium</item>
+        <item name="android:textSize">@dimen/sp_size_14</item>
+    </style>
+
+    <style name="BuildingReviewToolbarTitle" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textSize">@dimen/sp_size_12</item>
+        <item name="android:fontFamily">@font/pretendard_medium</item>
+    </style>
+
+    <style name="StarRatingBarSize12" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/selector_rating_bar_star_12</item>
+    </style>
+
+    <style name="StarRatingBarSize28" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/selector_rating_bar_star_28</item>
+    </style>
+
+    <style name="MyPageTitle" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textSize">@dimen/sp_size_12</item>
+        <item name="android:fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="MyPageMenu" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textSize">@dimen/sp_size_14</item>
+        <item name="android:fontFamily">@font/pretendard_regular</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="StarRatingBarSize40" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/selector_rating_bar_star_40</item>
+    </style>
+</resources>

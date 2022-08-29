@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="searchResult"
+            type="com.ftw.domain.entity.SearchAddressBuildingResult"
+            />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:paddingTop="@dimen/dp_size_10"
+        android:paddingBottom="@dimen/dp_size_10"
+        >
+
+        <TextView
+            android:id="@+id/company_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_size_16"
+            android:layout_marginTop="@dimen/dp_size_16"
+            android:layout_marginEnd="@dimen/dp_size_16"
+            android:fontFamily="@font/pretendard_semibold"
+            android:text="@{searchResult.result}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_size_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="삼성전자"
+            />
+
+        <TextView
+            android:id="@+id/address_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{searchResult.address}"
+            android:visibility="@{searchResult.type.toString().equals(@string/building_text)  ? View.VISIBLE : View.GONE}"
+            android:fontFamily="@font/pretendard_medium"
+            android:textColor="@color/blue_300"
+            android:textSize="@dimen/sp_size_13"
+            app:layout_constraintEnd_toEndOf="@id/company_textview"
+            app:layout_constraintStart_toStartOf="@id/company_textview"
+            app:layout_constraintTop_toBottomOf="@id/company_textview"
+            tools:text="서울시 마포구 흥정로 32, 34"
+            />
+
+        <TextView
+            android:id="@+id/type_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@{searchResult.type}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

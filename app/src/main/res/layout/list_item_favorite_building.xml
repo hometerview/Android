@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.ftw.hometerview.ui.main.favorite.favoritelist.FavoriteBuildingItem"
+            />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_size_14"
+        android:background="@drawable/bg_location_review_item"
+        android:onClick="@{() -> item.onItemClick()}"
+        >
+
+        <TextView
+            android:id="@+id/building_name_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_size_20"
+            android:layout_marginTop="@dimen/dp_size_16"
+            android:ellipsize="end"
+            android:fontFamily="@font/pretendard_bold"
+            android:maxLines="1"
+            android:text="@{item.favoriteBuildings.buildingName}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_size_18"
+            app:drawableEndCompat="@drawable/ic_baseline_navigate_next_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="아크로텔 오피스텔"
+            />
+
+        <RatingBar
+            android:id="@+id/rating_bar"
+            style="@style/StarRatingBarSize12"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_size_12"
+            android:layout_marginStart="@dimen/sp_size_20"
+            android:layout_marginTop="@dimen/dp_size_8"
+            android:isIndicator="true"
+            android:max="5"
+            android:numStars="5"
+            android:progressBackgroundTint="@color/gray_200"
+            android:progressTint="@color/blue_300"
+            android:rating="@{Float.valueOf(Double.toString(item.favoriteBuildings.rating))}"
+            android:stepSize="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/building_name_text_view"
+            app:tint="@color/selector_rating_bar"
+            tools:rating="3"
+            />
+
+        <TextView
+            android:id="@+id/rating_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_size_4"
+            android:fontFamily="@font/pretendard_semibold"
+            android:text="@{Double.toString(item.favoriteBuildings.rating)}"
+            android:textColor="@color/blue_300"
+            android:textSize="@dimen/sp_size_12"
+            app:layout_constraintBottom_toBottomOf="@+id/rating_bar"
+            app:layout_constraintStart_toEndOf="@+id/rating_bar"
+            app:layout_constraintTop_toTopOf="@+id/rating_bar"
+            tools:text="4.0"
+            />
+
+        <View
+            android:id="@+id/divide_line"
+            android:layout_width="@dimen/dp_size_1"
+            android:layout_height="@dimen/dp_size_12"
+            android:layout_marginStart="@dimen/dp_size_4"
+            android:background="@color/gray_200"
+            app:layout_constraintBottom_toBottomOf="@+id/rating_text_view"
+            app:layout_constraintStart_toEndOf="@+id/rating_text_view"
+            app:layout_constraintTop_toTopOf="@+id/rating_text_view"
+            />
+
+        <TextView
+            android:id="@+id/reviews_count_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_size_4"
+            android:fontFamily="@font/pretendard_regular"
+            android:textSize="@dimen/sp_size_12"
+            app:layout_constraintBottom_toBottomOf="@+id/divide_line"
+            app:layout_constraintStart_toEndOf="@+id/divide_line"
+            app:layout_constraintTop_toTopOf="@+id/divide_line"
+            tools:text="3"
+            />
+
+        <TextView
+            android:id="@+id/reviews_cnt_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_size_2"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="@string/cnt_text"
+            android:textSize="@dimen/sp_size_12"
+            app:layout_constraintBottom_toBottomOf="@+id/divide_line"
+            app:layout_constraintStart_toEndOf="@+id/reviews_count_text_view"
+            app:layout_constraintTop_toTopOf="@+id/divide_line"
+            />
+
+        <com.ftw.hometerview.design.Button
+            android:id="@+id/favorite_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_size_16"
+            android:layout_marginBottom="@dimen/dp_size_16"
+            android:drawableStart="@drawable/icon_bookmark"
+            android:text="@string/save"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/rating_bar"
+            app:layout_constraintTop_toBottomOf="@+id/rating_bar"
+            />
+
+        <TextView
+            android:id="@+id/review_summary_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/dp_size_20"
+            android:layout_marginEnd="@dimen/dp_size_4"
+            android:drawablePadding="@dimen/dp_size_4"
+            android:ellipsize="end"
+            android:fontFamily="@font/pretendard_regular"
+            android:maxLines="1"
+            android:text="@{item.favoriteBuildings.address.component3()}"
+            android:textColor="@color/gray_600"
+            android:textSize="@dimen/sp_size_12"
+            app:drawableTint="@color/gray_400"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="@+id/favorite_button"
+            app:layout_constraintEnd_toStartOf="@+id/address_divide_line"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintTop_toTopOf="@+id/favorite_button"
+            tools:text="인천 남동구 구월남로 125"
+            />
+
+        <View
+            android:id="@+id/address_divide_line"
+            android:layout_width="@dimen/dp_size_1"
+            android:layout_height="@dimen/dp_size_12"
+            android:layout_marginEnd="@dimen/dp_size_4"
+            android:background="@color/gray_200"
+            app:layout_constraintBottom_toBottomOf="@+id/review_summary_text_view"
+            app:layout_constraintEnd_toStartOf="@+id/building_type_text_view"
+            app:layout_constraintTop_toTopOf="@+id/review_summary_text_view"
+            />
+
+        <TextView
+            android:id="@+id/building_type_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/dp_size_20"
+            android:drawablePadding="@dimen/dp_size_4"
+            android:ellipsize="end"
+            android:fontFamily="@font/pretendard_regular"
+            android:maxLines="1"
+            android:text="@{item.favoriteBuildings.type.value}"
+            android:textColor="@color/gray_600"
+            android:textSize="@dimen/sp_size_12"
+            app:drawableTint="@color/gray_400"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="@+id/favorite_button"
+            app:layout_constraintEnd_toEndOf="@+id/building_name_text_view"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintTop_toTopOf="@+id/favorite_button"
+            tools:text="오피스텔"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
