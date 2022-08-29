@@ -1,12 +1,6 @@
 package com.ftw.hometerview.ui.withdrawal
 
-import com.ftw.hometerview.BR
-import com.ftw.hometerview.R
-import com.ftw.hometerview.adapter.RecyclerItem
 import com.ftw.hometerview.dispatcher.Dispatcher
-import com.ftw.hometerview.ui.main.favorite.favoritelist.FavoriteBuildingItem
-import com.ftw.hometerview.ui.main.favorite.favoritelist.FavoriteBuildingsViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
 
 class WithdrawalViewModel(
@@ -17,6 +11,7 @@ class WithdrawalViewModel(
     val withdrawalSecondCheck: MutableStateFlow<Boolean> = MutableStateFlow(false)
     val withdrawalThirdCheck: MutableStateFlow<Boolean> = MutableStateFlow(false)
     val withdrawalCheck: MutableStateFlow<Boolean> = MutableStateFlow(false)
+
 
     fun onClickWithdrawalFirstCheck() {
         withdrawalFirstCheck.value = !withdrawalFirstCheck.value
