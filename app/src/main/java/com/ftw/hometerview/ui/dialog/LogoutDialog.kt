@@ -7,11 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import com.ftw.domain.entity.Floor
 import com.ftw.hometerview.databinding.DialogLogoutBinding
 
-class LogoutDialog(val logout: () -> Unit) : DialogFragment() {
+class LogoutDialog() : DialogFragment() {
     private var _binding: DialogLogoutBinding? = null
     private val binding get() = _binding!!
+
+    interface Listener {
+        fun onClickLogoutFromLogoutDialog()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,7 +27,7 @@ class LogoutDialog(val logout: () -> Unit) : DialogFragment() {
         val view = binding.root
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         binding.logoutSelect.setOnClickListener {
-            logout()
+            (parentFragment as? Listener)?.onClickLogoutFromLogoutDialog()
         }
         binding.logoutCancle.setOnClickListener {
             dismiss()

@@ -28,7 +28,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MyPageFragment : Fragment() {
+class MyPageFragment : Fragment(), LogoutDialog.Listener {
 
     private lateinit var updateNicknameLauncher: ActivityResultLauncher<Intent>
 
@@ -144,11 +144,11 @@ class MyPageFragment : Fragment() {
     }
 
     private fun onClickLogoutDialog(){
-        val customDialog = LogoutDialog(logout = {onClickLogout()})
-        customDialog.show(parentFragmentManager, "CustomDialog")
+        val logoutDialog = LogoutDialog()
+        logoutDialog.show(childFragmentManager, "CustomDialog")
     }
 
-    private fun onClickLogout(){
+    override fun onClickLogoutFromLogoutDialog(){
         requireActivity().apply {
             finish()
             startActivity(LoginActivity.newIntent(requireContext()))
