@@ -25,7 +25,7 @@
             >
 
             <TextView
-                android:id="@+id/my_page_text"
+                android:id="@+id/my_page_title"
                 style="@style/MyPageTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
                 android:onClick="@{() -> viewModel.onClickUpdateNickname()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/my_page_text"
+                app:layout_constraintTop_toBottomOf="@+id/my_page_title"
                 >
 
                 <TextView
@@ -187,13 +187,13 @@
                 />
 
             <TextView
-                android:id="@+id/activity_text"
+                android:id="@+id/activity_title"
                 style="@style/MyPageTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_size_16"
                 android:text="@string/activity_text"
-                app:layout_constraintStart_toStartOf="@+id/my_page_text"
+                app:layout_constraintStart_toStartOf="@+id/my_page_title"
                 app:layout_constraintTop_toBottomOf="@+id/divide_myinfo_with_activity"
                 />
 
@@ -202,13 +202,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingVertical="@dimen/dp_size_16"
+                android:onClick="@{() -> viewModel.onClickWrittenReview()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/activity_text"
+                app:layout_constraintTop_toBottomOf="@+id/activity_title"
                 >
 
                 <TextView
-                    android:id="@+id/written_hometerview_text"
+                    android:id="@+id/my_review_text"
                     style="@style/MyPageMenu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -225,9 +226,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/dp_size_8"
                     android:src="@drawable/ic_baseline_navigate_next_24"
-                    app:layout_constraintBottom_toBottomOf="@+id/written_hometerview_text"
+                    app:layout_constraintBottom_toBottomOf="@+id/my_review_text"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/written_hometerview_text"
+                    app:layout_constraintTop_toTopOf="@+id/my_review_text"
                     app:tint="@color/gray_500"
                     />
 
@@ -244,13 +245,13 @@
                 />
 
             <TextView
-                android:id="@+id/account_text"
+                android:id="@+id/account_title"
                 style="@style/MyPageTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_size_16"
                 android:text="@string/account_text"
-                app:layout_constraintStart_toStartOf="@+id/my_page_text"
+                app:layout_constraintStart_toStartOf="@+id/my_page_title"
                 app:layout_constraintTop_toBottomOf="@+id/divide_activity_with_account"
                 />
 
@@ -259,9 +260,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingVertical="@dimen/dp_size_16"
+                android:onClick="@{() -> viewModel.onClickManageAccount()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/account_text"
+                app:layout_constraintTop_toBottomOf="@+id/account_title"
                 >
 
                 <TextView
@@ -304,6 +306,7 @@
                 android:id="@+id/logout_box"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.onClickLogout()}"
                 android:paddingVertical="@dimen/dp_size_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -18,13 +18,17 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.ftw.hometerview.R
 import com.ftw.hometerview.databinding.FragmentMyPageBinding
+import com.ftw.hometerview.ui.dialog.LogoutDialog
+import com.ftw.hometerview.ui.login.LoginActivity
+import com.ftw.hometerview.ui.manageaccount.ManageAccountActivity
 import com.ftw.hometerview.ui.updatenickname.UpdateNicknameActivity
+import com.ftw.hometerview.ui.myreviews.MyReviewsActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MyPageFragment : Fragment() {
+class MyPageFragment : Fragment(), LogoutDialog.Listener {
 
     private lateinit var updateNicknameLauncher: ActivityResultLauncher<Intent>
 
@@ -72,9 +76,10 @@ class MyPageFragment : Fragment() {
                 viewModel.event.collect { event ->
                     when (event) {
                         MyPageViewModel.Event.None -> {}
-                        is MyPageViewModel.Event.onClickUpdateNickname -> {
-                            updateNicknameActivity(event.nickname)
-                        }
+                        is MyPageViewModel.Event.OnClickUpdateNickname -> updateNicknameActivity(event.nickname)
+                        MyPageViewModel.Event.OnClickWrittenReview -> writtenReviewActivity()
+                        MyPageViewModel.Event.OnClickManageAccount -> manageAccountActivity()
+                        MyPageViewModel.Event.OnClickLogout -> onClickLogoutDialog()
                     }
                 }
             }
@@ -130,6 +135,26 @@ class MyPageFragment : Fragment() {
         updateNicknameLauncher.launch(UpdateNicknameActivity.newIntent(requireContext(), nickname))
     }
 
+    private fun writtenReviewActivity() {
+        startActivity(MyReviewsActivity.newIntent(requireContext()))
+    }
+
+    private fun manageAccountActivity() {
+        startActivity(ManageAccountActivity.newIntent(requireContext()))
+    }
+
+    private fun onClickLogoutDialog(){
+        val logoutDialog = LogoutDialog()
+        logoutDialog.show(childFragmentManager, "CustomDialog")
+    }
+
+    override fun onClickLogoutFromLogoutDialog(){
+        requireActivity().apply {
+            finish()
+            startActivity(LoginActivity.newIntent(requireContext()))
+        }
+    }
+    
     private fun setLauncher() {
         updateNicknameLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->

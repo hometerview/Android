@@ -6,19 +6,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
-import android.util.Log
-import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.ftw.hometerview.R
-import com.ftw.hometerview.databinding.ActivityBuildingReviewBinding
 import com.ftw.hometerview.databinding.ActivityUpdateNickNameBinding
-import com.ftw.hometerview.ui.buildinglist.BuildingListActivity
-import com.ftw.hometerview.ui.main.MainActivity
-import com.ftw.hometerview.ui.main.MainViewModel
-import com.ftw.hometerview.ui.searchcompanyresult.SearchCompanyResultActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
@@ -47,6 +40,7 @@ class UpdateNicknameActivity : AppCompatActivity() {
             this,
             R.layout.activity_update_nick_name
         ).apply {
+            lifecycleOwner = this@UpdateNicknameActivity
             viewModel = this@UpdateNicknameActivity.viewModel
         }
 
@@ -56,13 +50,6 @@ class UpdateNicknameActivity : AppCompatActivity() {
     }
 
     fun observe() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.nickname.collect {
-                    binding.lengthTextview.text = getString(R.string.written_nickname_length, it.length)
-                }
-            }
-        }
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.event.collect { event ->
@@ -82,8 +69,6 @@ class UpdateNicknameActivity : AppCompatActivity() {
             Activity.RESULT_OK,
             Intent().putExtra(UPDATE_NICKNAME_ARGUMENT_KEY, nickname)
         )
-
-        Log.d("1232123", "onClickNextFromThirdStepSearchCompany: $nickname")
         finish()
     }
 
