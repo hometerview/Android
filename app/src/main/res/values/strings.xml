@@ -121,6 +121,22 @@
     <string name="version_text">현재 버전</string>
     <string name="request_company_text">회사를 입력해주세요</string>
     <string name="current_version">6.5.1 (65101)</string>
+    <string name="written_review_title">내가 작성한 집터뷰</string>
+    <string name="manage_account_title">계정 관리</string>
+    <string name="withdrawal_title">회원탈퇴</string>
+    <string name="service_use_terms_text">서비스 이용약관</string>
+    <string name="use_user_info_text">개인정보 처리방침</string>
+    <string name="loc_for_service_text">위치기반 서비스 이용약관</string>
+    <string name="open_source_license_text">오픈소스 라이센스</string>
+    <string name="withdrawal_text">회원 탈퇴</string>
+    <string name="withdrawal_button_text">탈퇴하기</string>
+    <string name="withdrawal_check_text">회원 탈뢰 전 아래의 내용을 꼭 확인해 주세요.</string>
+    <string name="withdrawal_first_check_text">회원 탈퇴 시 회원 정보 및 서비스 이용 기록은 모두 삭제되며, 삭제된 데이터는 복구가 불가능합니다. 다만 법령에 의하여 보관해야 하는 경우 또는 회사 내부 정책에 의하여 보관해야 하는 정보는 탈퇴 후에도 일정 기간 보관됩니다. 자세한 사항은 개인정보처리방침에서 확인하실 수 있습니다.</string>
+    <string name="withdrawal_second_check_text">회원 탈퇴 후 재가입하더라도 탈퇴 전의 회원 정보 및 서비스 이용 기록은 복구되지 않습니다.</string>
+    <string name="withdrawal_third_check_text">회원을 탈퇴하더라도 집터뷰 서비스에 기록한 리뷰, 댓글 등의 게시물은 삭제되지 않습니다. 회원을 퇄퇴하면, 개인정보가 삭제되며 게시물을 수정하거나 삭제할 수 없으니게시물 삭제가 필요한 회원은 게시물 삭제 후 탈퇴 신청하시기 바랍니다. </string>
 
+    <string name="logout_cancle_text">취소</string>
+    <string name="logout_ask_text">로그아웃 하시겠습니까?</string>
+    <string name="logout_select_text">확인</string>
 
 </resources>

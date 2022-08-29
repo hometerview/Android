@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_background_white"
+        >
+
+        <View
+            android:id="@+id/divide_vertical_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_size_1"
+            android:background="@color/gray_300"
+            app:layout_constraintBottom_toTopOf="@+id/logout_cancle"
+            />
+
+        <View
+            android:id="@+id/divide_horizontal_view"
+            android:layout_width="@dimen/dp_size_1"
+            android:layout_height="0dp"
+            android:background="@color/gray_300"
+            android:layout_marginHorizontal="@dimen/dp_size_1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/logout_select"
+            app:layout_constraintStart_toEndOf="@+id/logout_cancle"
+            app:layout_constraintTop_toBottomOf="@+id/divide_vertical_view"
+            />
+
+        <TextView
+            android:id="@+id/logout_select"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_background_white"
+            android:fontFamily="@font/pretendard_semibold"
+            android:gravity="center"
+            android:paddingVertical="@dimen/dp_size_16"
+            android:text="@string/logout_select_text"
+            android:textColor="@color/blue_300"
+            android:textSize="@dimen/sp_size_14"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/divide_horizontal_view"
+            />
+
+        <TextView
+            android:id="@+id/logout_cancle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_semibold"
+            android:gravity="center"
+            android:paddingVertical="@dimen/dp_size_16"
+            android:text="@string/logout_cancle_text"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_size_14"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/divide_horizontal_view"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/logout_ask_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_size_48"
+            android:layout_marginBottom="@dimen/dp_size_48"
+            android:fontFamily="@font/pretendard_semibold"
+            android:text="@string/logout_ask_text"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_size_16"
+            app:layout_constraintBottom_toTopOf="@+id/divide_vertical_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
