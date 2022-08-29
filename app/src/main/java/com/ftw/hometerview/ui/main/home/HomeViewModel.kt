@@ -22,6 +22,7 @@ class HomeViewModel(
     sealed class State {
         object None : State()
         class Error(val message: String) : State()
+        object OnClickBanner : State()
     }
 
     private val _user: MutableStateFlow<User> = MutableStateFlow(User.NONE)
@@ -32,6 +33,8 @@ class HomeViewModel(
 
     private val _state: MutableStateFlow<State> = MutableStateFlow(State.None)
     val state: StateFlow<State> = _state.asStateFlow()
+
+    val showBanner: MutableStateFlow<Boolean> = MutableStateFlow(false)
 
     init {
         CoroutineScope(dispatcher.ui()).launch {
@@ -51,5 +54,10 @@ class HomeViewModel(
                     _reviews.value = it
                 }
         }
+    }
+
+    fun onClickBanner() {
+        _state.value = State.OnClickBanner
+        _state.value = State.None
     }
 }
