@@ -30,6 +30,18 @@
         <item name="android:progressDrawable">@drawable/selector_rating_bar_star_28</item>
     </style>
 
+    <style name="MyPageTitle" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textSize">@dimen/sp_size_12</item>
+        <item name="android:fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="MyPageMenu" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textSize">@dimen/sp_size_14</item>
+        <item name="android:fontFamily">@font/pretendard_regular</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="StarRatingBarSize40" parent="@android:style/Widget.RatingBar">
         <item name="android:progressDrawable">@drawable/selector_rating_bar_star_40</item>
     </style>

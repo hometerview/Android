@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.ftw.hometerview.ui.updatenickname.UpdateNicknameViewModel"
+            />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.updatenickname.UpdateNicknameActivity"
+        >
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="@dimen/dp_size_32"
+            android:layout_height="@dimen/dp_size_32"
+            android:layout_marginStart="@dimen/dp_size_16"
+            android:layout_marginTop="@dimen/dp_size_16"
+            android:src="@drawable/ic_baseline_navigate_before_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+
+        <EditText
+            android:id="@+id/nickname_edittext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_size_16"
+            android:background="@drawable/button_non_company"
+            android:elevation="@dimen/dp_size_10"
+            android:fontFamily="@font/pretendard_regular"
+            android:gravity="center_vertical"
+            android:text="@={viewModel.nickname}"
+            android:padding="@dimen/dp_size_14"
+            android:layout_marginHorizontal="@dimen/dp_size_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/back_button"
+            />
+
+        <TextView
+            android:id="@+id/length_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_regular"
+            android:textSize="@dimen/sp_size_12"
+            android:text="@{@string/written_nickname_length(viewModel.nickname.length())}"
+            android:textColor="@color/gray_400"
+            android:layout_marginTop="@dimen/dp_size_8"
+            app:layout_constraintEnd_toEndOf="@+id/nickname_edittext"
+            app:layout_constraintTop_toBottomOf="@+id/nickname_edittext"
+            tools:text="3/20 자"
+            />
+
+        <com.ftw.hometerview.design.MainButton
+            android:id="@+id/update_nickname_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            android:textAlignment="center"
+            android:onClick="@{() -> viewModel.onClickUpdateComplete()}"
+            android:layout_marginBottom="@dimen/dp_size_32"
+            android:layout_marginHorizontal="@dimen/dp_size_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

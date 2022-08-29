@@ -7,6 +7,7 @@
     <dimen name="sp_size_12">12sp</dimen>
     <dimen name="sp_size_13">13sp</dimen>
     <dimen name="sp_size_14">14sp</dimen>
+    <dimen name="sp_size_15">15sp</dimen>
     <dimen name="sp_size_16">16sp</dimen>
     <dimen name="sp_size_18">18sp</dimen>
     <dimen name="sp_size_20">20sp</dimen>

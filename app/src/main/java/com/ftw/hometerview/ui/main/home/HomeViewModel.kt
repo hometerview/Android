@@ -41,7 +41,7 @@ class HomeViewModel(
             flow {
                 emit(getCachedUserUseCase())
             }
-                .catch { emit(User(Company.NONE)) }
+                .catch { emit(User("", Company.NONE)) }
                 .collect {
                     _user.value = it
                 }

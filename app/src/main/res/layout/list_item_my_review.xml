@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable
+            name="item"
+            type="com.ftw.hometerview.ui.myreviews.MyReviewItem"
+            />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_size_14"
+        android:background="@drawable/bg_location_review_item"
+        android:onClick="@{() -> item.onItemClick()}"
+        >
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_size_16"
+            android:fontFamily="@font/pretendard_regular"
+            android:textColor="@color/gray_500"
+            android:textSize="@dimen/sp_size_12"
+            android:text="@{item.myReview.leftAt.toString()}"
+            app:layout_constraintStart_toStartOf="@+id/building_name_text_view"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2021.08.21"
+            />
+
+        <TextView
+            android:id="@+id/building_name_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_size_20"
+            android:ellipsize="end"
+            android:fontFamily="@font/pretendard_bold"
+            android:maxLines="1"
+            android:text="@{item.myReview.buildingName}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_size_18"
+            app:drawableEndCompat="@drawable/ic_baseline_navigate_next_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            tools:text="아크로텔 오피스텔"
+            />
+
+        <RatingBar
+            android:id="@+id/rating_bar"
+            style="@style/StarRatingBarSize12"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_size_12"
+            android:layout_marginStart="@dimen/sp_size_14"
+            android:layout_marginTop="@dimen/dp_size_8"
+            android:isIndicator="true"
+            android:max="5"
+            android:numStars="5"
+            android:progressBackgroundTint="@color/gray_200"
+            android:progressTint="@color/blue_300"
+            android:rating="@{item.myReview.rating}"
+            android:stepSize="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/building_name_text_view"
+            app:tint="@color/selector_rating_bar"
+            />
+
+        <TextView
+            android:id="@+id/building_summary_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_size_8"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="@{item.myReview.summary}"
+            android:textColor="@color/blue_300"
+            android:textSize="@dimen/sp_size_12"
+            app:layout_constraintStart_toStartOf="@+id/rating_bar"
+            app:layout_constraintTop_toBottomOf="@+id/rating_bar"
+            tools:text="내 집이 최고"
+            />
+
+        <View
+            android:id="@+id/divide_line"
+            android:layout_width="@dimen/dp_size_1"
+            android:layout_height="@dimen/dp_size_12"
+            android:layout_marginStart="@dimen/dp_size_4"
+            android:background="@color/gray_200"
+            app:layout_constraintBottom_toBottomOf="@+id/building_summary_text_view"
+            app:layout_constraintStart_toEndOf="@+id/building_summary_text_view"
+            app:layout_constraintTop_toTopOf="@+id/building_summary_text_view"
+            app:layout_constraintVertical_bias="0.615"
+            />
+
+        <TextView
+            android:id="@+id/review_summary_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_size_4"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="@{@string/home_location_review_summary(item.myReview.residentialPeriod, item.myReview.residentialFloor, item.myReview.officeLocation)}"
+            android:textColor="@color/gray_600"
+            android:textSize="@dimen/sp_size_12"
+            app:layout_constraintBottom_toBottomOf="@+id/building_summary_text_view"
+            app:layout_constraintStart_toEndOf="@+id/divide_line"
+            app:layout_constraintTop_toTopOf="@+id/building_summary_text_view"
+            tools:text="3년 전 거주 · 역삼역 통근"
+            />
+
+        <TextView
+            android:id="@+id/advantage_title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_size_14"
+            android:layout_marginTop="@dimen/dp_size_16"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="@string/advantage_title"
+            android:textColor="@color/blue_300"
+            android:textSize="@dimen/sp_size_12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/building_summary_text_view"
+            />
+
+        <TextView
+            android:id="@+id/advantage_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_size_14"
+            android:layout_marginTop="@dimen/dp_size_2"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="@{item.myReview.advantage}"
+            android:textColor="@color/gray_800"
+            android:textSize="@dimen/sp_size_12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/advantage_title_text_view"
+            />
+
+        <TextView
+            android:id="@+id/disadvantage_title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_size_14"
+            android:layout_marginTop="@dimen/dp_size_16"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="@string/disadvantage_title"
+            android:textColor="@color/red_500"
+            android:textSize="@dimen/sp_size_12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/advantage_text_view"
+            />
+
+        <TextView
+            android:id="@+id/disadvantage_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_size_14"
+            android:layout_marginTop="@dimen/dp_size_2"
+            android:fontFamily="@font/pretendard_medium"
+            android:text="@{item.myReview.disadvantage}"
+            android:textColor="@color/gray_800"
+            android:textSize="@dimen/sp_size_12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/disadvantage_title_text_view"
+            />
+
+        <com.ftw.hometerview.design.Button
+            android:id="@+id/good_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_size_14"
+            android:layout_marginTop="@dimen/dp_size_24"
+            android:layout_marginBottom="@dimen/dp_size_16"
+            android:drawableStart="@drawable/icon_heart"
+            android:text="@string/it_helps"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/disadvantage_text_view"
+            app:number="9"
+            />
+
+        <com.ftw.hometerview.design.Button
+            android:id="@+id/favorite_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_size_14"
+            android:layout_marginTop="@dimen/dp_size_24"
+            android:layout_marginBottom="@dimen/dp_size_16"
+            android:drawableStart="@drawable/icon_heart"
+            android:text="@string/heart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/good_button"
+            app:layout_constraintTop_toBottomOf="@id/disadvantage_text_view"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
