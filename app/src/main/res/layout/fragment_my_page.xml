@@ -306,6 +306,7 @@
                 android:id="@+id/logout_box"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.onClickLogout()}"
                 android:paddingVertical="@dimen/dp_size_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

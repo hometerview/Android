@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.ftw.hometerview.R
 import com.ftw.hometerview.databinding.ActivityManageAccountBinding
+import com.ftw.hometerview.ui.withdrawal.WithdrawalActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -61,6 +62,7 @@ class ManageAccountActivity : AppCompatActivity() {
     private fun onClickUseUserInfo() {    }
     private fun onClickLocationForService() {    }
     private fun onClickOpenSourceLibrary() {    }
-    private fun onClickWithdrawal() {    }
-
+    private fun onClickWithdrawal() {
+        startActivity(WithdrawalActivity.newIntent(this))
+    }
 }

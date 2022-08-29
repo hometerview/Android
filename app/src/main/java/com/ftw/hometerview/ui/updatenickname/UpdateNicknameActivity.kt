@@ -40,6 +40,7 @@ class UpdateNicknameActivity : AppCompatActivity() {
             this,
             R.layout.activity_update_nick_name
         ).apply {
+            lifecycleOwner = this@UpdateNicknameActivity
             viewModel = this@UpdateNicknameActivity.viewModel
         }
 
@@ -49,13 +50,6 @@ class UpdateNicknameActivity : AppCompatActivity() {
     }
 
     fun observe() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.nickname.collect {
-                    binding.lengthTextview.text = getString(R.string.written_nickname_length, it.length)
-                }
-            }
-        }
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.event.collect { event ->
