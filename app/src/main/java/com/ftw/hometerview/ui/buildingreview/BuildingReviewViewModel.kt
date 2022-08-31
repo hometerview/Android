@@ -2,7 +2,8 @@ package com.ftw.hometerview.ui.buildingreview
 
 import com.ftw.domain.entity.Building
 import com.ftw.domain.entity.Review
-import com.ftw.domain.usecase.buildingreview.GetBuildingReviewsUseCase
+import com.ftw.domain.usecase.buildingreviews.GetBuildingUseCase
+import com.ftw.domain.usecase.buildingreviews.GetReviewsUseCase
 import com.ftw.hometerview.BR
 import com.ftw.hometerview.R
 import com.ftw.hometerview.adapter.RecyclerItem
@@ -21,7 +22,8 @@ import kotlinx.coroutines.withContext
 class BuildingReviewViewModel(
     private val buildingId: Long,
     private val dispatcher: Dispatcher,
-    private val getLocationReviewsUseCase: GetBuildingReviewsUseCase
+    private val getLocationReviewsUseCase: GetReviewsUseCase,
+    private val getBuildingUseCase: GetBuildingUseCase
 ) {
 
     sealed class State {
@@ -61,12 +63,15 @@ class BuildingReviewViewModel(
 
     init {
         CoroutineScope(dispatcher.ui()).launch {
-            val buildingReview = withContext(dispatcher.io()) {
+            val review = withContext(dispatcher.io()) {
                 getLocationReviewsUseCase(buildingId)
             }
+            val building = withContext(dispatcher.io()) {
+                getBuildingUseCase(buildingId)
+            }
 
-            _building.value = buildingReview.building
-            _reviews.value = buildingReview.reviews
+            _building.value = building
+            _reviews.value = review
         }
     }
 }

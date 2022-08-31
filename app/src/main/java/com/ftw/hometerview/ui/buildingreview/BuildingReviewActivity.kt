@@ -44,6 +44,7 @@ class BuildingReviewActivity : AppCompatActivity() {
             this,
             R.layout.activity_building_review
         ).apply {
+            lifecycleOwner = this@BuildingReviewActivity
             viewModel = this@BuildingReviewActivity.viewModel
             setSupportActionBar(toolbar)
             toolbar.visibility = GONE
@@ -59,7 +60,7 @@ class BuildingReviewActivity : AppCompatActivity() {
         binding.appBar.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
             //  Vertical offset == 0 indicates appBar is fully expanded.
             if (abs(verticalOffset) >= appBarLayout.height - actionBarHeight) {
-                if(binding.toolbar.visibility == GONE && !animationListenerIng){
+                if (binding.toolbar.visibility == GONE && !animationListenerIng) {
                     animationListenerIng = true
                     binding.toolbar.apply {
                         visibility = INVISIBLE
@@ -76,7 +77,7 @@ class BuildingReviewActivity : AppCompatActivity() {
                     }
                 }
             } else {
-                if(binding.toolbar.visibility == VISIBLE == !animationListenerIng){
+                if (binding.toolbar.visibility == VISIBLE == !animationListenerIng) {
                     animationListenerIng = true
                     binding.toolbar.apply {
                         val animation = AnimationUtils.loadAnimation(context, R.anim.anim_fade_out)

@@ -1,6 +1,7 @@
 package com.ftw.hometerview.di.ui
 
-import com.ftw.domain.usecase.buildingreview.GetBuildingReviewsUseCase
+import com.ftw.domain.usecase.buildingreviews.GetBuildingUseCase
+import com.ftw.domain.usecase.buildingreviews.GetReviewsUseCase
 import com.ftw.domain.usecase.login.LoginUseCase
 import com.ftw.domain.usecase.review.GetLocationReviewsUseCase
 import com.ftw.domain.usecase.searchaddressbuilding.GetSearchAddressBuildingUseCase
@@ -21,7 +22,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.scopes.ActivityScoped
-import dagger.hilt.android.scopes.FragmentScoped
 import javax.inject.Named
 
 @Module
@@ -79,12 +79,14 @@ class ActivityViewModelModule {
     @ActivityScoped
     fun provideBuildingReviewViewModel(
         dispatcher: Dispatcher,
-        getBuildingReviewsUseCase: GetBuildingReviewsUseCase
+        getReviewsUseCase: GetReviewsUseCase,
+        getBuildingUseCase: GetBuildingUseCase
     ): BuildingReviewViewModel {
         return BuildingReviewViewModel(
             311,
             dispatcher,
-            getBuildingReviewsUseCase
+            getReviewsUseCase,
+            getBuildingUseCase
         )
     }
 
