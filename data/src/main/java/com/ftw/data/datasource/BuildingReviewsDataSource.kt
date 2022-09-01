@@ -1,7 +1,7 @@
-package com.ftw.domain.repository.buildingreviews
+package com.ftw.data.datasource
 
 import com.ftw.domain.entity.TestReview
 
-interface ReviewsRepository {
+interface BuildingReviewsDataSource {
     suspend fun get(buildingId: String): List<TestReview>
 }

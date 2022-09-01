@@ -1,7 +1,7 @@
 package com.ftw.hometerview.di.datasource
 
 import com.ftw.data.datasource.LoginDataSource
-import com.ftw.data.network.datasource.LoginRemoteDataSource
+import com.ftw.data.remote.datasource.LoginRemoteDataSource
 import com.ftw.data.remote.api.LoginAPI
 import dagger.Module
 import dagger.Provides

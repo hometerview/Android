@@ -1,15 +1,12 @@
-package com.ftw.data.remote.response.reviews
+package com.ftw.data.remote.response.review
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
-@Parcelize
-data class Price(
+data class PriceResponse(
     @SerializedName("deposit")
     val deposit: String,
     @SerializedName("maintainFee")
     val maintainFee: String,
     @SerializedName("monthly")
     val monthly: String
-) : Parcelable
+)

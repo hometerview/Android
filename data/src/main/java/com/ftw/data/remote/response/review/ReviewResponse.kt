@@ -1,11 +1,8 @@
-package com.ftw.data.remote.response.reviews
+package com.ftw.data.remote.response.review
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
-@Parcelize
-data class ReviewContents(
+data class ReviewResponse(
     @SerializedName("advantage")
     val advantage: String,
     @SerializedName("bookmarkCount")
@@ -19,7 +16,7 @@ data class ReviewContents(
     @SerializedName("disadvantage")
     val disadvantage: String,
     @SerializedName("id")
-    val id: Id,
+    val id: IdResponse,
     @SerializedName("likeCount")
     val likeCount: Int,
     @SerializedName("memberId")
@@ -27,7 +24,7 @@ data class ReviewContents(
     @SerializedName("period")
     val period: String,
     @SerializedName("price")
-    val price: Price,
+    val priceResponse: PriceResponse,
     @SerializedName("rating")
     val rating: Int
-) : Parcelable
+)

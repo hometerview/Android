@@ -1,8 +1,8 @@
 package com.ftw.hometerview.di.datasource
 
-import com.ftw.data.datasource.ReviewsDataSource
-import com.ftw.data.network.datasource.ReviewsRemoteDataSource
+import com.ftw.data.datasource.BuildingReviewsDataSource
 import com.ftw.data.remote.api.BuildingReviewsAPI
+import com.ftw.data.remote.datasource.BuildingReviewsRemoteDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +15,7 @@ class ReviewsDataSourceModule {
 
     @Provides
     @Singleton
-    fun provideTokenDataSource(buildingReviewsAPI: BuildingReviewsAPI): ReviewsDataSource {
-        return ReviewsRemoteDataSource(buildingReviewsAPI)
+    fun provideTokenDataSource(buildingReviewsAPI: BuildingReviewsAPI): BuildingReviewsDataSource {
+        return BuildingReviewsRemoteDataSource(buildingReviewsAPI)
     }
 }
