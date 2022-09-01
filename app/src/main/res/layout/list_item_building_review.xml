@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_size_4"
             android:fontFamily="@font/pretendard_regular"
-            android:text="@{@string/home_location_review_summary(item.review.summary, item.review.leftAt, item.review.officeLocation)}"
+            android:text="@{@string/home_location_review_summary(item.review.advantage, item.review.leftAt, item.review.companyId)}"
             android:textColor="@color/gray_600"
             android:textSize="@dimen/sp_size_12"
             app:layout_constraintBottom_toBottomOf="@id/rating_bar"

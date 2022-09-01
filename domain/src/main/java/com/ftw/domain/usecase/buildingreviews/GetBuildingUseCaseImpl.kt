@@ -6,7 +6,31 @@ import com.ftw.domain.entity.BuildingType
 import com.ftw.domain.entity.Price
 
 class GetBuildingUseCaseImpl : GetBuildingUseCase {
-    override suspend fun invoke(buildingId: Long): Building {
+//    override suspend fun invoke(buildingId: Long): Building {
+//        return Building(
+//            id = 1,
+//            name = "아크로텔 오피스텔",
+//            type = BuildingType.OFFICETEL,
+//            address = Address(
+//                longitude = 123,
+//                latitude = 123,
+//                addressWithLoadName = "인천 남동구 구월남로 125",
+//                addressWithHouseNumber = "구월동 1133-4"
+//            ),
+//            salePrice = Price(
+//                min = "4억 5,500",
+//                max = "5억 8,000"
+//            ),
+//            charterPrice = Price(
+//                min = "8억 1,500",
+//                max = "10억 2,000"
+//            ),
+//            rating = 4,
+//            favorite = false
+//        )
+//    }
+
+    override suspend fun invoke(buildingId: String): Building {
         return Building(
             id = 1,
             name = "아크로텔 오피스텔",
@@ -18,12 +42,14 @@ class GetBuildingUseCaseImpl : GetBuildingUseCase {
                 addressWithHouseNumber = "구월동 1133-4"
             ),
             salePrice = Price(
-                min = "4억 5,500",
-                max = "5억 8,000"
+                deposit = "4억 5,500",
+                maintainFee = "5억 8,000",
+                monthly = "5억 8,000"
             ),
             charterPrice = Price(
-                min = "8억 1,500",
-                max = "10억 2,000"
+                deposit = "8억 1,500",
+                maintainFee = "10억 2,000",
+                monthly = "5억 8,000"
             ),
             rating = 4,
             favorite = false

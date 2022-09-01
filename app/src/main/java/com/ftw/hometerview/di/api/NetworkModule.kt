@@ -2,23 +2,25 @@ package com.ftw.hometerview.di.api
 
 import com.facebook.flipper.plugins.network.FlipperOkhttpInterceptor
 import com.facebook.flipper.plugins.network.NetworkFlipperPlugin
+import com.ftw.hometerview.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
 
     companion object {
-        private const val BASE_URL = "https://api.github.com"   // 임의로 github api 로 추가함
+        private const val DEBUG_BASE_URL = "http://13.125.75.159:8080/"
+        private const val RELEASE_BASE_URL = "http://13.125.75.159:8080/"
     }
 
     @Provides
@@ -28,7 +30,7 @@ class NetworkModule {
             it.proceed(
                 it.request()
                     .newBuilder()
-                    .addHeader("TOKEN", "token")
+                    .addHeader("Authorization", "token")
                     .build()
             )
         }
@@ -71,8 +73,9 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideRetrofit(client: OkHttpClient): Retrofit {
+        val baseUrl = if (BuildConfig.DEBUG) DEBUG_BASE_URL else RELEASE_BASE_URL
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(baseUrl)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

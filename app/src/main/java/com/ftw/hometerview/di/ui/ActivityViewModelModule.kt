@@ -83,7 +83,7 @@ class ActivityViewModelModule {
         getBuildingUseCase: GetBuildingUseCase
     ): BuildingReviewViewModel {
         return BuildingReviewViewModel(
-            311,
+            "1",
             dispatcher,
             getReviewsUseCase,
             getBuildingUseCase

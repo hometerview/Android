@@ -1,5 +1,6 @@
 package com.ftw.hometerview.di.usecase.buildingreviews
 
+import com.ftw.domain.repository.buildingreviews.ReviewsRepository
 import com.ftw.domain.usecase.buildingreviews.GetReviewsUseCase
 import com.ftw.domain.usecase.buildingreviews.GetReviewsUseCaseImpl
 import dagger.Module
@@ -14,7 +15,7 @@ class ReviewsUseCaseModule {
 
     @Provides
     @Singleton
-    fun provideGetReviewsUseCase(): GetReviewsUseCase {
-        return GetReviewsUseCaseImpl()
+    fun provideGetReviewsUseCase(reviewsRepository: ReviewsRepository): GetReviewsUseCase {
+        return GetReviewsUseCaseImpl(reviewsRepository)
     }
 }

@@ -2,6 +2,7 @@ package com.ftw.hometerview.ui.buildingreview
 
 import com.ftw.domain.entity.Building
 import com.ftw.domain.entity.Review
+import com.ftw.domain.entity.TestReview
 import com.ftw.domain.usecase.buildingreviews.GetBuildingUseCase
 import com.ftw.domain.usecase.buildingreviews.GetReviewsUseCase
 import com.ftw.hometerview.BR
@@ -20,7 +21,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class BuildingReviewViewModel(
-    private val buildingId: Long,
+    private val buildingId: String,
     private val dispatcher: Dispatcher,
     private val getLocationReviewsUseCase: GetReviewsUseCase,
     private val getBuildingUseCase: GetBuildingUseCase
@@ -28,14 +29,14 @@ class BuildingReviewViewModel(
 
     sealed class State {
         object Loading : State()
-        class OnClickReview(buildingId: Long) : State()
+        class OnClickReview(buildingId: String) : State()
     }
 
     private val _building: MutableStateFlow<Building> = MutableStateFlow(Building.NONE)
     val building: StateFlow<Building> = _building.asStateFlow()
 
-    private val _reviews: MutableStateFlow<List<Review>> = MutableStateFlow(emptyList())
-    val reviews: StateFlow<List<Review>> = _reviews.asStateFlow()
+    private val _reviews: MutableStateFlow<List<TestReview>> = MutableStateFlow(emptyList())
+    val reviews: StateFlow<List<TestReview>> = _reviews.asStateFlow()
 
     private val _state: MutableStateFlow<State> = MutableStateFlow(State.Loading)
     val state: StateFlow<State> = _state.asStateFlow()
@@ -71,12 +72,14 @@ class BuildingReviewViewModel(
             }
 
             _building.value = building
-            _reviews.value = review
+            if (review != null) {
+                _reviews.value = review
+            }
         }
     }
 }
 
 data class BuildingReviewItem(
-    val onClickItem: (buildingId: Long) -> Unit,
-    val review: Review
+    val onClickItem: (buildingId: String) -> Unit,
+    val review: TestReview
 )
