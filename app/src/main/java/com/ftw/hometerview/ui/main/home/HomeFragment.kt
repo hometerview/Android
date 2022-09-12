@@ -47,13 +47,7 @@ class HomeFragment : Fragment() {
     private lateinit var adapter: HomeViewPagerAdapter
     private var toolbarLayoutState: ToolbarLayoutState = ToolbarLayoutState.EXPANDING
 
-    private val createReviewLauncher: ActivityResultLauncher<Intent> =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode != Activity.RESULT_OK) return@registerForActivityResult
-            val review = result.data?.getParcelableExtra<ParcelableReview>(CreateReviewActivity.CREATE_REVIEW_RESULT_KEY)
-            if (review == null) return@registerForActivityResult
-            viewModel.showBanner.value = false
-        }
+    private lateinit var createReviewLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -72,6 +66,15 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        createReviewLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode != Activity.RESULT_OK) return@registerForActivityResult
+            val review = result.data?.getParcelableExtra<ParcelableReview>(CreateReviewActivity.CREATE_REVIEW_RESULT_KEY)
+            if (review == null) return@registerForActivityResult
+            viewModel.showBanner.value = false
+        }
+
         setOnOffsetChangedListener()
         startInducementBanner()
         observeState()
@@ -178,7 +181,7 @@ class HomeFragment : Fragment() {
             addUpdateListener { valueAnimator ->
                 val value = valueAnimator.animatedValue as? Int ?: 0
                 binding.inducementEmptyLayout.updateLayoutParams<ViewGroup.LayoutParams> {
-                    height = value
+                    height = value + resources.getDimensionPixelSize(R.dimen.dp_size_24)
                 }
             }
 
@@ -191,7 +194,7 @@ class HomeFragment : Fragment() {
                 )
                 binding.inducementEmptyLayout.isVisible = false
             }
-            duration = 2000
+            duration = 1000
         }.start()
     }
 
