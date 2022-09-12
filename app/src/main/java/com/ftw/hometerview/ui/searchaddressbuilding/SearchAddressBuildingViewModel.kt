@@ -1,6 +1,5 @@
 package com.ftw.hometerview.ui.searchaddressbuilding
 
-import android.util.Log
 import com.ftw.domain.usecase.searchaddressbuilding.GetSearchAddressBuildingUseCase
 import com.ftw.hometerview.BR
 import com.ftw.hometerview.R

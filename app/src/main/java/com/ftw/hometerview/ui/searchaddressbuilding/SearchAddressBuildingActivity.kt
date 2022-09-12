@@ -2,21 +2,16 @@ package com.ftw.hometerview.ui.searchaddressbuilding
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Parcelable
-import android.util.Log
-import android.view.inputmethod.EditorInfo
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.ftw.hometerview.adapter.DataBindingRecyclerAdapter
 import com.ftw.hometerview.adapter.DividerItemDecoration
 import com.ftw.hometerview.databinding.ActivitySearchAddressBuildingBinding
-import com.ftw.hometerview.ui.searchcompanyresult.SearchCompanyResultActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import kotlinx.parcelize.Parcelize
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -49,6 +44,7 @@ class SearchAddressBuildingActivity : AppCompatActivity() {
 
     private fun initList() {
         binding.searchResultRecyclerView.adapter = adapter
+        binding.searchResultRecyclerView.addItemDecoration(DividerItemDecoration(this))
     }
 
     private fun observe() {
@@ -59,7 +55,5 @@ class SearchAddressBuildingActivity : AppCompatActivity() {
                 }
             }
         }
-        
     }
-
 }
