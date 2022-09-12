@@ -14,28 +14,30 @@
             android:id="@+id/station_textview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_size_32"
             android:fontFamily="@font/pretendard_semibold"
             android:gravity="center"
             android:text="@string/ex_station_text"
             android:textColor="@color/blue_900"
             android:textSize="@dimen/sp_size_22"
             app:layout_constraintBottom_toTopOf="@+id/many_live_textview"
-            app:layout_constraintStart_toStartOf="@+id/load_view"
+            app:layout_constraintEnd_toStartOf="@+id/worker_is_textview"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/many_live_textview"
             />
 
         <TextView
             android:id="@+id/worker_is_textview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/dp_size_16"
             android:fontFamily="@font/pretendard_medium"
             android:gravity="center"
             android:text="@string/worker_is_text"
             android:textColor="@color/black"
             android:textSize="@dimen/sp_size_22"
             app:layout_constraintBottom_toTopOf="@+id/many_live_textview"
-            app:layout_constraintEnd_toEndOf="@+id/load_view"
+            app:layout_constraintEnd_toEndOf="@+id/many_live_textview"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/station_textview"
             />
 
         <TextView
@@ -56,12 +58,11 @@
 
         <ImageView
             android:id="@+id/load_view"
-            android:layout_width="@dimen/dp_size_240"
-            android:layout_height="@dimen/dp_size_240"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_size_500"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
