@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -47,13 +47,11 @@ class LoginActivity : AppCompatActivity() {
         binding.kakaoLoginButton.setOnClickListener {
             kakaoLogin()
         }
-
     }
 
     private fun guideSetting() {
-
-        // 가이드에 사용 될 이미지, 문구 
-        val guideImgaeList = listOf(R.drawable.icon1, R.drawable.icon2, R.drawable.icon3)
+        // 가이드에 사용 될 이미지, 문구
+        val guideImgaeList = listOf(R.drawable.onboarding1, R.drawable.onboarding2)
         val guideTextList = listOf(getString(R.string.guide_text1), getString(R.string.guide_text2), getString(R.string.guide_text3))
 
         binding.guideViewpager.setPageTransformer { page, position ->
@@ -90,12 +88,10 @@ class LoginActivity : AppCompatActivity() {
                 } else if (token != null) {
                     Log.i(TAG, "카카오톡으로 로그인 성공 token = ${token.accessToken}")
                     startActivity(SearchCompanyActivity.newIntent(this))
-
                 }
             }
         } else {
             UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
         }
     }
-
 }
