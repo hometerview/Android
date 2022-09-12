@@ -187,10 +187,9 @@
                         android:id="@+id/inducement_empty_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toTopOf="@id/inducement_layout"
-                        app:layout_constraintStart_toStartOf="@id/inducement_layout"
                         app:layout_constraintEnd_toEndOf="@id/inducement_layout"
-                        app:layout_constraintBottom_toBottomOf="@id/inducement_layout"
+                        app:layout_constraintStart_toStartOf="@id/inducement_layout"
+                        app:layout_constraintTop_toTopOf="@+id/inducement_layout"
                         />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -206,6 +205,15 @@
                 app:tabMode="fixed"
                 app:tabGravity="fill"
                 app:tabIndicator="@null"
+                />
+
+            <View
+                android:id="@+id/tab_empty_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/inducement_layout"
+                app:layout_constraintStart_toStartOf="@id/inducement_layout"
+                app:layout_constraintEnd_toEndOf="@id/inducement_layout"
                 />
         </com.google.android.material.appbar.AppBarLayout>
 
