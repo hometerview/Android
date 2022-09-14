@@ -2,7 +2,9 @@ package com.ftw.hometerview.ui.buildingreview
 
 import com.ftw.domain.entity.Building
 import com.ftw.domain.entity.Review
-import com.ftw.domain.usecase.buildingreview.GetBuildingReviewsUseCase
+import com.ftw.domain.entity.TestReview
+import com.ftw.domain.usecase.buildingreviews.GetBuildingUseCase
+import com.ftw.domain.usecase.buildingreviews.GetReviewsUseCase
 import com.ftw.hometerview.BR
 import com.ftw.hometerview.R
 import com.ftw.hometerview.adapter.RecyclerItem
@@ -19,21 +21,22 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class BuildingReviewViewModel(
-    private val buildingId: Long,
+    private val buildingId: String,
     private val dispatcher: Dispatcher,
-    private val getLocationReviewsUseCase: GetBuildingReviewsUseCase
+    private val getLocationReviewsUseCase: GetReviewsUseCase,
+    private val getBuildingUseCase: GetBuildingUseCase
 ) {
 
     sealed class State {
         object Loading : State()
-        class OnClickReview(buildingId: Long) : State()
+        class OnClickReview(buildingId: String) : State()
     }
 
     private val _building: MutableStateFlow<Building> = MutableStateFlow(Building.NONE)
     val building: StateFlow<Building> = _building.asStateFlow()
 
-    private val _reviews: MutableStateFlow<List<Review>> = MutableStateFlow(emptyList())
-    val reviews: StateFlow<List<Review>> = _reviews.asStateFlow()
+    private val _reviews: MutableStateFlow<List<TestReview>> = MutableStateFlow(emptyList())
+    val reviews: StateFlow<List<TestReview>> = _reviews.asStateFlow()
 
     private val _state: MutableStateFlow<State> = MutableStateFlow(State.Loading)
     val state: StateFlow<State> = _state.asStateFlow()
@@ -61,17 +64,22 @@ class BuildingReviewViewModel(
 
     init {
         CoroutineScope(dispatcher.ui()).launch {
-            val buildingReview = withContext(dispatcher.io()) {
+            val review = withContext(dispatcher.io()) {
                 getLocationReviewsUseCase(buildingId)
             }
+            val building = withContext(dispatcher.io()) {
+                getBuildingUseCase(buildingId)
+            }
 
-            _building.value = buildingReview.building
-            _reviews.value = buildingReview.reviews
+            _building.value = building
+            if (review != null) {
+                _reviews.value = review
+            }
         }
     }
 }
 
 data class BuildingReviewItem(
-    val onClickItem: (buildingId: Long) -> Unit,
-    val review: Review
+    val onClickItem: (buildingId: String) -> Unit,
+    val review: TestReview
 )

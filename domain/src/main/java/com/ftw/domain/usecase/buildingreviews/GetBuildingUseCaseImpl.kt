@@ -1,46 +1,62 @@
-package com.ftw.domain.usecase.buildingreview
+package com.ftw.domain.usecase.buildingreviews
 
 import com.ftw.domain.entity.Address
 import com.ftw.domain.entity.Building
-import com.ftw.domain.entity.BuildingReview
 import com.ftw.domain.entity.BuildingType
 import com.ftw.domain.entity.Price
-import com.ftw.domain.entity.Review
-import java.util.Calendar
-import java.util.Date
 
-class GetBuildingReviewsUseCaseImpl : GetBuildingReviewsUseCase {
-    override suspend fun invoke(buildingId: Long): BuildingReview {
-        return BuildingReview(
-            building = Building(
-                id = 1,
-                name = "아크로텔 오피스텔",
-                type = BuildingType.OFFICETEL,
-                address = Address(
-                    longitude = 123,
-                    latitude = 123,
-                    addressWithLoadName = "인천 남동구 구월남로 125",
-                    addressWithHouseNumber = "구월동 1133-4"
-                ),
-                salePrice = Price(
-                    min = "4억 5,500",
-                    max = "5억 8,000"
-                ),
-                charterPrice = Price(
-                    min = "8억 1,500",
-                    max = "10억 2,000"
-                ),
-                rating = 4,
-                favorite = false
+class GetBuildingUseCaseImpl : GetBuildingUseCase {
+//    override suspend fun invoke(buildingId: Long): Building {
+//        return Building(
+//            id = 1,
+//            name = "아크로텔 오피스텔",
+//            type = BuildingType.OFFICETEL,
+//            address = Address(
+//                longitude = 123,
+//                latitude = 123,
+//                addressWithLoadName = "인천 남동구 구월남로 125",
+//                addressWithHouseNumber = "구월동 1133-4"
+//            ),
+//            salePrice = Price(
+//                min = "4억 5,500",
+//                max = "5억 8,000"
+//            ),
+//            charterPrice = Price(
+//                min = "8억 1,500",
+//                max = "10억 2,000"
+//            ),
+//            rating = 4,
+//            favorite = false
+//        )
+//    }
+
+    override suspend fun invoke(buildingId: String): Building {
+        return Building(
+            id = 1,
+            name = "아크로텔 오피스텔",
+            type = BuildingType.OFFICETEL,
+            address = Address(
+                longitude = 123,
+                latitude = 123,
+                addressWithLoadName = "인천 남동구 구월남로 125",
+                addressWithHouseNumber = "구월동 1133-4"
             ),
-            reviews = listOf(
-                getTempReview1(),
-                getTempReview2(),
-                getTempReview3()
-            )
-
+            salePrice = Price(
+                deposit = "4억 5,500",
+                maintainFee = "5억 8,000",
+                monthly = "5억 8,000"
+            ),
+            charterPrice = Price(
+                deposit = "8억 1,500",
+                maintainFee = "10억 2,000",
+                monthly = "5억 8,000"
+            ),
+            rating = 4,
+            favorite = false
         )
     }
+
+    /*
 
     private fun getTempReview1(): Review {
         return Review(
@@ -107,4 +123,5 @@ class GetBuildingReviewsUseCaseImpl : GetBuildingReviewsUseCase {
             }
         )
     }
+     */
 }

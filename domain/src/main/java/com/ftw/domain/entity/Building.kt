@@ -16,8 +16,8 @@ data class Building(
             name = "",
             type = BuildingType.OFFICETEL,
             address = Address(0, 0, "", ""),
-            salePrice = Price("", ""),
-            charterPrice = Price("", ""),
+            salePrice = Price("", "", ""),
+            charterPrice = Price("", "", ""),
             rating = 0,
             favorite = false
         )

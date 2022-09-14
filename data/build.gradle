@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -40,8 +41,10 @@ dependencies {
 
     implementation "androidx.datastore:datastore-preferences:$datastore_preferences_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.google.code.gson:gson:$gson_version"
 
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "androidx.test.ext:junit:$android_junit_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$android_espresso_core_version"
+
 }
