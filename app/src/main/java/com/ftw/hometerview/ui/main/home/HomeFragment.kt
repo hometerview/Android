@@ -26,15 +26,16 @@ import com.ftw.hometerview.ui.model.ParcelableReview
 import com.ftw.hometerview.ui.review.CreateReviewActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.math.abs
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     companion object {
         private const val TOOLBAR_LAYOUT_EXPANDING_OFFSET = 100
+        private const val BANNER_DURATION_VALUE = 1000L
         fun newInstance() = HomeFragment()
     }
 
@@ -66,14 +67,13 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         createReviewLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode != Activity.RESULT_OK) return@registerForActivityResult
-            val review = result.data?.getParcelableExtra<ParcelableReview>(CreateReviewActivity.CREATE_REVIEW_RESULT_KEY)
-            if (review == null) return@registerForActivityResult
-            viewModel.showBanner.value = false
-        }
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode != Activity.RESULT_OK) return@registerForActivityResult
+                val review = result.data?.getParcelableExtra<ParcelableReview>(CreateReviewActivity.CREATE_REVIEW_RESULT_KEY)
+                if (review == null) return@registerForActivityResult
+                viewModel.showBanner.value = false
+            }
 
         setOnOffsetChangedListener()
         startInducementBanner()
@@ -189,12 +189,12 @@ class HomeFragment : Fragment() {
                 binding.inducementLayout.isVisible = true
                 binding.inducementLayout.startAnimation(
                     AlphaAnimation(0f, 1f).apply {
-                        duration = 1000
+                        duration = BANNER_DURATION_VALUE
                     }
                 )
                 binding.inducementEmptyLayout.isVisible = false
             }
-            duration = 1000
+            duration = BANNER_DURATION_VALUE
         }.start()
     }
 
