@@ -11,7 +11,7 @@ import com.ftw.hometerview.R
 class AnimationAdapter(var guideImgaeList: List<Int>, var guideTextList: List<String>) : RecyclerView.Adapter<AnimationAdapter.AnimationViewHolder>() {
 
     inner class AnimationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var imageViewIcon = itemView.findViewById<ImageView>(R.id.imageView_icon)
+        var imageViewIcon = itemView.findViewById<ImageView>(R.id.onboarding_icon_imageview)
         var guideText = itemView.findViewById<TextView>(R.id.guide_text)
 
         fun onBind(res: Int, text: String) {

@@ -25,7 +25,7 @@ class LoadingActivity : AppCompatActivity() {
         binding = ActivityLoadingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Glide.with(this).load(R.raw.loading).into(binding.loadView)
+        Glide.with(this).load(R.raw.new_loading).into(binding.loadView)
 
         binding.loadView.setOnClickListener {
             startActivity(MainActivity.newIntent(this))

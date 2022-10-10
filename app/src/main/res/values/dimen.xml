@@ -58,6 +58,7 @@
     <dimen name="dp_size_120">120dp</dimen>
     <dimen name="dp_size_240">240dp</dimen>
     <dimen name="dp_size_400">400dp</dimen>
+    <dimen name="dp_size_500">500dp</dimen>
 
     <!-- margin size -->
     <dimen name="margin_size_2">2dp</dimen>

@@ -20,46 +20,47 @@
         android:paddingBottom="@dimen/dp_size_10"
         >
 
-        <TextView
-            android:id="@+id/company_textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/result_type_textview"
+            android:layout_width="@dimen/dp_size_24"
+            android:layout_height="@dimen/dp_size_24"
+            android:src="@{searchResult.type.equals(@string/building_text) ? @drawable/icon_building : searchResult.type.equals(@string/location_text) ? @drawable/icon_location : @drawable/icon_station}"
             android:layout_marginStart="@dimen/dp_size_16"
-            android:layout_marginTop="@dimen/dp_size_16"
-            android:layout_marginEnd="@dimen/dp_size_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/result_name_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_size_4"
             android:fontFamily="@font/pretendard_semibold"
             android:text="@{searchResult.result}"
             android:textColor="@color/black"
             android:textSize="@dimen/sp_size_16"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/dp_size_16"
+            app:layout_constraintStart_toEndOf="@+id/result_type_textview"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="삼성전자"
             />
 
         <TextView
-            android:id="@+id/address_textview"
+            android:id="@+id/result_address_textview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{searchResult.address}"
-            android:visibility="@{searchResult.type.toString().equals(@string/building_text)  ? View.VISIBLE : View.GONE}"
+            android:layout_marginBottom="@dimen/dp_size_4"
             android:fontFamily="@font/pretendard_medium"
+            android:text="@{searchResult.address}"
             android:textColor="@color/blue_300"
             android:textSize="@dimen/sp_size_13"
-            app:layout_constraintEnd_toEndOf="@id/company_textview"
-            app:layout_constraintStart_toStartOf="@id/company_textview"
-            app:layout_constraintTop_toBottomOf="@id/company_textview"
-            tools:text="서울시 마포구 흥정로 32, 34"
-            />
-
-        <TextView
-            android:id="@+id/type_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="@{searchResult.type}"
+            android:layout_marginStart="@dimen/dp_size_16"
+            android:visibility="@{searchResult.type.toString().equals(@string/building_text)  ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/result_type_textview"
+            app:layout_constraintTop_toBottomOf="@id/result_name_textview"
+            tools:text="서울시 마포구 흥정로 32, 34"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
