@@ -2,6 +2,7 @@ package com.ftw.hometerview.di.api
 
 import com.ftw.data.remote.api.BuildingReviewsAPI
 import com.ftw.data.remote.api.LoginAPI
+import com.ftw.data.remote.api.review.ReviewAPI
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,6 +18,12 @@ class APIModule {
     @Singleton
     fun provideLoginApi(retrofit: Retrofit): LoginAPI {
         return retrofit.create(LoginAPI::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideReviewApi(retrofit: Retrofit): ReviewAPI {
+        return retrofit.create(ReviewAPI::class.java)
     }
 
     @Provides
