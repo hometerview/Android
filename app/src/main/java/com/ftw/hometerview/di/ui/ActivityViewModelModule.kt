@@ -8,6 +8,7 @@ import com.ftw.domain.usecase.searchaddressbuilding.GetSearchAddressBuildingUseC
 import com.ftw.domain.usecase.myreviews.GetMyReviewsUseCase
 import com.ftw.hometerview.dispatcher.Dispatcher
 import com.ftw.hometerview.ui.buildingreview.BuildingReviewViewModel
+import com.ftw.hometerview.ui.login.LoginViewModel
 import com.ftw.hometerview.ui.main.MainViewModel
 import com.ftw.hometerview.ui.main.home.review.LocationReviewListViewModel
 import com.ftw.hometerview.ui.manageaccount.ManageAccountViewModel
@@ -34,6 +35,15 @@ class ActivityViewModelModule {
         loginUseCase: LoginUseCase
     ): SplashViewModel {
         return SplashViewModel(dispatcher, loginUseCase)
+    }
+
+    @Provides
+    @ActivityScoped
+    fun provideLoginViewModel(
+        dispatcher: Dispatcher,
+        loginUseCase: LoginUseCase
+    ): LoginViewModel {
+        return LoginViewModel(dispatcher, loginUseCase)
     }
 
     @Provides

@@ -1,7 +1,7 @@
 package com.ftw.domain.usecase.login
 
-import kotlinx.coroutines.flow.Flow
+import com.ftw.domain.entity.KakaoToken
 
 interface LoginUseCase {
-    suspend operator fun invoke(): Flow<Result<String>>
+    suspend fun signUp(kakaoToken: KakaoToken) : Result<Boolean>
 }
