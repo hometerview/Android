@@ -14,7 +14,7 @@ class LoginRemoteDataSource(private val api: SignUpAPI) : LoginDataSource {
             if (response.isSuccessful) {
                 val accessToken = response.headers().get("Authorization-Access-Token")
                 val refreshToken = response.headers().get("Authorization-Refresh-Token")
-                if(accessToken != null && refreshToken != null){
+                if (accessToken != null && refreshToken != null) {
                     return Result.success(JWTToken(accessToken,refreshToken))
                 }else {
                     throw ResponseException("Token is Null Exception")

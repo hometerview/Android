@@ -7,11 +7,7 @@ import com.ftw.domain.repository.login.LoginRepository
 
 class LoginRepositoryImpl(private val loginDataSource: LoginDataSource) : LoginRepository {
 
-    override suspend fun setKaKaoToken(kakaoToken: KakaoToken): Result<JWTToken> {
-        val result = loginDataSource.setKakaoToken(kakaoToken)
-        result.getOrNull()?.let {
-            return Result.success(it)
-        }
-        return Result.failure(IllegalAccessException("LoginRepositoryImpl에러"))
+    override suspend fun setKaKaoToken(kakaoToken: KakaoToken): Result<JWTToken> { //근데 실패하면 뭐가 나오는지 궁금함
+        return loginDataSource.setKakaoToken(kakaoToken).let { it }
     }
 }
