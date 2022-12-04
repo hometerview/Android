@@ -13,7 +13,7 @@
         android:padding="@dimen/dp_size_16"
         android:background="@color/white"
         android:onClick="@{() -> item.onClick()}"
-        android:text="@{item.address}"
+        android:text="@{item.buildingId}"
         android:fontFamily="@font/pretendard_regular"
         android:textSize="@dimen/sp_size_14"
         android:textColor="@color/gray_900"

@@ -51,11 +51,11 @@ class CreateReviewActivity :
         )
     }
 
-    override fun onClickAddressFromFirstStepAddress(address: String) {
-        viewModel.setAddress(buildingId = "test")
+    override fun onClickAddressFromFirstStepAddress(buildingId: String) {
+        viewModel.setAddress(buildingId)
         addFragment(
             R.id.fragment_container_view,
-            CreateReviewFirstStepSelectFloorFragment.newInstance(address),
+            CreateReviewFirstStepSelectFloorFragment.newInstance(buildingId),
             true
         )
     }

@@ -26,7 +26,7 @@ class CreateReviewFirstStepInputAddressViewModel(
     sealed class Event {
         object Nothing : Event()
         data class Error(val throwable: Throwable) : Event()
-        data class OnClickAddress(val address: String) : Event()
+        data class OnClickAddress(val buildingId: String) : Event()
     }
 
     private val _event: MutableStateFlow<Event> = MutableStateFlow(Event.Nothing)
@@ -54,7 +54,7 @@ class CreateReviewFirstStepInputAddressViewModel(
                                 addresses.map { searchedAddress ->
                                     RecyclerItem(
                                         data = CreateReviewAddressItem(
-                                            address = searchedAddress.name,
+                                            buildingId = searchedAddress.id,
                                             onClick = { _event.value = Event.OnClickAddress(it) }
                                         ),
                                         layoutId = R.layout.list_item_create_review_search_address,
@@ -70,10 +70,10 @@ class CreateReviewFirstStepInputAddressViewModel(
 }
 
 data class CreateReviewAddressItem(
-    val address: String,
+    val buildingId: String,
     val onClick: (String) -> Unit
 ) {
     fun onClick() {
-        this.onClick(address)
+        this.onClick(buildingId)
     }
 }

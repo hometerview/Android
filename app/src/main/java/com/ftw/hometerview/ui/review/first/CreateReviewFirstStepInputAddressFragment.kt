@@ -27,7 +27,7 @@ class CreateReviewFirstStepInputAddressFragment : Fragment() {
     }
 
     interface Listener {
-        fun onClickAddressFromFirstStepAddress(address: String)
+        fun onClickAddressFromFirstStepAddress(buildingId: String)
     }
 
     private var _binding: FragmentCreateReviewFirstStepInputAddressBinding? = null
@@ -86,7 +86,7 @@ class CreateReviewFirstStepInputAddressFragment : Fragment() {
                     when (event) {
                         is CreateReviewFirstStepInputAddressViewModel.Event.OnClickAddress -> {
                             hideKeyboard()
-                            (activity as? Listener)?.onClickAddressFromFirstStepAddress(event.address)
+                            (activity as? Listener)?.onClickAddressFromFirstStepAddress(event.buildingId)
                         }
                         is CreateReviewFirstStepInputAddressViewModel.Event.Error -> {
                             Toast.makeText(requireContext(), event.throwable.message, Toast.LENGTH_SHORT)
