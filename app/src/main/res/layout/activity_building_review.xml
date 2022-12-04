@@ -133,7 +133,7 @@
                     android:layout_marginHorizontal="@dimen/dp_size_14"
                     android:drawablePadding="@dimen/dp_size_6"
                     android:fontFamily="@font/pretendard_regular"
-                    android:text="@{viewModel.building.address.addressWithLoadName}"
+                    android:text="@{viewModel.building.buildingAddress.addressWithLoadName}"
                     android:textColor="@color/gray_800"
                     android:textSize="@dimen/sp_size_14"
                     app:drawableStartCompat="@drawable/icon_discovery"

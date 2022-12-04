@@ -1,6 +1,6 @@
 package com.ftw.domain.entity
 
-data class Address(
+data class BuildingAddress(
     val longitude: Long,
     val latitude: Long,
     val addressWithLoadName: String,

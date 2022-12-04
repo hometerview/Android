@@ -1,6 +1,6 @@
 package com.ftw.domain.usecase.buildingreviews
 
-import com.ftw.domain.entity.Address
+import com.ftw.domain.entity.BuildingAddress
 import com.ftw.domain.entity.Building
 import com.ftw.domain.entity.BuildingType
 import com.ftw.domain.entity.Price
@@ -35,7 +35,7 @@ class GetBuildingUseCaseImpl : GetBuildingUseCase {
             id = 1,
             name = "아크로텔 오피스텔",
             type = BuildingType.OFFICETEL,
-            address = Address(
+            buildingAddress = BuildingAddress(
                 longitude = 123,
                 latitude = 123,
                 addressWithLoadName = "인천 남동구 구월남로 125",
