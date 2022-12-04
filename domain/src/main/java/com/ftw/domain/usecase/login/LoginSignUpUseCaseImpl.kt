@@ -5,10 +5,10 @@ import com.ftw.domain.repository.login.LoginRepository
 import com.ftw.domain.repository.token.TokenRepository
 import kotlinx.coroutines.flow.Flow
 
-class LoginUseCaseImpl(
+class LoginSignUpUseCaseImpl(
     private val tokenRepository: TokenRepository,
     private val loginRepository: LoginRepository
-) : LoginUseCase {
+) : LoginSignUpUseCase {
 
     //1. 서버에 카카오 토큰을 넘겨 서버에 저장
     //2. 받아올 jwt토큰을 로컬에 저장
@@ -20,5 +20,4 @@ class LoginUseCaseImpl(
         return Result.success(true)
     }
 
-    override suspend fun signIn(): Flow<Result<Boolean>> = tokenRepository.getUserToken()
 }

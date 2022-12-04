@@ -28,7 +28,7 @@ class SplashActivity : AppCompatActivity() {
                 when (state) {
                     SplashViewModel.State.Failure -> startLoginActivity()
                     SplashViewModel.State.Success -> startMainActivity()
-                    else -> { }
+                    SplashViewModel.State.Loading -> {}
                 }
             }
         }

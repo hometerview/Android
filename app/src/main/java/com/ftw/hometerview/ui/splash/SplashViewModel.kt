@@ -1,7 +1,7 @@
 package com.ftw.hometerview.ui.splash
 
 import androidx.lifecycle.ViewModel
-import com.ftw.domain.usecase.login.LoginUseCase
+import com.ftw.domain.usecase.login.LoginSignInUseCase
 import com.ftw.hometerview.dispatcher.Dispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 
 class SplashViewModel(
     private val dispatcher: Dispatcher,
-    private val loginUseCase: LoginUseCase
+    private val loginSinInUseCase: LoginSignInUseCase
 ) : ViewModel() {
 
     sealed class State {
@@ -24,7 +24,7 @@ class SplashViewModel(
     init {
         _state.value = State.Loading
         CoroutineScope(dispatcher.ui()).launch {
-            val result: Flow<Result<Boolean>> = loginUseCase.signIn()
+            val result: Flow<Result<Boolean>> = loginSinInUseCase.signIn()
             result.collect{
                 if (it.isSuccess) {
                     _state.value = State.Success

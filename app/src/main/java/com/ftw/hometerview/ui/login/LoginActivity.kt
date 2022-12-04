@@ -85,9 +85,7 @@ class LoginActivity : AppCompatActivity() {
                 when(state) {
                     LoginViewModel.State.Success -> startSearchCompanyActivity()
                     LoginViewModel.State.Failure -> toastMessage("로그인에 실패하셨습니다")
-                    else -> {
-
-                    }
+                    LoginViewModel.State.Loading -> {}
                 }
             }
         }

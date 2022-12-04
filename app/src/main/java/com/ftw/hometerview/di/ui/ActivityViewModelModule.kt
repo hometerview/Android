@@ -2,7 +2,8 @@ package com.ftw.hometerview.di.ui
 
 import com.ftw.domain.usecase.buildingreviews.GetBuildingUseCase
 import com.ftw.domain.usecase.buildingreviews.GetReviewsUseCase
-import com.ftw.domain.usecase.login.LoginUseCase
+import com.ftw.domain.usecase.login.LoginSignInUseCase
+import com.ftw.domain.usecase.login.LoginSignUpUseCase
 import com.ftw.domain.usecase.review.GetLocationReviewsUseCase
 import com.ftw.domain.usecase.searchaddressbuilding.GetSearchAddressBuildingUseCase
 import com.ftw.domain.usecase.myreviews.GetMyReviewsUseCase
@@ -32,18 +33,18 @@ class ActivityViewModelModule {
     @ActivityScoped
     fun provideSplashViewModel(
         dispatcher: Dispatcher,
-        loginUseCase: LoginUseCase
+        loginSignInUseCase: LoginSignInUseCase
     ): SplashViewModel {
-        return SplashViewModel(dispatcher, loginUseCase)
+        return SplashViewModel(dispatcher, loginSignInUseCase)
     }
 
     @Provides
     @ActivityScoped
     fun provideLoginViewModel(
         dispatcher: Dispatcher,
-        loginUseCase: LoginUseCase
+        loginSignUpUseCase: LoginSignUpUseCase
     ): LoginViewModel {
-        return LoginViewModel(dispatcher, loginUseCase)
+        return LoginViewModel(dispatcher, loginSignUpUseCase)
     }
 
     @Provides

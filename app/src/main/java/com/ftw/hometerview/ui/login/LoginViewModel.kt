@@ -2,7 +2,7 @@ package com.ftw.hometerview.ui.login
 
 import androidx.lifecycle.ViewModel
 import com.ftw.domain.entity.KakaoToken
-import com.ftw.domain.usecase.login.LoginUseCase
+import com.ftw.domain.usecase.login.LoginSignUpUseCase
 import com.ftw.hometerview.dispatcher.Dispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 class LoginViewModel(
     private val dispatcher: Dispatcher,
-    private val loginUseCase: LoginUseCase
+    private val loginSignUpUseCase: LoginSignUpUseCase
 ) : ViewModel() {
 
     sealed class State {
@@ -28,7 +28,7 @@ class LoginViewModel(
     fun setKakaoToken(kakaoToken: KakaoToken){
         _state.value = State.Loading
         CoroutineScope(dispatcher.ui()).launch {
-            val result: Result<Boolean> = loginUseCase.signUp(kakaoToken)
+            val result: Result<Boolean> = loginSignUpUseCase.signUp(kakaoToken)
             if(result.isSuccess){
                 _state.value = State.Success
             } else {
