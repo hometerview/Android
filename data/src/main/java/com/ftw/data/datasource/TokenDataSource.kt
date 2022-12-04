@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface TokenDataSource {
     suspend fun set(jwtToken: JWTToken)
-    suspend fun get(): Flow<Result<String>>
+    suspend fun hasToken(): Flow<Boolean>
 }

@@ -3,6 +3,7 @@ package com.ftw.domain.usecase.login
 import com.ftw.domain.entity.KakaoToken
 import com.ftw.domain.repository.login.LoginRepository
 import com.ftw.domain.repository.token.TokenRepository
+import kotlinx.coroutines.flow.Flow
 
 class LoginUseCaseImpl(
     private val tokenRepository: TokenRepository,
@@ -18,4 +19,6 @@ class LoginUseCaseImpl(
         tokenRepository.setUserToken(token)
         return Result.success(true)
     }
+
+    override suspend fun signIn(): Flow<Result<Boolean>> = tokenRepository.getUserToken()
 }

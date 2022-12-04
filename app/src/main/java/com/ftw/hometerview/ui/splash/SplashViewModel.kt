@@ -4,12 +4,8 @@ import androidx.lifecycle.ViewModel
 import com.ftw.domain.usecase.login.LoginUseCase
 import com.ftw.hometerview.dispatcher.Dispatcher
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class SplashViewModel(
     private val dispatcher: Dispatcher,
@@ -26,15 +22,16 @@ class SplashViewModel(
     val state: StateFlow<State> get() = _state.asStateFlow()
 
     init {
-//        CoroutineScope(dispatcher.ui()).launch {
-//            val result: Flow<Result<String>> = withContext(dispatcher.io()) {
-//                loginUseCase()
-//            }
-//
-//            result.collect {
-//                if (it.isSuccess) _state.value = State.Success
-//                else _state.value = State.Failure
-//            }
-//        }
+        _state.value = State.Loading
+        CoroutineScope(dispatcher.ui()).launch {
+            val result: Flow<Result<Boolean>> = loginUseCase.signIn()
+            result.collect{
+                if (it.isSuccess) {
+                    _state.value = State.Success
+                } else {
+                   _state.value = State.Failure
+                }
+            }
+        }
     }
 }

@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface TokenRepository {
     suspend fun setUserToken(jwtToken: JWTToken)
-    suspend fun getUserToken(): Flow<Result<String>>
+    suspend fun getUserToken(): Flow<Result<Boolean>>
 }

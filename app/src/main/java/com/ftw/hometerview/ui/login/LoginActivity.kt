@@ -52,7 +52,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         guideSetting()
-        observeStartActivity()
+        observe()
 
         binding.kakaoLoginButton.setOnClickListener {
             kakaoLogin()
@@ -79,16 +79,12 @@ class LoginActivity : AppCompatActivity() {
         binding.dotsIndicator.setViewPager2(binding.guideViewpager)
     }
 
-    private fun observeStartActivity(){
+    private fun observe(){
         lifecycleScope.launch {
             viewModel.state.collect { state ->
                 when(state) {
-                    LoginViewModel.State.Success -> {
-                        startSearchCompanyActivity()
-                    }
-                    LoginViewModel.State.Failure -> {
-                        toastMessage("로그인에 실패하셨습니다")
-                    }
+                    LoginViewModel.State.Success -> startSearchCompanyActivity()
+                    LoginViewModel.State.Failure -> toastMessage("로그인에 실패하셨습니다")
                     else -> {
 
                     }

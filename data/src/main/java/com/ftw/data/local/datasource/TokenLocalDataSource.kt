@@ -14,14 +14,15 @@ class TokenLocalDataSource(private val provider: DataStoreProvider) : TokenDataS
     private val refreshKey = stringPreferencesKey(DataStoreKeys.USER_REFRESH_TOKEN)
 
     override suspend fun set(jwtToken: JWTToken) {
-        provider.setValue(accessKey, jwtToken.accessToken)
-        provider.setValue(refreshKey,jwtToken.refreshToken)
+        with(provider) {
+            setValue(accessKey, jwtToken.accessToken)
+            setValue(refreshKey, jwtToken.refreshToken)
+        }
     }
 
-    override suspend fun get(): Flow<Result<String>> {
-        return provider.getValue(accessKey).map { token ->
-            token?.let { Result.success(it) }
-                ?: Result.failure(NoSuchFieldError("Getting token is failed"))
+    override suspend fun hasToken() : Flow<Boolean> {
+        return provider.getValue(accessKey).map {
+            it != null
         }
     }
 }
