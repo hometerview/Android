@@ -177,12 +177,14 @@ class HomeFragment : Fragment() {
         ).apply {
             addUpdateListener { valueAnimator ->
                 val value = valueAnimator.animatedValue as? Int ?: 0
+                if (_binding == null) return@addUpdateListener
                 binding.inducementEmptyLayout.updateLayoutParams<ViewGroup.LayoutParams> {
                     height = value
                 }
             }
 
             doOnEnd {
+                if (_binding == null) return@doOnEnd
                 binding.inducementLayout.isVisible = true
                 binding.inducementLayout.startAnimation(
                     AlphaAnimation(0f, 1f).apply {

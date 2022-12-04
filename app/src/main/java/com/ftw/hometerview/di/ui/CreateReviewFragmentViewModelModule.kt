@@ -1,6 +1,6 @@
 package com.ftw.hometerview.di.ui
 
-import com.ftw.domain.usecase.address.GetAddressUseCase
+import com.ftw.domain.usecase.search.GetSearchedBuildingAddressesUseCase
 import com.ftw.hometerview.dispatcher.Dispatcher
 import com.ftw.hometerview.ui.review.first.CreateReviewFirstStepInputAddressViewModel
 import com.ftw.hometerview.ui.review.first.CreateReviewFirstStepSelectFloorViewModel
@@ -20,11 +20,11 @@ class CreateReviewFragmentViewModelModule {
     @FragmentScoped
     fun provideCreateReviewFirstStepInputAddressViewModel(
         dispatcher: Dispatcher,
-        getAddressUseCase: GetAddressUseCase
+        getSearchedBuildingAddressesUseCase: GetSearchedBuildingAddressesUseCase
     ): CreateReviewFirstStepInputAddressViewModel {
         return CreateReviewFirstStepInputAddressViewModel(
             dispatcher,
-            getAddressUseCase
+            getSearchedBuildingAddressesUseCase
         )
     }
 
