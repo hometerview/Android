@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.ftw.domain.entity.Address
 import com.ftw.domain.entity.Review
 import com.ftw.hometerview.R
 import com.ftw.hometerview.databinding.ActivityCreateReviewBinding
@@ -51,11 +52,11 @@ class CreateReviewActivity :
         )
     }
 
-    override fun onClickAddressFromFirstStepAddress(address: String) {
-        viewModel.setAddress(buildingId = "test")
+    override fun onClickAddressFromFirstStepAddress(address: Address) {
+        viewModel.setBuildingId(address.id)
         addFragment(
             R.id.fragment_container_view,
-            CreateReviewFirstStepSelectFloorFragment.newInstance(address),
+            CreateReviewFirstStepSelectFloorFragment.newInstance(address.name),
             true
         )
     }

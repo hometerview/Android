@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.ftw.domain.entity.Address
 import com.ftw.hometerview.R
 import com.ftw.hometerview.adapter.DataBindingRecyclerAdapter
 import com.ftw.hometerview.adapter.DividerItemDecoration
@@ -26,7 +28,7 @@ class CreateReviewFirstStepInputAddressFragment : Fragment() {
     }
 
     interface Listener {
-        fun onClickAddressFromFirstStepAddress(address: String)
+        fun onClickAddressFromFirstStepAddress(address: Address)
     }
 
     private var _binding: FragmentCreateReviewFirstStepInputAddressBinding? = null
@@ -48,7 +50,8 @@ class CreateReviewFirstStepInputAddressFragment : Fragment() {
             container,
             false
         ).apply {
-            this.viewModel = this@CreateReviewFirstStepInputAddressFragment.viewModel
+            lifecycleOwner = viewLifecycleOwner
+            viewModel = this@CreateReviewFirstStepInputAddressFragment.viewModel
         }
         return binding.root
     }
@@ -85,6 +88,9 @@ class CreateReviewFirstStepInputAddressFragment : Fragment() {
                         is CreateReviewFirstStepInputAddressViewModel.Event.OnClickAddress -> {
                             hideKeyboard()
                             (activity as? Listener)?.onClickAddressFromFirstStepAddress(event.address)
+                        }
+                        is CreateReviewFirstStepInputAddressViewModel.Event.Error -> {
+                            Toast.makeText(requireContext(), event.throwable.message, Toast.LENGTH_SHORT)
                         }
                         else -> {
                             // Do Nothing
