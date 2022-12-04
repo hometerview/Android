@@ -9,6 +9,7 @@ class CreateReviewFirstStepSelectFloorViewModel {
     sealed class Event {
         object Nothing : Event()
         object OnClickResidentialFloor : Event()
+        object OnClickBack : Event()
         class OnClickNext(val address: String, val floor: String) : Event()
     }
 
@@ -30,6 +31,11 @@ class CreateReviewFirstStepSelectFloorViewModel {
 
     fun onClickResidentialFloor() {
         _event.value = Event.OnClickResidentialFloor
+        _event.value = Event.Nothing
+    }
+
+    fun onClickBack() {
+        _event.value = Event.OnClickBack
         _event.value = Event.Nothing
     }
 
