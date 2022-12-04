@@ -134,7 +134,7 @@
             android:ellipsize="end"
             android:fontFamily="@font/pretendard_regular"
             android:maxLines="1"
-            android:text="@{item.favoriteBuildings.address.component3()}"
+            android:text="@{item.favoriteBuildings.buildingAddress.component3()}"
             android:textColor="@color/gray_600"
             android:textSize="@dimen/sp_size_12"
             app:drawableTint="@color/gray_400"

@@ -18,6 +18,7 @@ import com.ftw.hometerview.ui.review.second.CreateReviewSecondStepReviewFragment
 import com.ftw.hometerview.ui.review.third.CreateReviewThirdStepSearchCompanyFragment
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Date
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class CreateReviewActivity :
@@ -31,6 +32,9 @@ class CreateReviewActivity :
         const val CREATE_REVIEW_RESULT_KEY = "CREATE_REVIEW_RESULT_KEY"
         fun newIntent(context: Context): Intent = Intent(context, CreateReviewActivity::class.java)
     }
+
+    @Inject
+    lateinit var viewModel: CreateReviewViewModel
 
     private var review = Review.NONE
 
@@ -48,7 +52,7 @@ class CreateReviewActivity :
     }
 
     override fun onClickAddressFromFirstStepAddress(address: String) {
-        review = review.copy(buildingAddress = address)
+        viewModel.setAddress(buildingId = "test")
         addFragment(
             R.id.fragment_container_view,
             CreateReviewFirstStepSelectFloorFragment.newInstance(address),
@@ -57,7 +61,7 @@ class CreateReviewActivity :
     }
 
     override fun onClickNextFromFirstStepResidentialFloor(address: String, floor: String) {
-        review = review.copy(buildingAddress = address)
+        viewModel.setFloor(floor)
         addFragment(
             R.id.fragment_container_view,
             CreateReviewSecondStepReviewFragment.newInstance(),
@@ -71,12 +75,7 @@ class CreateReviewActivity :
         advantage: String,
         disadvantage: String
     ) {
-        review = review.copy(
-            rating = rating,
-            leftAt = leftAt,
-            advantage = advantage,
-            disadvantage = disadvantage
-        )
+        viewModel.setInfo(rating, leftAt.toString(), advantage, disadvantage)
         addFragment(
             R.id.fragment_container_view,
             CreateReviewThirdStepSearchCompanyFragment.newInstance(),
@@ -85,7 +84,9 @@ class CreateReviewActivity :
     }
 
     override fun onClickNextFromThirdStepSearchCompany(company: String) {
-        review = review.copy(officeLocation = company)
+        viewModel.setCompanyId("companyId")
+        viewModel.create()
+
         setResult(
             Activity.RESULT_OK,
             Intent().putExtra(CREATE_REVIEW_RESULT_KEY, review.toParcelable())
