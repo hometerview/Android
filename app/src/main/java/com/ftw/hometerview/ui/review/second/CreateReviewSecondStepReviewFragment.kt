@@ -75,6 +75,9 @@ class CreateReviewSecondStepReviewFragment : Fragment(), TextListBottomSheet.Lis
                             TextListBottomSheet.newInstance(getResidentialPeriods(event.periods))
                                 .show(childFragmentManager, TextListBottomSheet::class.simpleName)
                         }
+                        CreateReviewSecondStepReviewViewModel.State.OnClickBack -> {
+                            activity?.onBackPressed()
+                        }
                         is CreateReviewSecondStepReviewViewModel.State.OnClickNext -> {
                             (activity as? Listener)?.onClickNextFromSecondStepReview(
                                 event.rating,

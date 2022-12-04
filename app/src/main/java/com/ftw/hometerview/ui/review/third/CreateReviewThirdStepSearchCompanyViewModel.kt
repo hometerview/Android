@@ -8,6 +8,7 @@ class CreateReviewThirdStepSearchCompanyViewModel {
     sealed class Event {
         object None : Event()
         object OnClickSearchCompany : Event()
+        object OnClickBack : Event()
         class OnClickNext(val company: String) : Event()
     }
 
@@ -18,6 +19,11 @@ class CreateReviewThirdStepSearchCompanyViewModel {
 
     fun onClickSearchCompany() {
         _event.value = Event.OnClickSearchCompany
+        _event.value = Event.None
+    }
+
+    fun onClickBack() {
+        _event.value = Event.OnClickBack
         _event.value = Event.None
     }
 

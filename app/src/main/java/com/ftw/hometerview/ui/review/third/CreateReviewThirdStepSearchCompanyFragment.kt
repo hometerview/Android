@@ -81,6 +81,7 @@ class CreateReviewThirdStepSearchCompanyFragment : Fragment() {
                     when (event) {
                         CreateReviewThirdStepSearchCompanyViewModel.Event.None -> {}
                         CreateReviewThirdStepSearchCompanyViewModel.Event.OnClickSearchCompany -> showSearchCompanyActivity()
+                        CreateReviewThirdStepSearchCompanyViewModel.Event.OnClickBack -> activity?.onBackPressed()
                         is CreateReviewThirdStepSearchCompanyViewModel.Event.OnClickNext -> {
                             (activity as? Listener)?.onClickNextFromThirdStepSearchCompany(event.company)
                         }

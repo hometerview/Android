@@ -21,7 +21,9 @@ import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
 
 @AndroidEntryPoint
-class CreateReviewFirstStepSelectFloorFragment : Fragment(), SelectResidentialFloorBottomSheet.Listener {
+class CreateReviewFirstStepSelectFloorFragment :
+    Fragment(),
+    SelectResidentialFloorBottomSheet.Listener {
     companion object {
         private const val ARGUMENT_KEY = "CREATE_REVIEW_SECOND_STEP_ARGUMENT_KEY"
         fun newInstance(address: String): CreateReviewFirstStepSelectFloorFragment {
@@ -86,6 +88,7 @@ class CreateReviewFirstStepSelectFloorFragment : Fragment(), SelectResidentialFl
                     when (event) {
                         CreateReviewFirstStepSelectFloorViewModel.Event.Nothing -> {}
                         CreateReviewFirstStepSelectFloorViewModel.Event.OnClickResidentialFloor -> showSelectResidentialFloorBottomSheet()
+                        CreateReviewFirstStepSelectFloorViewModel.Event.OnClickBack -> activity?.onBackPressed()
                         is CreateReviewFirstStepSelectFloorViewModel.Event.OnClickNext -> {
                             (activity as? Listener)?.onClickNextFromFirstStepResidentialFloor(
                                 event.address,

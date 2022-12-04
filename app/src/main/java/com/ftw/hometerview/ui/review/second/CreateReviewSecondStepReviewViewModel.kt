@@ -10,6 +10,7 @@ class CreateReviewSecondStepReviewViewModel {
     sealed class State {
         object None : State()
         class OnClickResidentialPeriod(val periods: List<Int>) : State()
+        object OnClickBack : State()
         class OnClickNext(
             val rating: Int,
             val leftAt: Date,
@@ -35,6 +36,10 @@ class CreateReviewSecondStepReviewViewModel {
         _event.value = State.OnClickResidentialPeriod(
             (2022 downTo 2018).toList()
         )
+    }
+
+    fun onClickBack() {
+        _event.value = State.OnClickBack
     }
 
     fun onClickNext() {
