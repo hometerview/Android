@@ -2,8 +2,10 @@ package com.ftw.hometerview.di.usecase
 
 import com.ftw.domain.repository.login.LoginRepository
 import com.ftw.domain.repository.token.TokenRepository
-import com.ftw.domain.usecase.login.LoginUseCase
-import com.ftw.domain.usecase.login.LoginUseCaseImpl
+import com.ftw.domain.usecase.login.LoginSignInUseCase
+import com.ftw.domain.usecase.login.LoginSignInUseCaseImpl
+import com.ftw.domain.usecase.login.LoginSignUpUseCase
+import com.ftw.domain.usecase.login.LoginSignUpUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,10 +18,18 @@ class LoginUseCaseModule {
 
     @Provides
     @Singleton
-    fun provideLoginUseCase(
+    fun provideLoginSignUpUseCase(
         tokenRepository: TokenRepository,
         loginRepository: LoginRepository
-    ): LoginUseCase {
-        return LoginUseCaseImpl(tokenRepository, loginRepository)
+    ): LoginSignUpUseCase {
+        return LoginSignUpUseCaseImpl(tokenRepository, loginRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLoginSignInUseCase(
+        tokenRepository: TokenRepository
+    ): LoginSignInUseCase {
+        return LoginSignInUseCaseImpl(tokenRepository)
     }
 }

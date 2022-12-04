@@ -1,5 +1,8 @@
 package com.ftw.domain.repository.login
 
+import com.ftw.domain.entity.JWTToken
+import com.ftw.domain.entity.KakaoToken
+
 interface LoginRepository {
-    suspend fun login(token: String): Result<String>
+    suspend fun setKaKaoToken(kakaoToken: KakaoToken) : Result<JWTToken>
 }

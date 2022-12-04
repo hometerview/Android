@@ -16,6 +16,7 @@
     <string name="residential_floor_private">비공개</string>
     <string name="residential_period">거주 기간</string>
     <string name="tip">TIP</string>
+    <string name="permission_errer_message">권한이 필요하므로, 다시 한번 시도해주세요!</string>
 
     <string name="main_bottom_navigation_menu_home">홈</string>
     <string name="main_bottom_navigation_menu_map">지도</string>
