@@ -1,5 +1,6 @@
 package com.ftw.hometerview.ui.review.first
 
+import com.ftw.domain.entity.Address
 import com.ftw.domain.usecase.search.GetSearchedBuildingAddressesUseCase
 import com.ftw.hometerview.BR
 import com.ftw.hometerview.R
@@ -26,7 +27,7 @@ class CreateReviewFirstStepInputAddressViewModel(
     sealed class Event {
         object Nothing : Event()
         data class Error(val throwable: Throwable) : Event()
-        data class OnClickAddress(val buildingId: String) : Event()
+        data class OnClickAddress(val address: Address) : Event()
     }
 
     private val _event: MutableStateFlow<Event> = MutableStateFlow(Event.Nothing)
@@ -54,7 +55,7 @@ class CreateReviewFirstStepInputAddressViewModel(
                                 addresses.map { searchedAddress ->
                                     RecyclerItem(
                                         data = CreateReviewAddressItem(
-                                            buildingId = searchedAddress.id,
+                                            address = searchedAddress,
                                             onClick = { _event.value = Event.OnClickAddress(it) }
                                         ),
                                         layoutId = R.layout.list_item_create_review_search_address,
@@ -70,10 +71,10 @@ class CreateReviewFirstStepInputAddressViewModel(
 }
 
 data class CreateReviewAddressItem(
-    val buildingId: String,
-    val onClick: (String) -> Unit
+    val address: Address,
+    val onClick: (Address) -> Unit
 ) {
     fun onClick() {
-        this.onClick(buildingId)
+        this.onClick(address)
     }
 }

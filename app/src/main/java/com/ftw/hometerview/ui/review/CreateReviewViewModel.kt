@@ -19,7 +19,7 @@ class CreateReviewViewModel(
     private var disadvantage: String? = null
     private var floor: String? = null
 
-    fun setAddress(buildingId: String) {
+    fun setBuildingId(buildingId: String) {
         this.buildingId = buildingId
     }
 
