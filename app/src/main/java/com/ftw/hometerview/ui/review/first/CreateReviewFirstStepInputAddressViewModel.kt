@@ -34,7 +34,7 @@ class CreateReviewFirstStepInputAddressViewModel(
         address
             .debounce(500)
             .transformLatest { address ->
-                flow<Result<List<String>>> {
+                flow {
                     if (address.isNotBlank()) emit(getAddressUseCase(address))
                     else emit(Result.success(emptyList()))
                 }.collect { result ->
